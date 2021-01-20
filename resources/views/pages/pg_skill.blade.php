@@ -219,13 +219,12 @@
 
 @endsection
 
-@push('scripts')
-<script>
+@section('adminlte_js')
+<script type="text/javascript">
     $(function() {
         $("#table-peminatan").DataTable({
-            "responsive": true,
-            "autoWidth": false,
+
         });
     });
 </script>
-@endpush
+@endsection

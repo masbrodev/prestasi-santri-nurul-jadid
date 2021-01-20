@@ -275,8 +275,19 @@ return [
         ['header' => 'Prestasi Santri'],
         [
             'text' => 'Prestasi Santri',
-            'url'  => 'prestasi-santri',
             'icon' => 'fa fa-chevron-circle-right',
+            'submenu' => [
+                [
+                    'text' => 'Data',
+                    'url'  => 'prestasi-santri',
+                    'icon' => 'fas fa-fw fa-plus-square',
+                ],
+                [
+                    'text' => 'Tambah',
+                    'url'  => 'tambah-prestasi',
+                    'icon' => 'fas fa-fw fa-plus-square',
+                ],
+            ],
         ],
         ['header' => 'Pengaturan'],
         [

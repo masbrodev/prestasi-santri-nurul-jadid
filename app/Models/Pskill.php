@@ -4,7 +4,7 @@ namespace App;
 
 use Illuminate\Database\Eloquent\Model;
 
-class pskill extends Model
+class Pskill extends Model
 {
     //
 }

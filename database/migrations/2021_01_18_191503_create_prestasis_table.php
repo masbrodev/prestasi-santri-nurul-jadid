@@ -15,6 +15,8 @@ class CreatePrestasisTable extends Migration
     {
         Schema::create('prestasi', function (Blueprint $table) {
             $table->id();
+            $table->integer('nis');
+            $table->string('nama_prestasi');
             $table->timestamps();
         });
     }

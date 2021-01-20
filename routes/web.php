@@ -39,7 +39,10 @@ Route::get('/peminatan-keilmuan', 'PkilmuanController@index');
 Route::get('/peminatan-skill', 'PskillController@index');
 Route::get('/jejak-keorganisasian', 'JorganisasiController@index');
 Route::get('/jejak-ekstrakurikuler', 'JekstrakurikulerController@index');
+
 Route::get('/prestasi-santri', 'PrestasiController@index');
+Route::get('/tambah-prestasi', 'PrestasiController@haltambah');
+Route::post('/tambah-prestasi', 'PrestasiController@tambah');
 
 
 Route::get('/tambah-peminatan-keilmuan', 'PeminatanController@ilmu');

@@ -10,7 +10,7 @@
 <div class="col-md-12">
     <div class="card">
         <div class="card-header">
-            <h3 class="card-title">Data Prestasi Santri</h3>
+            <h3 class="card-title">Tambah Prestasi Santri</h3>
         </div>
         <!-- /.card-header -->
         <div class="card-body table-responsive">
@@ -18,21 +18,17 @@
                 <thead>
                     <tr>
                         <th style="width: 10px">NO</th>
-                        <th>NIS</th>
-                        <th>Jumlah Prestasi</th>
+                        <th>nis</th>
+                        <th>nama</th>
                         <th style="width: 200px">Aksi</th>
                     </tr>
                 </thead>
                 <tbody>
-                    @foreach($prestasi as $nis => $r)
+                    @foreach($santri as $r)
                     <tr>
                         <td>{{ $loop->iteration }}</td>
-                        <td>{{ $nis }}</td>
-                        <td>
-                        @foreach($r as $r)
-                        {{ $r->nama_prestasi }}
-                        @endforeach
-                        </td>
+                        <td>{{ $r->nis }}</td>
+                        <td>{{ $r->nama_lengkap }}</td>
                         <td>
                             <div class="input-group">
                                 <button type="button" class="btn btn-outline-primary" data-toggle="modal" data-target="#lihat-kat{{ $loop->iteration }}">Tambah</button>
@@ -46,7 +42,7 @@
 </div>
 <!-- /.card -->
 
-@foreach($prestasi as $nis => $r)
+@foreach($santri as $r)
 <div class="modal fade" id="lihat-kat{{ $loop->iteration }}">
     <div class="modal-dialog modal-lg">
         <div class="modal-content">
@@ -61,8 +57,17 @@
                     @csrf
                     <div class="form-group">
                         <label>Nama</label>
-                        <input type="hidden" class="form-control" value="{{ $nis }}" name="nis">
+                        <input type="text" class="form-control" value="{{ $r->nama_lengkap }}" readonly>
+                        <input type="hidden" class="form-control" value="{{ $r->nis }}" name="nis">
                         <br>
+                        <label>Kamar</label>
+                        <input type="text" class="form-control" value="{{ $r->domisili_santri_kamar }}" readonly>
+                        <br>
+
+                        <label>Pendidikan</label>
+                        <input type="text" class="form-control" value="{{ $r->pendidikan_lembaga }} / {{ $r->pendidikan_jurusan }} / {{ $r->pendidikan_kelas }}" readonly>
+                        <br>
+
                         <label>Prestasi</label>
                         <input type="text" class="form-control" placeholder="Masukkan Nama Prestasi" name="nama_prestasi">
                     </div>

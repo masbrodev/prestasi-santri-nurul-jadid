@@ -4,9 +4,9 @@ namespace App;
 
 use Illuminate\Database\Eloquent\Model;
 
-class santri extends Model
+class ApiSantri extends Model
 {
-    protected $table = 'santri';
+    protected $table = 'santri_coba';
     protected $primaryKey = 'id';
     protected $fillable = [];
 }
