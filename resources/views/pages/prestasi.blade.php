@@ -24,18 +24,14 @@
                     </tr>
                 </thead>
                 <tbody>
-                    @foreach($prestasi as $nis => $r)
+                    @foreach($prestasi->groupBy('nis') as $nis => $r)
                     <tr>
                         <td>{{ $loop->iteration }}</td>
                         <td>{{ $nis }}</td>
-                        <td>
-                        @foreach($r as $r)
-                        {{ $r->nama_prestasi }}
-                        @endforeach
-                        </td>
+                        <td>{{ $r->count() }}</td>
                         <td>
                             <div class="input-group">
-                                <button type="button" class="btn btn-outline-primary" data-toggle="modal" data-target="#lihat-kat{{ $loop->iteration }}">Tambah</button>
+                                <button type="button" class="btn btn-outline-primary" data-toggle="modal" data-target="#lihat-kat{{ $loop->iteration }}">Lihat</button>
                             </div>
                             @endforeach
                 </tbody>
@@ -46,7 +42,7 @@
 </div>
 <!-- /.card -->
 
-@foreach($prestasi as $nis => $r)
+@foreach($prestasi->groupBy('nis') as $nis => $p)
 <div class="modal fade" id="lihat-kat{{ $loop->iteration }}">
     <div class="modal-dialog modal-lg">
         <div class="modal-content">
@@ -60,15 +56,17 @@
                 <form action="{{ URL::to('tambah-prestasi')}}" method="post">
                     @csrf
                     <div class="form-group">
-                        <label>Nama</label>
-                        <input type="hidden" class="form-control" value="{{ $nis }}" name="nis">
+                        <label>NIS</label>
+                        <input type="text" class="form-control" value="{{ $nis }}" name="nis" readonly>
                         <br>
                         <label>Prestasi</label>
-                        <input type="text" class="form-control" placeholder="Masukkan Nama Prestasi" name="nama_prestasi">
+                        @foreach($p as $rr)
+                        <input type="text" class="form-control" value="{{ $rr->nama_prestasi }}" readonly>
+                        <br>
+                        @endforeach
                     </div>
                     <div class="modal-footer justify-content-between">
                         <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-                        <button type="submit" class="btn btn-primary" id="e">Simpan</button>
                     </div>
                 </form>
             </div>

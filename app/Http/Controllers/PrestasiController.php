@@ -12,9 +12,10 @@ class PrestasiController extends Controller
     public function index()
     {
 
-        $data['prestasi'] = Prestasi::get()->groupBy('nis');
+        // $data['prestasi'] = Prestasi::get()->groupBy('nis');
+        $data['prestasi'] = Prestasi::orderBy('id', 'DESC')->get();
         return view('pages.prestasi',$data);
-        return $data;
+        // return $data;
     }
 
     public function haltambah()
