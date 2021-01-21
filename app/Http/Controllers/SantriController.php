@@ -17,7 +17,7 @@ class SantriController extends Controller
     public function index()
     {
         $data['santri'] = Santri::get();
-        return $data;
-        // return view('pages.santri',$data);
+        // return $data;
+        return view('pages.santri',$data);
     }
 }
