@@ -46,7 +46,7 @@ return [
     */
 
     'logo' => '<b>Prestasi </b>SANTRI',
-    'logo_img' => 'vendor/adminlte/dist/img/AdminLTELogo.png',
+    'logo_img' => 'LogoNJ.jpg',
     'logo_img_class' => 'brand-image img-circle elevation-3',
     'logo_img_xl' => null,
     'logo_img_xl_class' => 'brand-image-xs',
@@ -107,6 +107,7 @@ return [
     'classes_auth_footer' => '',
     'classes_auth_icon' => '',
     'classes_auth_btn' => 'btn-flat btn-primary',
+    'login_message' => 'Aplikasi Rekam Jejak Santri',
 
     /*
     |--------------------------------------------------------------------------

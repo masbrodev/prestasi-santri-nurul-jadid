@@ -19,21 +19,17 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-Route::get('/a', function () {
-     Toastr::success('Messages in here', 'Title', ["positionClass" => "toast-top-center"]);
-    return view('pages.produk');
-});
-
-Auth::routes();
-
 Route::get('/home', 'HomeController@index')->name('home');
 Route::get('kategori', 'KategoriController@index');
 Route::post('kategori/tambah', 'KategoriController@tambah');
 Route::post('kategori/edit/{id}', 'KategoriController@edit');
 Route::get('kategori/hapus/{id}', 'KategoriController@hapus');
 
-Auth::routes();
-
+Auth::routes([
+    'register' => false, // Registration Routes...
+    'reset' => false, // Password Reset Routes...
+    'verify' => false, // Email Verification Routes...
+  ]);
 Route::get('/santri', 'santriController@index');
 Route::get('/peminatan-keilmuan', 'PkilmuanController@index');
 Route::get('/peminatan-skill', 'PskillController@index');
