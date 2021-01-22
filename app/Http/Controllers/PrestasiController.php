@@ -37,4 +37,28 @@ class PrestasiController extends Controller
             return redirect()->back()->with([Toastr::success('Data Prestasi Berhasil ditambahkan')]);
         }
     }
+
+    public function edit(Request $request, $id)
+    {
+        $data = [
+            'nama_prestasi' => $request->prestasi,
+        ];
+
+        $simpan = Prestasi::where('id', $id)->update($data);
+        if ($simpan) {
+            return redirect()->back()->with([Toastr::success('Data Prestasi Santri Berhasil Diperbaharui')]);
+        } else {
+            return redirect()->back()->with([Toastr::error('Data Prestasi Santri Gagal Diperbaharui')]);
+        }
+    }
+    public function hapus($id)
+    {
+        $prestasi = Prestasi::find($id);
+        if ($prestasi) {
+            $prestasi->delete();
+            return redirect()->back()->with([Toastr::success('Data Prestasi Santri Berhasil Dihapus')]);
+        } else {
+            return redirect()->back()->with([Toastr::error('Data Prestasi Santri Gagal Dihapus')]);
+        }
+    }
 }
