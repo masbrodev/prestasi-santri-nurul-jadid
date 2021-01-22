@@ -195,7 +195,7 @@
                         <br>
                         <label>Sub Peminatan</label>
                         <input type="text" class="form-control" placeholder="Masukkan Sub Jurusan" name="sub">
-                     
+
                         <div class="modal-footer justify-content-between">
                             <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
                             <button type="submit" class="btn btn-primary" id="s">Simpan</button>
@@ -219,7 +219,14 @@
 <script type="text/javascript">
     $(function() {
         $("#table-peminatan").DataTable({
-
+            "language": {
+                "search": "Cari:",
+                "lengthMenu": "Tampilkan _MENU_ baris",
+                "zeroRecords": "Data Tidak Ditemukan",
+                "info": "Total data _MAX_",
+                "infoEmpty": "Data Kosong",
+                "infoFiltered": "(filtered from _MAX_ total records)"
+            }
         });
     });
 </script>

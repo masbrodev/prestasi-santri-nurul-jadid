@@ -13,27 +13,22 @@
             <h3 class="card-title">Tambah Prestasi Santri</h3>
         </div>
         <!-- /.card-header -->
-        <div class="card-body table-responsive">
-            <table class="table table-bordered" id="table-peminatan">
+        <div class="card-body table-responsive" style="overflow-x:auto;">
+            <table class="table table-hover" id="table-peminatan">
                 <thead>
                     <tr>
-                        <th style="width: 10px">NO</th>
-                        <th>nis</th>
-                        <th>nama</th>
-                        <th style="width: 200px">Aksi</th>
+                        <th style="width: 20px">#</th>
+                        <th>Nis</th>
+                        <th style="width: 900px">Nama</th>
                     </tr>
                 </thead>
                 <tbody>
                     @foreach($santri as $r)
-                    <tr>
+                    <tr data-toggle="modal" data-target="#lihat-kat{{ $loop->iteration }}">
                         <td>{{ $loop->iteration }}</td>
                         <td>{{ $r->nis }}</td>
                         <td>{{ $r->nama_lengkap }}</td>
-                        <td>
-                            <div class="input-group">
-                                <button type="button" class="btn btn-outline-primary" data-toggle="modal" data-target="#lihat-kat{{ $loop->iteration }}">Tambah</button>
-                            </div>
-                            @endforeach
+                        @endforeach
                 </tbody>
             </table>
         </div>
@@ -90,7 +85,14 @@
 <script type="text/javascript">
     $(function() {
         $("#table-peminatan").DataTable({
-
+            "language": {
+                "search": "Cari:",
+                "lengthMenu": "Tampilkan _MENU_ baris",
+                "zeroRecords": "Data Tidak Ditemukan",
+                "info": "Total data _MAX_",
+                "infoEmpty": "Data Kosong",
+                "infoFiltered": "(filtered from _MAX_ total records)"
+            }
         });
     });
 </script>

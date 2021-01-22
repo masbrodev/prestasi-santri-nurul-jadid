@@ -226,7 +226,14 @@
 <script type="text/javascript">
     $(function() {
         $("#table-peminatan").DataTable({
-
+            "language": {
+                "search": "Cari:",
+                "lengthMenu": "Tampilkan _MENU_ baris",
+                "zeroRecords": "Data Tidak Ditemukan",
+                "info": "Total data _MAX_",
+                "infoEmpty": "Data Kosong",
+                "infoFiltered": "(filtered from _MAX_ total records)"
+            }
         });
     });
 </script>

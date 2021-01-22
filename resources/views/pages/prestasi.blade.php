@@ -14,26 +14,21 @@
         </div>
         <!-- /.card-header -->
         <div class="card-body table-responsive">
-            <table class="table table-bordered" id="table-peminatan">
+            <table class="table table-hover" id="table-peminatan">
                 <thead>
                     <tr>
-                        <th style="width: 10px">NO</th>
+                        <th style="width: 20px">#</th>
                         <th>NIS</th>
-                        <th>Jumlah Prestasi</th>
-                        <th style="width: 200px">Aksi</th>
+                        <th style="width: 200px">Jumlah Prestasi</th>
                     </tr>
                 </thead>
                 <tbody>
                     @foreach($prestasi->groupBy('nis') as $nis => $r)
-                    <tr>
-                        <td>{{ $loop->iteration }}</td>
+                    <tr data-toggle="modal" data-target="#lihat-kat{{ $loop->iteration }}">
+                        <td scope="row">{{ $loop->iteration }}</td>
                         <td>{{ $nis }}</td>
                         <td>{{ $r->count() }}</td>
-                        <td>
-                            <div class="input-group">
-                                <button type="button" class="btn btn-outline-primary" data-toggle="modal" data-target="#lihat-kat{{ $loop->iteration }}">Lihat Detail</button>
-                            </div>
-                            @endforeach
+                        @endforeach
                 </tbody>
             </table>
         </div>
@@ -122,7 +117,14 @@
 <script type="text/javascript">
     $(function() {
         $("#table-peminatan").DataTable({
-
+            "language": {
+                "search": "Cari:",
+                "lengthMenu": "Tampilkan _MENU_ baris",
+                "zeroRecords": "Data Tidak Ditemukan",
+                "info": "Total data _MAX_",
+                "infoEmpty": "Data Kosong",
+                "infoFiltered": "(filtered from _MAX_ total records)"
+            }
         });
     });
 </script>
