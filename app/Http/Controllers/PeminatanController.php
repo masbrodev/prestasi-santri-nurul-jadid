@@ -11,7 +11,6 @@ class PeminatanController extends Controller
     public function ilmu()
     {
         $data['peminatan'] = Peminatan::orderBy('jurusan', 'DESC')->where('nama','Keilmuan')->get();
-
         return view('pages.pg_ilmu', $data);
         // return $data;
     }
@@ -57,9 +56,9 @@ class PeminatanController extends Controller
         $Peminatan = Peminatan::find($id);
         if ($Peminatan) {
             $Peminatan->delete();
-            return redirect()->back()->with([Toastr::success('Peminatan Berhasil dihapus')]);
+            return redirect()->back()->with([Toastr::success('Data Peminatan Berhasil Dihapus')]);
         } else {
-            return redirect()->back()->with([Toastr::error('Peminatan Gagal diedit')]);
+            return redirect()->back()->with([Toastr::error('Data Peminatan Gagal Dihapus')]);
         }
     }
 }

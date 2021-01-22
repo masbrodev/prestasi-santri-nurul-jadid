@@ -31,7 +31,7 @@
                         <td>{{ $r->count() }}</td>
                         <td>
                             <div class="input-group">
-                                <button type="button" class="btn btn-outline-primary" data-toggle="modal" data-target="#lihat-kat{{ $loop->iteration }}">Lihat</button>
+                                <button type="button" class="btn btn-outline-primary" data-toggle="modal" data-target="#lihat-kat{{ $loop->iteration }}">Lihat Detail</button>
                             </div>
                             @endforeach
                 </tbody>
@@ -61,7 +61,17 @@
                         <br>
                         <label>Prestasi</label>
                         @foreach($p as $rr)
-                        <input type="text" class="form-control" value="{{ $rr->nama_prestasi }}" readonly>
+                        <div class="input-group">
+                            <input type="text" class="form-control" value="{{$loop->iteration}}. {{ $rr->nama_prestasi }} " readonly>
+                            <div class="input-group-append">
+                                <button class="btn btn-outline-secondary dropdown-toggle" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Opsi</button>
+                                <div class="dropdown-menu">
+                                    <button type="button" class="dropdown-item" data-toggle="modal" data-target="#edit-pres{{ $rr->id }}">Edit</button>
+                                    <div role="separator" class="dropdown-divider"></div>
+                                    <a class="dropdown-item" href="{{ URL::to('hapus-prestasi/'.$rr->id)}}">Hapus</a>
+                                </div>
+                            </div>
+                        </div>
                         <br>
                         @endforeach
                     </div>
@@ -76,9 +86,39 @@
 </div>
 @endforeach
 
+@foreach($prestasi as $p)
+<div class="modal fade" id="edit-pres{{ $p->id }}">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title">Edit Prestasi Santri</h4>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <form action="{{ URL::to('edit-prestasi/'.$p->id)}}" method="post">
+                    @csrf
+                    <div class="form-group">
+                        <label>Nama Prestasi</label>
+                        <input type="text" class="form-control" value="{{ $p->nama_prestasi }}" name="prestasi">
+                    </div>
+                    <div class="modal-footer justify-content-between">
+                        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                        <button type="submit" class="btn btn-primary">Simpan</button>
+                    </div>
+                </form>
+            </div>
+
+        </div>
+    </div>
+</div>
+@endforeach
+
 @endsection
 
 @section('adminlte_js')
+{!! Toastr::message() !!}
 <script type="text/javascript">
     $(function() {
         $("#table-peminatan").DataTable({

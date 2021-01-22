@@ -76,6 +76,7 @@
                     <div class="form-group">
                         <label>jurusan Peminatan</label>
                         <input type="text" class="form-control" value="{{ $r->jurusan }}" name="nama" readonly>
+                        <br>
                         <label>Sub Peminatan</label>
                         <input type="text" class="form-control" placeholder="-" name="deskripsi" value="{{ $r->sub }}" readonly>
                     </div>
@@ -116,6 +117,7 @@
                             <option value="Sosial-Humaniora" {{ $r->jurusan == 'Sosial-Humaniora' ? 'selected':'' }}>Sosial-Humaniora</option>
                             <option value="Bahasa" {{ $r->jurusan == 'Bahasa' ? 'selected':'' }}>Bahasa</option>
                         </select>
+                        <br>
                         <label>Sub Peminatan</label>
                         <input type="text" class="form-control" placeholder="Masukkan Sub Peminatan" value="{{ $r->sub }}" name="sub">
                     </div>
@@ -148,9 +150,10 @@
             <div class="modal-body">
                 <div class="form-group">
                     <label>Jurusan Peminatan</label>
-                    <input type="text" class="form-control" placeholder="Masukkan Jurusan Peminatan" value="{{ $r->nama }}" name="nama" readonly>
-                    <label>Sub Peminatan</label>
                     <input type="text" class="form-control" placeholder="Masukkan Sub Peminatan" name="deskripsi" value="{{ $r->jurusan }}" readonly>
+                    <br>
+                    <label>Sub Peminatan</label>
+                    <input type="text" class="form-control" placeholder="Masukkan Jurusan Peminatan" value="{{ $r->sub }}" name="nama" readonly>
                 </div>
                 <div class="modal-footer justify-content-between">
                     <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
@@ -189,6 +192,7 @@
                             <option value="Sosial-Humaniora">Sosial-Humaniora</option>
                             <option value="Bahasa">Bahasa</option>
                         </select>
+                        <br>
                         <label>Sub Peminatan</label>
                         <input type="text" class="form-control" placeholder="Masukkan Sub Jurusan" name="sub">
                      
@@ -210,6 +214,8 @@
 @endsection
 
 @section('adminlte_js')
+{!! Toastr::message() !!}
+
 <script type="text/javascript">
     $(function() {
         $("#table-peminatan").DataTable({

@@ -43,6 +43,8 @@ Route::get('/jejak-ekstrakurikuler', 'JekstrakurikulerController@index');
 Route::get('/prestasi-santri', 'PrestasiController@index');
 Route::get('/tambah-prestasi', 'PrestasiController@haltambah');
 Route::post('/tambah-prestasi', 'PrestasiController@tambah');
+Route::post('/edit-prestasi/{id}', 'PrestasiController@edit');
+Route::get('/hapus-prestasi/{id}', 'PrestasiController@hapus');
 
 
 Route::get('/tambah-peminatan-keilmuan', 'PeminatanController@ilmu');

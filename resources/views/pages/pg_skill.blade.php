@@ -121,6 +121,7 @@
                             <option value="Keterampilan Hardskill Bisnis/Wirausaha" {{ $r->jurusan == 'Keterampilan Hardskill Bisnis/Wirausaha' ? 'selected':'' }}>Keterampilan Hardskill Bisnis/Wirausaha</option>
                             <option value="Keterampilan Softskill" {{ $r->jurusan == 'Keterampilan Softskill' ? 'selected':'' }}>Keterampilan Softskill</option>
                         </select>
+                        <br>
                         <label>Sub Peminatan</label>
                         <input type="text" class="form-control" placeholder="Masukkan Sub Peminatan" value="{{ $r->sub }}" name="sub">
                     </div>
@@ -153,9 +154,10 @@
             <div class="modal-body">
                 <div class="form-group">
                     <label>Jurusan Peminatan</label>
-                    <input type="text" class="form-control" placeholder="Masukkan Jurusan Peminatan" value="{{ $r->nama }}" name="nama" readonly>
-                    <label>Sub Peminatan</label>
                     <input type="text" class="form-control" placeholder="Masukkan Sub Peminatan" name="deskripsi" value="{{ $r->jurusan }}" readonly>
+                    <br>
+                    <label>Sub Peminatan</label>
+                    <input type="text" class="form-control" placeholder="Masukkan Jurusan Peminatan" value="{{ $r->sub }}" name="nama" readonly>
                 </div>
                 <div class="modal-footer justify-content-between">
                     <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
@@ -220,6 +222,7 @@
 @endsection
 
 @section('adminlte_js')
+{!! Toastr::message() !!}
 <script type="text/javascript">
     $(function() {
         $("#table-peminatan").DataTable({
