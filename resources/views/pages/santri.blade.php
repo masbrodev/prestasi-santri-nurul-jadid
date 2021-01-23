@@ -18,7 +18,7 @@
                 <thead>
                     <tr>
                         <th style="width: 20px">#</th>
-                        <th>Nis</th>
+                        <th>NIS</th>
                         <th>Nama</th>
                         <th>Wilayah</th>
                         <th>Pendidikan Lembaga</th>
@@ -69,9 +69,6 @@
                         <br>
                         <label>Kamar</label>
                         <input type="text" class="form-control" value="{{ $r->domisili_santri_kamar }}" readonly>
-                        <br>
-                        <label>Pendidikan Jurusan</label>
-                        <input type="text" class="form-control" value="{{ $r->pendidikan_jurusan }}" readonly>
                         <br>
                         <label>Pendidikan Formal</label>
                         <input type="text" class="form-control" value="{{ $r->pendidikan_lembaga }} / {{ $r->pendidikan_jurusan }} / {{ $r->pendidikan_kelas }}" readonly>

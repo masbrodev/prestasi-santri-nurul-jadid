@@ -276,7 +276,7 @@ return [
                 ],
             ],
         ],
-        ['header' => 'Rekam Jejak Santri'],
+        ['header' => 'Rekam Jejak dan Prestasi Santri'],
         [
             'text' => 'Jejak Keorganisasian',
             'icon' => 'fa fa-users',
@@ -309,7 +309,6 @@ return [
                 ],
             ],
         ],
-        ['header' => 'Prestasi Santri'],
         [
             'text' => 'Prestasi Santri',
             'icon' => 'fa fa-trophy',
