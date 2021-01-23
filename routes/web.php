@@ -34,7 +34,9 @@ Route::get('/santri', 'santriController@index');
 Route::get('/peminatan-keilmuan', 'PkilmuanController@index');
 Route::get('/peminatan-skill', 'PskillController@index');
 Route::get('/jejak-keorganisasian', 'JorganisasiController@index');
+
 Route::get('/jejak-ekstrakurikuler', 'JekstrakurikulerController@index');
+Route::get('/tambah-jejak-ekstrakurikuler', 'JekstrakurikulerController@haltambah');
 
 Route::get('/prestasi-santri', 'PrestasiController@index');
 Route::get('/tambah-prestasi', 'PrestasiController@haltambah');
@@ -43,8 +45,8 @@ Route::post('/edit-prestasi/{id}', 'PrestasiController@edit');
 Route::get('/hapus-prestasi/{id}', 'PrestasiController@hapus');
 
 
-Route::get('/tambah-peminatan-keilmuan', 'PeminatanController@ilmu');
-Route::get('/tambah-peminatan-skill', 'PeminatanController@skill');
+Route::get('/hal-peminatan-keilmuan', 'PeminatanController@ilmu');
+Route::get('/hal-peminatan-skill', 'PeminatanController@skill');
 Route::post('/tambah-peminatan', 'PeminatanController@tambah');
 Route::post('/edit-peminatan/{id}', 'PeminatanController@edit');
 Route::get('/hapus-peminatan/{id}', 'PeminatanController@hapus');

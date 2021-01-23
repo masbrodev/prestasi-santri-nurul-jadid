@@ -232,56 +232,97 @@ return [
     */
 
     'menu' => [
-        ['header' => 'Dasboard'],
         [
             'text' => 'Dashboard',
             'url'  => 'home',
             'icon' => 'fa fa-cubes',
         ],
-        ['header' => 'Data Santri'],
         [
             'text' => 'Data Santri',
             'url'  => 'santri',
             'icon' => 'fa fa-database',
         ],
-        ['header' => 'Peminatan Keilmuan'],
+        ['header' => 'Peminatan'],
         [
             'text' => 'Peminatan Keilmuan',
             'url'  => 'peminatan-keilmuan',
-            'icon' => 'fa fa-angle-double-right',
+            'icon' => 'fa fa-book',
+            'submenu' => [
+                [
+                    'text' => 'Data',
+                    'url'  => 'peminatan-keilmuan',
+                    'icon' => 'fas fa-file',
+                ],
+                [
+                    'text' => 'Tambah',
+                    'url'  => 'tambah-peminatan-keilmuan',
+                    'icon' => 'fas fa-plus-square',
+                ],
+            ],
         ],
-        ['header' => 'Peminatan Skill'],
         [
             'text' => 'Peminatan Skill',
-            'url'  => 'peminatan-skill',
-            'icon' => 'fa fa-angle-double-right',
+            'icon' => 'fa fa-futbol',
+            'submenu' => [
+                [
+                    'text' => 'Data',
+                    'url'  => 'peminatan-skill',
+                    'icon' => 'fas fa-file',
+                ],
+                [
+                    'text' => 'Tambah',
+                    'url'  => 'tambah-peminatan-skill',
+                    'icon' => 'fas fa-plus-square',
+                ],
+            ],
         ],
-        ['header' => 'Jejak Keorganisasian'],
+        ['header' => 'Rekam Jejak Santri'],
         [
             'text' => 'Jejak Keorganisasian',
-            'url'  => 'jejak-keorganisasian',
-            'icon' => 'fa fa-arrow-circle-right',
+            'icon' => 'fa fa-users',
+            'submenu' => [
+                [
+                    'text' => 'Data',
+                    'url'  => 'jejak-keorganisasian',
+                    'icon' => 'fas fa-file',
+                ],
+                [
+                    'text' => 'Tambah',
+                    'url'  => 'tambah-jejak-keorganisasian',
+                    'icon' => 'fas fa-plus-square',
+                ],
+            ],
         ],
-        ['header' => 'Jejak Ekstrakurikuler'],
         [
             'text' => 'Jejak Ekstrakurikuler',
-            'url'  => 'jejak-ekstrakurikuler',
-            'icon' => 'fa fa-arrow-circle-right',
+            'icon' => 'fa fa-university',
+            'submenu' => [
+                [
+                    'text' => 'Data',
+                    'url'  => 'jejak-ekstrakurikuler',
+                    'icon' => 'fas fa-file',
+                ],
+                [
+                    'text' => 'Tambah',
+                    'url'  => 'tambah-jejak-ekstrakurikuler',
+                    'icon' => 'fas fa-plus-square',
+                ],
+            ],
         ],
         ['header' => 'Prestasi Santri'],
         [
             'text' => 'Prestasi Santri',
-            'icon' => 'fa fa-chevron-circle-right',
+            'icon' => 'fa fa-trophy',
             'submenu' => [
                 [
                     'text' => 'Data',
                     'url'  => 'prestasi-santri',
-                    'icon' => 'fas fa-fw fa-plus-square',
+                    'icon' => 'fas fa-file',
                 ],
                 [
                     'text' => 'Tambah',
                     'url'  => 'tambah-prestasi',
-                    'icon' => 'fas fa-fw fa-plus-square',
+                    'icon' => 'fas fa-plus-square',
                 ],
             ],
         ],
@@ -292,12 +333,12 @@ return [
             'submenu' => [
                 [
                     'text' => 'Peminatan Keilmuan',
-                    'url'  => 'tambah-peminatan-keilmuan',
+                    'url'  => 'hal-peminatan-keilmuan',
                     'icon' => 'fas fa-fw fa-plus-square',
                 ],
                 [
                     'text' => 'Peminatan Skill',
-                    'url'  => 'tambah-peminatan-skill',
+                    'url'  => 'hal-peminatan-skill',
                     'icon' => 'fas fa-fw fa-plus-square',
                 ],
             ],

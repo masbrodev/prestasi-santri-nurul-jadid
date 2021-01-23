@@ -11,6 +11,11 @@
     <div class="card">
         <div class="card-header">
             <h3 class="card-title">Data Prestasi Santri</h3>
+            <div class="card-tools">
+                <ul class="pagination pagination-sm float-right">
+                    <a href="{{ URL::to('tambah-prestasi')}}" type="button" class="btn btn-outline-primary">Tambah</a>
+                </ul>
+            </div>
         </div>
         <!-- /.card-header -->
         <div class="card-body table-responsive">

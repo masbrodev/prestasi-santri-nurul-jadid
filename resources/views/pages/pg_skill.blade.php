@@ -14,7 +14,7 @@
 
             <div class="card-tools">
                 <ul class="pagination pagination-sm float-right">
-                    <button type="button" class="btn btn-block bg-gradient-primary" data-toggle="modal" data-target="#tambah-peminatan">Tambah</button>
+                    <button type="button" class="btn btn-outline-primary" data-toggle="modal" data-target="#tambah-peminatan">Tambah</button>
                 </ul>
             </div>
         </div>

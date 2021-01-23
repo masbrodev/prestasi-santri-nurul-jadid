@@ -22,6 +22,7 @@ class PrestasiController extends Controller
     {
 
         $data['santri'] = Santri::get();
+        $data['judul'] = "Tambah Data Prestasi Santri";
         return view('pages.TT_prestasi',$data);
     }
 
