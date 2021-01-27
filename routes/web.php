@@ -2,6 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 use Brian2694\Toastr\Facades\Toastr;
+use Illuminate\Support\Facades\Auth;
 
 /*
 |--------------------------------------------------------------------------

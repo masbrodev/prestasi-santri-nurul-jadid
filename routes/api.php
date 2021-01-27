@@ -18,4 +18,6 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
     return $request->user();
 });
 
-Route::get('/santri', 'santriController@api');
+Route::get('/santri', 'santriController@santri');
+Route::get('/login', 'santriController@login');
+Route::get('/coba', 'santriController@coba');
