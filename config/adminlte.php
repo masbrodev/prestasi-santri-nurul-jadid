@@ -14,7 +14,7 @@ return [
     |
     */
 
-    'title' => 'AdminLTE 3',
+    'title' => 'PDPS NJ',
     'title_prefix' => '',
     'title_postfix' => '',
 
@@ -45,12 +45,12 @@ return [
     |
     */
 
-    'logo' => '<b>Prestasi </b>SANTRI',
-    'logo_img' => 'LogoNJ.jpg',
-    'logo_img_class' => 'brand-image img-circle elevation-3',
+    'logo' => '<b>PDPS </b>NJ',
+    'logo_img' => 'pdps.png',
+    'logo_img_class' => 'brand-image',
     'logo_img_xl' => null,
     'logo_img_xl_class' => 'brand-image-xs',
-    'logo_img_alt' => 'AdminLTE',
+    'logo_img_alt' => 'PDPS',
 
     /*
     |--------------------------------------------------------------------------
@@ -107,7 +107,7 @@ return [
     'classes_auth_footer' => '',
     'classes_auth_icon' => '',
     'classes_auth_btn' => 'btn-flat btn-primary',
-    'login_message' => 'Aplikasi Rekam Jejak Santri',
+    'login_message' => 'Pengelolaan Data Prestasi Santri',
 
     /*
     |--------------------------------------------------------------------------
@@ -122,8 +122,8 @@ return [
     */
 
     'classes_body' => '',
-    'classes_brand' => 'bg-primary',
-    'classes_brand_text' => '',
+    'classes_brand' => 'bg-white',
+    'classes_brand_text' => 'text-body',
     'classes_content_wrapper' => '',
     'classes_content_header' => '',
     'classes_content' => '',

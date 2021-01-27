@@ -43,7 +43,7 @@
     <div class="cover-container d-flex w-100 h-100 p-3 mx-auto flex-column">
         <header class="masthead mb-auto">
             <div class="inner">
-                <h3 class="masthead-brand">Nurul Jadid</h3>
+                <h3 class="masthead-brand">PDPS</h3>
                 <nav class="nav nav-masthead justify-content-center">
                     <!-- <a class="nav-link active" href="{{ URL::to('login') }}">Login</a> -->
                 </nav>
@@ -51,11 +51,11 @@
         </header>
 
         <main role="main" class="inner cover">
-            <img src="{{ asset('LogoNJ.jpg') }}" alt="Logo Nurul Jadid" width="200" height="200">
+            <img src="{{ asset('pdps.png') }}" alt="Logo Nurul Jadid" width="200" height="200">
             <br>
             <br>
             <br>
-            <h1 class="cover-heading">Aplikasi Rekam Jejak Santri</h1>
+            <h1 class="cover-heading">Pengelolaan Data Prestasi Santri</h1>
             <p class="lead">Cover is a one-page template for building simple and beautiful home pages. Download, edit the text, and add your own fullscreen background photo to make it your own.</p>
             <p class="lead">
                 <a href="{{ URL::to('login') }}" class="btn btn-lg btn-secondary">Login</a>
