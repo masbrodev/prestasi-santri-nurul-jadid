@@ -18,6 +18,15 @@ class PrestasiController extends Controller
         // return $data;
     }
 
+    public function indexxx()
+    {
+
+        $request = $this->client->get('http://mekanisit.com/api/gateway/provinsi')->getBody()->getContents();
+        $data['santri'] = json_decode($request, true);
+        return $data;
+
+    }
+
     public function haltambah()
     {
 
