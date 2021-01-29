@@ -14,26 +14,20 @@
         </div>
         <!-- /.card-header -->
         <div class="card-body table-responsive">
-            <table class="table table-hover" id="table-peminatan">
+            <table class="table table-hover" id="table">
                 <thead>
                     <tr>
                         <th style="width: 20px">#</th>
                         <th>NIS</th>
                         <th>Nama</th>
-                        <th>Wilayah</th>
-                        <th>Pendidikan Lembaga</th>
+                        <th>Kamar</th>
+                        <th>Sekolah</th>
+                        <th>Kota Asal</th>
+                        <th>Angkatan</th>
+                        <th>Rombel</th>
                     </tr>
                 </thead>
                 <tbody>
-                    @foreach($santri as $r)
-                    <tr data-toggle="modal" data-target="#lihat-kat{{ $loop->iteration }}">
-                        <td>{{ $loop->iteration }}</td>
-                        <td>{{ $r->nis }}</td>
-                        <td>{{ $r->nama_lengkap }}</td>
-                        <td>{{ $r->domisili_santri_wilayah }}</td>
-                        <td>{{ $r->pendidikan_lembaga }}</td>
-                    </tr>
-                    @endforeach
                 </tbody>
             </table>
         </div>
@@ -42,66 +36,87 @@
 </div>
 <!-- /.card -->
 
-@foreach($santri as $r)
-<!-- Lihat Peminatan -->
-<div class="modal fade" id="lihat-kat{{ $loop->iteration }}">
-    <div class="modal-dialog modal-lg">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h4 class="modal-title">Data Detail Santri</h4>
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                    <span aria-hidden="true">&times;</span>
-                </button>
-            </div>
-            <div class="modal-body">
-                <form action="{{ URL::to('kategori/edit/'.$r->id)}}" method="post">
-                    @csrf
-                    <div class="form-group">
-                        <label>Nama</label>
-                        <input type="text" class="form-control" value="{{ $r->nama_lengkap }}" readonly>
-                        <input type="hidden" class="form-control" value="{{ $r->nis }}" name="nis">
-                        <br>
-                        <label>Wilayah</label>
-                        <input type="text" class="form-control" value="{{ $r->domisili_santri_wilayah }}" readonly>
-                        <br>
-                        <label>Blok</label>
-                        <input type="text" class="form-control" value="{{ $r->	domisili_santri_blok }}" readonly>
-                        <br>
-                        <label>Kamar</label>
-                        <input type="text" class="form-control" value="{{ $r->domisili_santri_kamar }}" readonly>
-                        <br>
-                        <label>Pendidikan Formal</label>
-                        <input type="text" class="form-control" value="{{ $r->pendidikan_lembaga }} / {{ $r->pendidikan_jurusan }} / {{ $r->pendidikan_kelas }}" readonly>
-                    </div>
-                    <div class="modal-footer justify-content-between">
-                        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-                    </div>
-                </form>
-            </div>
-
-        </div>
-        <!-- /.modal-content -->
-    </div>
-    <!-- /.modal-dialog -->
-</div>
-@endforeach
-
 
 @endsection
 
 @section('adminlte_js')
-<script type="text/javascript">
+<script>
+
+    // var limit = "{{ request()->get('limit') }}";
+    // var page = "{{ request()->get('page') }}";
+    var cari = "{{ request()->get('cari') }}";
     $(function() {
-        $("#table-peminatan").DataTable({
-            "language": {
+      var t =  $("#table").DataTable({
+        "language": {
                 "search": "Cari:",
                 "lengthMenu": "Tampilkan _MENU_ baris",
                 "zeroRecords": "Data Tidak Ditemukan",
                 "info": "Total data _MAX_",
                 "infoEmpty": "Data Kosong",
                 "infoFiltered": "(filtered from _MAX_ total records)"
-            }
-        });
+            },
+            searching: true,
+            ordering: true,
+            info: true,
+            bFilter: false,
+            processing: true,
+            serverSide: true,
+            ajax: function(data, callback) {
+                
+                // make a regular ajax request using data.start and data.length
+                $.get('{{URL::to('api/santri')}}', {
+                    limit: 25,
+                    page : (data.length + data.start) / data.length,
+                    cari : cari
+                }, function(res) {
+                    callback({
+                        data: res.santri,
+                    });
+                });
+                console.log(data.length);
+            },
+            "columns": [{
+                    "data": "santri.nis"
+                },
+                {
+                    "data": "santri.nis",
+                },
+                {
+                    "data": "nama_lengkap",
+                },
+                {
+                    "data": "domisili_santri.kamar",
+                },
+                {
+                    "data": "pendidikan.lembaga",
+                },
+                {
+                    "data": "kabupaten",
+                },
+                {
+                    "data": "nama_lengkap",
+                },
+                {
+                    "data": "pendidikan.rombel",
+                },
+            ],"columnDefs": [{
+                "searchable": false,
+                "orderable": false,
+                "targets": 1,
+                "defaultContent": "-",
+                "targets": "_all"
+            }],
+            "order": [[1, 'asc']]
+                });
+
+                t.on( 'draw.dt', function () {
+    var PageInfo = $('#table').DataTable().page.info();
+         t.column(0, { page: 'current' }).nodes().each( function (cell, i) {
+            cell.innerHTML = i + 1 + PageInfo.start;
+        } );
+    } );
+
+
     });
 </script>
 @endsection

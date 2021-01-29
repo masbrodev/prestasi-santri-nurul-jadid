@@ -27,14 +27,7 @@
                         <th style="width: 200px">Jumlah Prestasi</th>
                     </tr>
                 </thead>
-                <tbody>
-                    @foreach($prestasi->groupBy('nis') as $nis => $r)
-                    <tr data-toggle="modal" data-target="#lihat-kat{{ $loop->iteration }}">
-                        <td scope="row">{{ $loop->iteration }}</td>
-                        <td>{{ $nis }}</td>
-                        <td>{{ $r->count() }}</td>
-                        @endforeach
-                </tbody>
+              
             </table>
         </div>
         <!-- /.card-body -->
@@ -122,15 +115,55 @@
 <script type="text/javascript">
     $(function() {
         $("#table-peminatan").DataTable({
-            "language": {
-                "search": "Cari:",
-                "lengthMenu": "Tampilkan _MENU_ baris",
-                "zeroRecords": "Data Tidak Ditemukan",
-                "info": "Total data _MAX_",
-                "infoEmpty": "Data Kosong",
-                "infoFiltered": "(filtered from _MAX_ total records)"
-            }
+            ordering: false,
+            info: true,
+            bFilter: false,
+            processing: true,
+            serverSide: true,
+            ajax: function(data, callback) {
+                // make a regular ajax request using data.start and data.length
+                $.get('https://publish.ne.cision.com/papi/NewsFeed/A275C0BF733048FFAE9126ACA64DD08F', {
+                    pageSize: data.length,
+                    format: 'json',
+                    pageIndex: (data.length + data.start) / data.length,
+                }, function(res) {
+                    callback({
+                        recordsTotal: res.TotalFoundReleases,
+                        recordsFiltered: res.TotalFoundReleases,
+                        data: res.Releases,
+                    });
+                console.log(data.start);
+
+                });
+            },
+            "columns": [{
+                    "data": "Title"
+                },
+                {
+                    "data": "PublishDate",
+                    "type": "date"
+                },
+            ],
+            "columnDefs": [{
+                    "render": function(data) {
+                        var date = new Date(data);
+
+                        return date.getFullYear() + '-' +
+                            ('0' + (date.getMonth() + 1)).slice(-2) + '-' +
+                            ('0' + date.getDate()).slice(-2) + ' ' +
+                            ('0' + date.getHours()).slice(-2) + ':' +
+                            ('0' + date.getMinutes()).slice(-2);
+                    },
+                    "targets": 1
+                },
+                {
+                    "visible": true,
+                    "targets": [1]
+                }
+            ]
         });
+
+
     });
 </script>
 @endsection

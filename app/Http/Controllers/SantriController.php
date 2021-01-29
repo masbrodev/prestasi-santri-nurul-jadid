@@ -8,6 +8,7 @@ use GuzzleHttp\Client;
 use App\Santri;
 use App\User;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\URL;
 
 class SantriController extends Controller
 {
@@ -41,13 +42,15 @@ class SantriController extends Controller
     {
         $page = $request->query('page');
         $limit = $request->query('limit');
+        $cari = $request->query('cari');
         $request = $this->client->get('https://api.pedatren.nuruljadid.app/santri', [
             'headers' => [
                 'x-token' => $this->token[0]['token']
             ],
             'query' => [
                 'page' => $page,
-                'limit' => $limit
+                'limit' => $limit,
+                'cari' => $cari
             ]
         ])->getBody()->getContents();
         $data['santri'] = json_decode($request, false);
@@ -67,5 +70,17 @@ class SantriController extends Controller
         $data['santri'] = Santri::get();
         // return $data;
         return view('pages.santri', $data);
+    }
+
+    public function indexx()
+    {
+        // $request = $this->client->get(URL::to('api/santri'));
+        // $response = $request->getBody();
+
+        // $request = $this->client->get(URL::to('api/santri'))->getBody()->getContents();
+        // $data['santri'] = json_decode($request, false);
+        // $data['jumlah'] = count($data['santri']);
+        // return $response;
+        // return view('pages.santri', $data);
     }
 }
