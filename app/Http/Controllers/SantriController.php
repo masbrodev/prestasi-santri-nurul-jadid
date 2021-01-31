@@ -33,9 +33,7 @@ class SantriController extends Controller
             User::where('name', 'masbro')->update(['token' => $request]);
         }
 
-        return response()->json([
-            'token' => $request
-        ], 200);
+        return redirect('home');
     }
 
     public function santri(Request $request)
@@ -67,9 +65,9 @@ class SantriController extends Controller
 
     public function index()
     {
-        $data['santri'] = Santri::get();
+        // $data['santri'] = Santri::get();
         // return $data;
-        return view('pages.santri', $data);
+        return view('pages.santri');
     }
 
     public function indexx()
