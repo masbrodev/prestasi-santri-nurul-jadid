@@ -6,6 +6,7 @@
 
 @section('content')
 @section('plugins.Datatables', true)
+@section('plugins.DataTablesResponsive', true)
 @section('plugins.Toastr', true)
 <div class="col-md-12">
     <div class="card">
@@ -14,7 +15,7 @@
         </div>
         <!-- /.card-header -->
         <div class="card-body table-responsive">
-            <table class="table table-hover" id="table">
+            <table class="table table-hover display nowrap" id="table">
                 <thead>
                     <tr>
                         <th style="width: 20px">#</th>
@@ -27,8 +28,6 @@
                         <th>Rombel</th>
                     </tr>
                 </thead>
-                <tbody>
-                </tbody>
             </table>
         </div>
         <!-- /.card-body -->
@@ -36,18 +35,16 @@
 </div>
 <!-- /.card -->
 
-
 @endsection
 
 @section('adminlte_js')
 <script>
-
     // var limit = "{{ request()->get('limit') }}";
     // var page = "{{ request()->get('page') }}";
     var cari = "{{ request()->get('cari') }}";
     $(function() {
-      var t =  $("#table").DataTable({
-        "language": {
+        var t = $("#table").DataTable({
+            "language": {
                 "search": "Cari:",
                 "lengthMenu": "Tampilkan _MENU_ baris",
                 "zeroRecords": "Data Tidak Ditemukan",
@@ -62,18 +59,34 @@
             processing: true,
             serverSide: true,
             ajax: function(data, callback) {
-                
+
                 // make a regular ajax request using data.start and data.length
                 $.get('{{URL::to('api/santri')}}', {
-                    limit: 25,
-                    page : (data.length + data.start) / data.length,
-                    cari : cari
-                }, function(res) {
-                    callback({
-                        data: res.santri,
+                        limit: 25,
+                        page: (data.length + data.start) / data.length,
+                        cari: cari
+                    },
+                    function(res) {
+                        callback({
+                            data: res.santri,
+                        });
                     });
-                });
                 console.log(data.length);
+            },
+            "responsive": {
+                "details": {
+                    "type": 'column',
+                    "target": 'tr', //THIS WORKS GREAT IN RESPONSIVE VIEW
+                    "display": $.fn.dataTable.Responsive.display.modal({
+                        header: function(row) {
+                            var data = row.data();
+                            return 'Details for ' + data[0] + ' ' + data[1];
+                        }
+                    }),
+                    "renderer": $.fn.dataTable.Responsive.renderer.tableAll({
+                        tableClass: 'table'
+                    })
+                }
             },
             "columns": [{
                     "data": "santri.nis"
@@ -99,22 +112,34 @@
                 {
                     "data": "pendidikan.rombel",
                 },
-            ],"columnDefs": [{
-                "searchable": false,
-                "orderable": false,
-                "targets": 1,
-                "defaultContent": "-",
-                "targets": "_all"
-            }],
-            "order": [[1, 'asc']]
-                });
+            ],
+            "columnDefs": [{
+                    "targets": 1,
+                    "searchable": false,
+                    "orderable": false,
+                    "defaultContent": "-",
+                    "targets": "_all"
+                },
+                {
+                    targets: 2,
+                    render: function(data, type, row, meta) {
+                        return '<a href="https://datatables.net">' + data + '</a>'; //render link in cell
+                    }
+                }
+            ],
+            "order": [
+                [1, 'asc']
+            ]
+        });
 
-                t.on( 'draw.dt', function () {
-    var PageInfo = $('#table').DataTable().page.info();
-         t.column(0, { page: 'current' }).nodes().each( function (cell, i) {
-            cell.innerHTML = i + 1 + PageInfo.start;
-        } );
-    } );
+        t.on('draw.dt', function() {
+            var PageInfo = $('#table').DataTable().page.info();
+            t.column(0, {
+                page: 'current'
+            }).nodes().each(function(cell, i) {
+                cell.innerHTML = i + 1 + PageInfo.start;
+            });
+        });
 
 
     });
