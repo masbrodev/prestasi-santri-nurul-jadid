@@ -408,11 +408,6 @@ return [
                     'location' => 'https://cdn.datatables.net/responsive/2.1.0/css/responsive.dataTables.min.css',
                 ],
                 [
-                    'type' => 'css',
-                    'asset' => false,
-                    'location' => 'https://cdn.datatables.net/1.10.12/css/jquery.dataTables.min.css',
-                ],
-                [
                     'type' => 'js',
                     'asset' => false,
                     'location' => 'https://cdn.datatables.net/responsive/2.1.0/js/dataTables.responsive.min.js',

@@ -7,7 +7,7 @@
 @section('content')
 @section('plugins.Datatables', true)
 @section('plugins.DataTablesResponsive', true)
-@section('plugins.Toastr', true)
+<!-- @section('plugins.Toastr', true) -->
 <div class="col-md-12">
     <div class="card">
         <div class="card-header">
@@ -44,13 +44,13 @@
     var cari = "{{ request()->get('cari') }}";
     $(function() {
         var t = $("#table").DataTable({
-            "language": {
-                "search": "Cari:",
-                "lengthMenu": "Tampilkan _MENU_ baris",
-                "zeroRecords": "Data Tidak Ditemukan",
-                "info": "Total data _MAX_",
-                "infoEmpty": "Data Kosong",
-                "infoFiltered": "(filtered from _MAX_ total records)"
+            language: {
+                search: 'Cari:',
+                lengthMenu: 'Tampilkan _MENU_ baris',
+                zeroRecords: 'Data Tidak Ditemukan',
+                info: 'Total data _MAX_',
+                infoEmpty: 'Data Kosong',
+                infoFiltered: '(filtered from _MAX_ total records)'
             },
             searching: true,
             ordering: true,
@@ -73,52 +73,37 @@
                     });
                 console.log(data.length);
             },
-            "responsive": {
-                "details": {
-                    "type": 'column',
-                    "target": 'tr', //THIS WORKS GREAT IN RESPONSIVE VIEW
-                    "display": $.fn.dataTable.Responsive.display.modal({
-                        header: function(row) {
-                            var data = row.data();
-                            return 'Details for ' + data[0] + ' ' + data[1];
-                        }
-                    }),
-                    "renderer": $.fn.dataTable.Responsive.renderer.tableAll({
-                        tableClass: 'table'
-                    })
-                }
-            },
-            "columns": [{
-                    "data": "santri.nis"
+            columns: [{
+                    data: "santri.nis"
                 },
                 {
-                    "data": "santri.nis",
+                    data: "santri.nis",
                 },
                 {
-                    "data": "nama_lengkap",
+                    data: "nama_lengkap",
                 },
                 {
-                    "data": "domisili_santri.kamar",
+                    data: "domisili_santri.kamar",
                 },
                 {
-                    "data": "pendidikan.lembaga",
+                    data: "pendidikan.lembaga",
                 },
                 {
-                    "data": "kabupaten",
+                    data: "kabupaten",
                 },
                 {
-                    "data": "nama_lengkap",
+                    data: "nama_lengkap",
                 },
                 {
-                    "data": "pendidikan.rombel",
+                    data: "pendidikan.rombel",
                 },
             ],
-            "columnDefs": [{
-                    "targets": 1,
-                    "searchable": false,
-                    "orderable": false,
-                    "defaultContent": "-",
-                    "targets": "_all"
+            columnDefs: [{
+                    targets: 1,
+                    searchable: false,
+                    orderable: false,
+                    defaultContent: "-",
+                    targets: "_all"
                 },
                 {
                     targets: 2,
@@ -127,9 +112,28 @@
                     }
                 }
             ],
-            "order": [
+            order: [
                 [1, 'asc']
-            ]
+            ],
+            responsive: {
+                details: {
+                    type: 'column',
+                    target: 'tr', //THIS WORKS GREAT IN RESPONSIVE VIEW
+                    display: $.fn.dataTable.Responsive.display.modal({
+                        header: function(row) {
+                            var data = row.data();
+                            return 'Details for ' + data.santri.nis + '<hr>';
+                        },
+
+                    }),
+                    renderer: $.fn.dataTable.Responsive.renderer.tableAll()
+                    // renderer: function(row, data) {
+                    //         var data = row.data();
+                    //         return 'Details for ' + data[5].nama_lengkap + console.log(data);
+                        
+                    // }
+                }
+            },
         });
 
         t.on('draw.dt', function() {
