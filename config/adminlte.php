@@ -439,6 +439,16 @@ return [
                 ],
             ],
         ],
+        'LoadingOverlay' => [
+            'active' => false,
+            'files' => [
+                [
+                    'type' => 'js',
+                    'asset' => false,
+                    'location' => 'https://cdn.jsdelivr.net/npm/gasparesganga-jquery-loading-overlay@2.1.7/dist/loadingoverlay.min.js',
+                ],
+            ],
+        ],
         'Toastr' => [
             'active' => false,
             'files' => [

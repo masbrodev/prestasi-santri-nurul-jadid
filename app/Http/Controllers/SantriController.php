@@ -18,8 +18,7 @@ class SantriController extends Controller
     public function __construct()
     {
         $this->client = new Client();
-        // $this->token = env('API_RAJAONGKIR');
-        $this->token = User::where('name','masbro')->get('token');
+        $this->token = User::where('name', 'masbro')->get('token');
     }
 
     public function login(Request $request)
@@ -54,12 +53,23 @@ class SantriController extends Controller
         $data['santri'] = json_decode($request, false);
         $data['jumlah'] = count($data['santri']);
         return $data;
-
     }
+
+    public function apiformulir(Request $request, $id)
+    {
+        $request = $this->client->get('https://api.pedatren.nuruljadid.app/person/'.$id, [
+            'headers' => [
+                'x-token' => $this->token[0]['token']
+            ],
+        ])->getBody()->getContents();
+        $data['santri'] = json_decode($request, false);
+        return $data;
+    }
+    
 
     public function coba()
     {
-        $data = User::where('name','masbro')->get('token');
+        $data = User::where('name', 'masbro')->get('token');
         return $data[0]['token'];
     }
 
@@ -68,6 +78,14 @@ class SantriController extends Controller
         // $data['santri'] = Santri::get();
         // return $data;
         return view('pages.santri');
+    }
+
+    public function formulir()
+    {
+        // $data['santri'] = Santri::get();
+        // return $data;
+        
+        return view('pages.formulir');
     }
 
     public function indexx()

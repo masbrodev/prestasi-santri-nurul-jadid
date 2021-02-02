@@ -32,6 +32,9 @@ Auth::routes([
     'verify' => false, // Email Verification Routes...
   ]);
 Route::get('/santri', 'santriController@index');
+Route::get('/formulir/{id}', 'santriController@formulir');
+Route::get('/detail', 'santriController@detail');
+
 Route::get('/peminatan-keilmuan', 'PkilmuanController@index');
 Route::get('/peminatan-skill', 'PskillController@index');
 Route::get('/jejak-keorganisasian', 'JorganisasiController@index');

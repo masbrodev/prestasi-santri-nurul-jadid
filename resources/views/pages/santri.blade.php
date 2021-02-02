@@ -59,7 +59,6 @@
             processing: true,
             serverSide: true,
             ajax: function(data, callback) {
-
                 // make a regular ajax request using data.start and data.length
                 $.get('{{URL::to('api/santri')}}', {
                         limit: 25,
@@ -71,7 +70,6 @@
                             data: res.santri,
                         });
                     });
-                console.log(data.length);
             },
             columns: [{
                     data: "santri.nis"
@@ -108,9 +106,9 @@
                 {
                     targets: 2,
                     render: function(data, type, row, meta) {
-                        return '<a href="https://datatables.net">' + data + '</a>'; //render link in cell
+                        return '<a href="{{URL::to('formulir')}}/'+row.uuid+'">' + data + '</a>'; //render link in cell
                     }
-                }
+                },
             ],
             order: [
                 [1, 'asc']
