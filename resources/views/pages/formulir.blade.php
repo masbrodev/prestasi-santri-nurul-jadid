@@ -21,7 +21,7 @@
                 <div class="card card-primary card-outline">
                     <div class="card-body box-profile">
                         <div class="text-center">
-                            <img class="profile-user-img img-fluid img-circle" alt="User profile picture" src onerror="fetch('https:picsum.photos/200',{headers: {hello:'World!'}}).then(r=>r.blob()).then(d=> this.src=window.URL.createObjectURL(d));" />
+                            <img class="profile-user-img img-fluid img-circle" alt="fotosantri" id="fotosantri" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVR42mNk9/72HwAD8gJJcSrszQAAAABJRU5ErkJggg==">
                         </div>
 
                         <h3 class="profile-username text-center" id="nama_lengkap"></h3>
@@ -49,10 +49,14 @@
                 <!-- About Me Box -->
                 <div class="card card-primary">
                     <div class="card-header">
-                        <h3 class="card-title">About Me</h3>
+                        <h3 class="card-title">Biodata</h3>
                     </div>
                     <!-- /.card-header -->
                     <div class="card-body">
+                        <strong><i class="fas fa-pencil-alt mr-1"></i> Tempat & Tangal Lahir</strong>
+                        <p class="text-muted" id="ttl"></p>
+                        <hr>
+
                         <strong><i class="fas fa-book mr-1"></i> Pendidikan</strong>
 
                         <p class="text-muted">
@@ -65,25 +69,20 @@
 
                         <strong><i class="fas fa-map-marker-alt mr-1"></i> Alamat</strong>
 
-                        <p class="text-muted">Malibu, California</p>
+                        <p class="text-muted" id="alamat"></p>
 
                         <hr>
 
-                        <strong><i class="fas fa-pencil-alt mr-1"></i> Skills</strong>
+                        <strong><i class="far fa-file-alt mr-1"></i> Domisili</strong>
 
                         <p class="text-muted">
-                            <span class="tag tag-danger">UI Design</span>
-                            <span class="tag tag-success">Coding</span>
-                            <span class="tag tag-info">Javascript</span>
-                            <span class="tag tag-warning">PHP</span>
-                            <span class="tag tag-primary">Node.js</span>
+                            <span class="tag tag-danger" id="wilayah"></span>
+                            <br>
+                            <span class="tag tag-success" id="blok"></span>
+                            <br>
+                            <span class="tag tag-info" id="kamar"></span>
                         </p>
 
-                        <hr>
-
-                        <strong><i class="far fa-file-alt mr-1"></i> Notes</strong>
-
-                        <p class="text-muted">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Etiam fermentum enim neque.</p>
                     </div>
                     <!-- /.card-body -->
                 </div>
@@ -280,15 +279,25 @@
             type: "GET",
             url: "{{URL::to('api/'.Request::path())}}",
             success: function(data) {
-                var d = data.santri
-
                 $.LoadingOverlay("hide");
+                var d = data.santri
+                var lh = new Date(d.tanggal_lahir)
+                var foto = "{{URL::to('api/foto/')}}" + d.fotodiri.small
+
+                if (foto !== "http://localhost:8000/api/foto/img/default/default_no_face_s.jpg") {
+                    $('#fotosantri').attr('src', foto);
+                }
                 $("#nama_lengkap").html(d.nama_lengkap);
                 $("#niup").html(d.warga_pesantren.niup);
                 $("#niup").html(d.warga_pesantren.niup);
                 $("#lembaga").html(d.pendidikan.slice(-1)[0].lembaga);
                 $("#jurusan").html(d.pendidikan.slice(-1)[0].jurusan);
-                console.log(data.santri.pendidikan.slice(-1)[0]);
+                $("#alamat").html(d.kecamatan + ', ' + d.kabupaten + ', ' + d.provinsi);
+                $("#ttl").html(d.tempat_lahir + ', </br>' + lh.getDate() + "-" + (lh.getMonth() + 1) + "-" + lh.getFullYear());
+                $("#wilayah").html(d.domisili_santri.slice(-1)[0].wilayah);
+                $("#blok").html("Blok: " + d.domisili_santri.slice(-1)[0].blok);
+                $("#kamar").html("Kamar: " + d.domisili_santri.slice(-1)[0].kamar);
+                console.log(d.domisili_santri.slice(-1)[0].kamar);
             }
         });
     });

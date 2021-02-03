@@ -57,7 +57,7 @@ class SantriController extends Controller
 
     public function apiformulir(Request $request, $id)
     {
-        $request = $this->client->get('https://api.pedatren.nuruljadid.app/person/'.$id, [
+        $request = $this->client->get('https://api.pedatren.nuruljadid.app/person/' . $id, [
             'headers' => [
                 'x-token' => $this->token[0]['token']
             ],
@@ -65,7 +65,20 @@ class SantriController extends Controller
         $data['santri'] = json_decode($request, false);
         return $data;
     }
-    
+
+    public function foto(Request $request, $id1, $id2, $id3, $id4)
+    {
+        $request = $this->client->get('https://api.pedatren.nuruljadid.app/person/' .  $id1 . '/' . $id2 . '/' . $id3 . '/' . $id4, [
+            'headers' => [
+                'x-token' => $this->token[0]['token']
+            ],
+        ])->getBody()->getContents();
+        $data = json_decode($request);
+
+        return response($request, 200)
+        ->header('Content-Type', 'image/png');
+    }
+
 
     public function coba()
     {
@@ -84,7 +97,7 @@ class SantriController extends Controller
     {
         // $data['santri'] = Santri::get();
         // return $data;
-        
+
         return view('pages.formulir');
     }
 
