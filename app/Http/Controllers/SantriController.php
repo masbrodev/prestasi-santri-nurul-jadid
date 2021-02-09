@@ -6,6 +6,10 @@ use Illuminate\Http\Request;
 use App\ApiSantri;
 use GuzzleHttp\Client;
 use App\Santri;
+use App\Prestasi;
+use App\pkilmuan;
+use App\Pskill;
+use Brian2694\Toastr\Facades\Toastr;
 use App\User;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\URL;
@@ -76,7 +80,7 @@ class SantriController extends Controller
         $data = json_decode($request);
 
         return response($request, 200)
-        ->header('Content-Type', 'image/png');
+            ->header('Content-Type', 'image/png');
     }
 
 
@@ -93,12 +97,10 @@ class SantriController extends Controller
         return view('pages.santri');
     }
 
-    public function formulir()
+    public function formulir($id)
     {
-        // $data['santri'] = Santri::get();
-        // return $data;
-
-        return view('pages.formulir');
+        $data['prestasi'] = Prestasi::where('niup', $id)->orderBy('id', 'DESC')->get();
+        return view('pages.formulir', $data);
     }
 
     public function indexx()

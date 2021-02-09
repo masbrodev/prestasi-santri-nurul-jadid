@@ -15,6 +15,11 @@ class CreateJekstrakurikulersTable extends Migration
     {
         Schema::create('jekstrakurikuler', function (Blueprint $table) {
             $table->id();
+            $table->longText('niup');
+            $table->string('asrama');
+            $table->string('bidang');
+            $table->string('sub_bidang');
+            $table->integer('masa_keanggotaan');
             $table->timestamps();
         });
     }

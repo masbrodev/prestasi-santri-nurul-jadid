@@ -38,8 +38,9 @@ class PrestasiController extends Controller
     public function tambah(Request $request)
     {
         $data = [
-            'nis' => $request->nis,
+            'niup' => $request->niup,
             'nama_prestasi' => $request->nama_prestasi,
+            'tahun' => $request->tahun,
         ];
 
         $simpan = Prestasi::create($data);

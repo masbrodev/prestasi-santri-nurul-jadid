@@ -15,6 +15,7 @@ class CreatePkilmuansTable extends Migration
     {
         Schema::create('pkilmuan', function (Blueprint $table) {
             $table->id();
+            $table->longText('niup');
             $table->timestamps();
         });
     }

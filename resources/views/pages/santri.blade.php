@@ -12,7 +12,16 @@
     <div class="card">
         <div class="card-header">
             <h3 class="card-title">Data Santri</h3>
+
         </div>
+        <form action="{{URL::to('santri/')}}" method="get" id="search-box">
+        <div class="input-group input-group-sm">
+            <input type="text" class="form-control" name="cari" size="31" value="{{ request()->get('cari') }}"/>
+                  <span class="input-group-append">
+                    <a type="button" class="btn btn-info btn-flat" href="{{URL::to('santri/')}}">Go!</a>
+                  </span>
+                </div>
+        </form>
         <!-- /.card-header -->
         <div class="card-body table-responsive">
             <table class="table table-hover display nowrap" id="table">
@@ -52,7 +61,8 @@
                 infoEmpty: 'Data Kosong',
                 infoFiltered: '(filtered from _MAX_ total records)'
             },
-            searching: true,
+            lengthChange: false,
+            searching: false,
             ordering: true,
             info: true,
             bFilter: false,
@@ -113,25 +123,25 @@
             order: [
                 [1, 'asc']
             ],
-            responsive: {
-                details: {
-                    type: 'column',
-                    target: 'tr', //THIS WORKS GREAT IN RESPONSIVE VIEW
-                    display: $.fn.dataTable.Responsive.display.modal({
-                        header: function(row) {
-                            var data = row.data();
-                            return 'Details for ' + data.santri.nis + '<hr>';
-                        },
+            // responsive: {
+            //     details: {
+            //         type: 'column',
+            //         target: 'tr', //THIS WORKS GREAT IN RESPONSIVE VIEW
+            //         display: $.fn.dataTable.Responsive.display.modal({
+            //             header: function(row) {
+            //                 var data = row.data();
+            //                 return 'Details for ' + data.santri.nis + '<hr>';
+            //             },
 
-                    }),
-                    renderer: $.fn.dataTable.Responsive.renderer.tableAll()
+            //         }),
+            //         renderer: $.fn.dataTable.Responsive.renderer.tableAll()
                     // renderer: function(row, data) {
                     //         var data = row.data();
                     //         return 'Details for ' + data[5].nama_lengkap + console.log(data);
                         
                     // }
-                }
-            },
+                // }
+            // },
         });
 
         t.on('draw.dt', function() {

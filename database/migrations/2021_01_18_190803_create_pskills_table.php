@@ -15,6 +15,7 @@ class CreatePskillsTable extends Migration
     {
         Schema::create('pskill', function (Blueprint $table) {
             $table->id();
+            $table->longText('niup');
             $table->timestamps();
         });
     }
