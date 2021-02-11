@@ -91,7 +91,7 @@
                         <ul class="nav nav-pills">
                             <li class="nav-item"><a class="nav-link active" href="#prestasi" data-toggle="tab">Prestasi</a></li>
                             <li class="nav-item"><a class="nav-link" href="#keilmuan" data-toggle="tab">Keilmuan</a></li>
-                            <li class="nav-item"><a class="nav-link" href="#prestasi" data-toggle="tab">Prestasi</a></li>
+                            <li class="nav-item"><a class="nav-link" href="#skill" data-toggle="tab">Skill</a></li>
                         </ul>
                     </div><!-- /.card-header -->
                     <div class="card-body">
@@ -162,20 +162,21 @@
                             <div class="tab-pane" id="keilmuan">
                                 <div class="card-tools">
                                     <ul class="pagination pagination-sm float-left">
-                                        <button type="button" class="btn btn-outline-primary" data-toggle="collapse" data-target="#tambah-prestasi" aria-expanded="false" aria-controls="tambah-prestasi">Tambah Prestasi 2</button>
+                                        <button type="button" class="btn btn-outline-primary" data-toggle="collapse" data-target="#tambah-ilmu" aria-expanded="false" aria-controls="tambah-ilmu">Tambah Peminatan Keilmuan</button>
                                     </ul>
                                 </div>
-                                <div class="collapse" id="tambah-prestasi">
+                                <div class="collapse" id="tambah-ilmu">
                                     <div class="card card-body">
-                                        <form class="form-horizontal" action="{{ URL::to('tambah-prestasi')}}" method="post">
+                                        <form class="form-horizontal" action="{{ URL::to('tambah-keilmuan')}}" method="post">
                                             @csrf
                                             <div class="form-group">
-                                                <label>Prestasi</label>
-                                                <input type="text" class="form-control" placeholder="Masukkan Nama Prestasi" name="nama_prestasi" oninvalid="this.setCustomValidity('Lengkapi Inputan')" required="" oninput="setCustomValidity('')">
                                                 <input type="hidden" class="form-control" id="uuid" name="niup" value="">
-                                                <br>
-                                                <label>Tahun</label>
-                                                <input type="text" class="form-control" placeholder="Masukkan Tahun" name="tahun" oninvalid="this.setCustomValidity('Lengkapi Inputan')" required="" oninput="setCustomValidity('')">
+                                                <label>Peminatan Keilmuan</label>
+                                                <select class="form-control" name="peminatan_id" oninvalid="this.setCustomValidity('Lengkapi Inputan')" required="" oninput="setCustomValidity('')">
+                                                    @foreach($peminatan->where('nama', 'Keilmuan') as $k)
+                                                    <option value="{{ $k->id }}">{{ $k->jurusan }} / {{ $k->sub }}</option>
+                                                    @endforeach
+                                                </select>
                                                 <br>
                                                 <div class="modal-footer">
                                                     <button type="submit" class="btn btn-primary float-sm-left">Simpan</button>
@@ -189,31 +190,33 @@
                                         <thead>
                                             <tr>
                                                 <th style="width: 10px">#</th>
-                                                <th>Nama Prestasi</th>
-                                                <th>Tahun</th>
+                                                <th>Jurusan</th>
+                                                <th>Sub</th>
                                                 <th style="width: 200px">Aksi</th>
                                             </tr>
                                         </thead>
                                         <tbody>
-                                            @foreach($prestasi as $r)
+                                            @foreach($ilmu as $r)
+                                            @if(!empty($r->ilmu))
                                             <tr>
                                                 <td>{{ $loop->iteration }}</td>
-                                                <td>{{ $r->nama_prestasi }}</td>
-                                                <td>{{ $r->tahun}}</td>
+                                                <td>{{ $r->ilmu->jurusan }}</td>
+                                                <td>{{ $r->ilmu->sub }} / {{ $r->id}}</td>
                                                 <td>
                                                     <div class="input-group">
                                                         <div class="input-group-prepend">
-                                                            <button type="button" class="btn btn-outline-secondary" data-toggle="modal" data-target="#edit-kat{{ $loop->iteration }}">Edit</button>
+                                                            <button type="button" class="btn btn-outline-secondary" data-toggle="modal" data-target="#edit-ilmu{{ $loop->iteration }}">Edit</button>
                                                             <button type="button" class="btn btn-outline-secondary dropdown-toggle dropdown-toggle-split" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                                                 <span class="sr-only">Toggle Dropdown</span>
                                                             </button>
                                                             <div class="dropdown-menu">
-                                                                <a class="dropdown-item" href="{{URL::to('hapus-prestasi/'.$r->id)}}">Hapus</a>
+                                                                <a class="dropdown-item" href="{{URL::to('hapus-keilmuan/'.$r->id)}}">Hapus</a>
                                                             </div>
                                                         </div>
                                                     </div>
                                                 </td>
                                             </tr>
+                                            @endif
                                             @endforeach
                                         </tbody>
                                     </table>
@@ -221,22 +224,68 @@
                             </div>
                             <!-- /.tab-pane -->
 
-                            <div class="tab-pane" id="prestasi">
-                                <form class="form-horizontal" action="{{ URL::to('tambah-prestasi')}}" method="post">
-                                    @csrf
-                                    <div class="form-group">
-                                        <label>Prestasi</label>
-                                        <input type="text" class="form-control" placeholder="Masukkan Nama Prestasi" name="nama_prestasi">
-                                        <input type="hidden" class="form-control" id="uuid" name="niup" value="">
-                                        <br>
-                                        <label>Tahun</label>
-                                        <input type="text" class="form-control" placeholder="Masukkan Nama tahun" name="tahun">
-                                        <br>
-                                        <div class="modal-footer justify-content-between">
-                                            <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-                                            <button type="submit" class="btn btn-primary">Simpan</button>
-                                        </div>
-                                </form>
+                            <div class="tab-pane" id="skill">
+                                <div class="card-tools">
+                                    <ul class="pagination pagination-sm float-left">
+                                        <button type="button" class="btn btn-outline-primary" data-toggle="collapse" data-target="#tambah-skill" aria-expanded="false" aria-controls="tambah-skill">Tambah Peminatan Skill</button>
+                                    </ul>
+                                </div>
+                                <div class="collapse" id="tambah-skill">
+                                    <div class="card card-body">
+                                        <form class="form-horizontal" action="{{ URL::to('tambah-skill')}}" method="post">
+                                            @csrf
+                                            <div class="form-group">
+                                                <input type="hidden" class="form-control" id="uuid" name="niup" value="">
+                                                <label>Peminatan Skill</label>
+                                                <select class="form-control" name="peminatan_id" oninvalid="this.setCustomValidity('Lengkapi Inputan')" required="" oninput="setCustomValidity('')">
+                                                    @foreach($peminatan->where('nama', 'Skill') as $k)
+                                                    <option value="{{ $k->id }}">{{ $k->jurusan }} / {{ $k->sub }}</option>
+                                                    @endforeach
+                                                </select>
+                                                <br>
+                                                <div class="modal-footer">
+                                                    <button type="submit" class="btn btn-primary float-sm-left">Simpan</button>
+                                                </div>
+                                            </div>
+                                        </form>
+                                    </div>
+                                </div>
+                                <div class="table-responsive">
+                                    <table class="table table-bordered" id="table-kategori">
+                                        <thead>
+                                            <tr>
+                                                <th style="width: 10px">#</th>
+                                                <th>Jurusan</th>
+                                                <th>Sub</th>
+                                                <th style="width: 200px">Aksi</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            @foreach($skill as $r)
+                                            @if(!empty($r->skill))
+                                            <tr>
+                                                <td>{{ $loop->iteration }}</td>
+                                                <td>{{ $r->skill->jurusan }}</td>
+                                                <td>{{ $r->skill->sub }} / {{ $r->id}}</td>
+                                                <td>
+                                                    <div class="input-group">
+                                                        <div class="input-group-prepend">
+                                                            <button type="button" class="btn btn-outline-secondary" data-toggle="modal" data-target="#edit-skill{{ $loop->iteration }}">Edit</button>
+                                                            <button type="button" class="btn btn-outline-secondary dropdown-toggle dropdown-toggle-split" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                                                <span class="sr-only">Toggle Dropdown</span>
+                                                            </button>
+                                                            <div class="dropdown-menu">
+                                                                <a class="dropdown-item" href="{{URL::to('hapus-skill/'.$r->id)}}">Hapus</a>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </td>
+                                            </tr>
+                                            @endif
+                                            @endforeach
+                                        </tbody>
+                                    </table>
+                                </div>
                             </div>
                             <!-- /.tab-pane -->
                         </div>
@@ -286,6 +335,80 @@
 <!-- /.modal -->
 @endforeach
 
+@foreach($ilmu as $r)
+@if(!empty($r->ilmu))
+<!-- Edit Ilmu -->
+<div class="modal fade" id="edit-ilmu{{ $loop->iteration }}">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title">Edit Peminatan Keilmuan Santri</h4>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <form action="{{ URL::to('edit-keilmuan/'.$r->id)}}" method="post">
+                    @csrf
+                    <label>Peminatan Keilmuan</label>
+                    <select class="form-control" name="peminatan_id" oninvalid="this.setCustomValidity('Lengkapi Inputan')" required="" oninput="setCustomValidity('')">
+                        @foreach($peminatan->where('nama', 'Keilmuan') as $k)
+                        <option {{ $r->ilmu->sub == $k->sub ? 'selected':'' }} value="{{ $k->id }}">{{ $k->jurusan }} / {{ $k->sub }}</option>
+                        @endforeach
+                    </select>
+                    <br>
+                    <div class="modal-footer justify-content-between">
+                        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                        <button type="submit" class="btn btn-warning">Simpan</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+
+    </div>
+    <!-- /.modal-content -->
+</div>
+<!-- /.modal -->
+@endif
+@endforeach
+
+@foreach($skill as $r)
+@if(!empty($r->skill))
+<!-- Edit Skill -->
+<div class="modal fade" id="edit-skill{{ $loop->iteration }}">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title">Edit Peminatan Skill Santri</h4>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <form action="{{ URL::to('edit-skill/'.$r->id)}}" method="post">
+                    @csrf
+                    <label>Peminatan Skill</label>
+                    <select class="form-control" name="peminatan_id" oninvalid="this.setCustomValidity('Lengkapi Inputan')" required="" oninput="setCustomValidity('')">
+                        @foreach($peminatan->where('nama', 'Skill') as $k)
+                        <option {{ $r->skill->sub == $k->sub ? 'selected':'' }} value="{{ $k->id }}">{{ $k->jurusan }} / {{ $k->sub }}</option>
+                        @endforeach
+                    </select>
+                    <br>
+                    <div class="modal-footer justify-content-between">
+                        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                        <button type="submit" class="btn btn-warning">Simpan</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+
+    </div>
+    <!-- /.modal-content -->
+</div>
+<!-- /.modal -->
+@endif
+@endforeach
+
 @endsection
 
 @section('adminlte_js')
@@ -318,8 +441,11 @@
                 $("#wilayah").html(d.domisili_santri.slice(-1)[0].wilayah);
                 $("#blok").html("Blok: " + d.domisili_santri.slice(-1)[0].blok);
                 $("#kamar").html("Kamar: " + d.domisili_santri.slice(-1)[0].kamar);
-                $("#link-pedatren").attr('href', 'https://www.nuruljadid.app/formulir/' + d.uuid);
-                $("#uuid").attr('value', d.uuid);
+                $("#link-pedatren").attr('href', 'https://nuruljadid.app/formulir/' + d.uuid);
+                $("input[id='uuid']").each(function(i, node) {
+                    $(node).attr("value", d.uuid)
+                })
+                console.log($("input[type='hidden']"));
                 console.log(d.domisili_santri.slice(-1)[0].kamar);
             }
         });

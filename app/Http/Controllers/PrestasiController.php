@@ -52,7 +52,8 @@ class PrestasiController extends Controller
     public function edit(Request $request, $id)
     {
         $data = [
-            'nama_prestasi' => $request->prestasi,
+            'nama_prestasi' => $request->nama_prestasi,
+            'nama_prestasi' => $request->tahun,
         ];
 
         $simpan = Prestasi::where('id', $id)->update($data);

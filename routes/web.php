@@ -36,7 +36,15 @@ Route::get('/formulir/{id}', 'santriController@formulir');
 Route::get('/detail', 'santriController@detail');
 
 Route::get('/peminatan-keilmuan', 'PkilmuanController@index');
+Route::post('/tambah-keilmuan', 'PkilmuanController@tambah');
+Route::post('/edit-keilmuan/{id}', 'PkilmuanController@edit');
+Route::get('/hapus-keilmuan/{id}', 'PkilmuanController@hapus');
+
 Route::get('/peminatan-skill', 'PskillController@index');
+Route::post('/tambah-skill', 'PskillController@tambah');
+Route::post('/edit-skill/{id}', 'PskillController@edit');
+Route::get('/hapus-skill/{id}', 'PskillController@hapus');
+
 Route::get('/jejak-keorganisasian', 'JorganisasiController@index');
 
 Route::get('/jejak-ekstrakurikuler', 'JekstrakurikulerController@index');

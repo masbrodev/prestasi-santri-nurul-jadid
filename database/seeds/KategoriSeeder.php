@@ -17,7 +17,7 @@ class KategoriSeeder extends Seeder
         User::insert([
             'name' => 'masbro',
             'email' => 'a@gmail.com',
-            'password' => Hash::make(11111111),
+            'password' => Hash::make(1),
         ]);
         $faker = Faker\Factory::create('id_ID');
         for ($i = 1; $i <= 5; $i++) {
