@@ -5,10 +5,11 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Peminatan;
 use GuzzleHttp\Client;
-use App\Santri;
+use App\Jorganisasi;
 use App\Prestasi;
 use App\pkilmuan;
 use App\Pskill;
+use App\Jekstrakurikuler;
 use Brian2694\Toastr\Facades\Toastr;
 use App\User;
 use Illuminate\Support\Facades\Auth;
@@ -77,23 +78,13 @@ class SantriController extends Controller
                 'x-token' => $this->token[0]['token']
             ],
         ])->getBody()->getContents();
-        $data = json_decode($request);
-
         return response($request, 200)
             ->header('Content-Type', 'image/png');
     }
 
 
-    public function coba()
-    {
-        $data = User::where('name', 'masbro')->get('token');
-        return $data[0]['token'];
-    }
-
     public function index()
     {
-        // $data['santri'] = Santri::get();
-        // return $data;
         return view('pages.santri');
     }
 
@@ -109,20 +100,11 @@ class SantriController extends Controller
             $q->where('nama', 'Keilmuan');
            }])->where('niup', $id)->orderBy('id', 'DESC')->get();
 
-        $data['prestasi'] = Prestasi::where('niup', $id)->orderBy('id', 'DESC')->get();
+           $data['prestasi'] = Prestasi::where('niup', $id)->orderBy('id', 'DESC')->get();
+           $data['organ'] = Jorganisasi::where('niup', $id)->orderBy('id', 'DESC')->get();
+           $data['eks'] = Jekstrakurikuler::where('niup', $id)->orderBy('id', 'DESC')->get();
         return view('pages.formulir', $data);
         // return $data;
     }
 
-    public function indexx()
-    {
-        // $request = $this->client->get(URL::to('api/santri'));
-        // $response = $request->getBody();
-
-        // $request = $this->client->get(URL::to('api/santri'))->getBody()->getContents();
-        // $data['santri'] = json_decode($request, false);
-        // $data['jumlah'] = count($data['santri']);
-        // return $response;
-        // return view('pages.santri', $data);
-    }
 }

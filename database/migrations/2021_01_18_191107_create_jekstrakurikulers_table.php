@@ -19,7 +19,7 @@ class CreateJekstrakurikulersTable extends Migration
             $table->string('asrama');
             $table->string('bidang');
             $table->string('sub_bidang');
-            $table->integer('masa_keanggotaan');
+            $table->string('masa_keanggotaan');
             $table->timestamps();
         });
     }

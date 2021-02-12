@@ -26,13 +26,19 @@
 
                         <ul class="list-group list-group-unbordered mb-3">
                             <li class="list-group-item">
-                                <b>Followers</b> <a class="float-right">1,322</a>
+                                <b>Prestasi</b> <a class="float-right">{{ count($prestasi) }}</a>
                             </li>
                             <li class="list-group-item">
-                                <b>Following</b> <a class="float-right">543</a>
+                                <b>Keilmuan</b> <a class="float-right">{{ count($ilmu) }}</a>
                             </li>
                             <li class="list-group-item">
-                                <b>Friends</b> <a class="float-right">13,287</a>
+                                <b>Skill</b> <a class="float-right">{{ count($skill) }}</a>
+                            </li>
+                            <li class="list-group-item">
+                                <b>Organisasi</b> <a class="float-right">{{ count($organ) }}</a>
+                            </li>
+                            <li class="list-group-item">
+                                <b>Ekstrakurikuler</b> <a class="float-right">{{ count($eks) }}</a>
                             </li>
                         </ul>
 
@@ -92,6 +98,8 @@
                             <li class="nav-item"><a class="nav-link active" href="#prestasi" data-toggle="tab">Prestasi</a></li>
                             <li class="nav-item"><a class="nav-link" href="#keilmuan" data-toggle="tab">Keilmuan</a></li>
                             <li class="nav-item"><a class="nav-link" href="#skill" data-toggle="tab">Skill</a></li>
+                            <li class="nav-item"><a class="nav-link" href="#organ" data-toggle="tab">Organisasi</a></li>
+                            <li class="nav-item"><a class="nav-link" href="#eks" data-toggle="tab">Ekstrakurikuler</a></li>
                         </ul>
                     </div><!-- /.card-header -->
                     <div class="card-body">
@@ -287,6 +295,223 @@
                                     </table>
                                 </div>
                             </div>
+
+                            <div class="tab-pane" id="organ">
+                                <div class="card-tools">
+                                    <ul class="pagination pagination-sm float-left">
+                                        <button type="button" class="btn btn-outline-primary" data-toggle="collapse" data-target="#tambah-organisasi" aria-expanded="false" aria-controls="tambah-organisasi">Tambah Jejak Organisasi</button>
+                                    </ul>
+                                </div>
+                                <div class="collapse" id="tambah-organisasi">
+                                    <div class="card card-body">
+                                        <form class="form-horizontal" action="{{ URL::to('tambah-jorganisasi')}}" method="post">
+                                            @csrf
+                                            <div class="form-group">
+                                                <input type="hidden" class="form-control" id="uuid" name="niup" value="">
+                                                <label>Kategori</label>
+                                                <select class="form-control" name="kategori" oninvalid="this.setCustomValidity('Lengkapi Inputan')" required="" oninput="setCustomValidity('')">
+                                                    <option value="Asrama">Asrama</option>
+                                                    <option value="Lembaga">Lembaga</option>
+                                                    <option value="Pesantren">Pesantren</option>
+                                                    <option value="Kedaerahan">Kedaerahan</option>
+                                                    <option value="Ekstra">Ekstra</option>
+                                                    <option value="Independen">Independen</option>
+                                                    <option value="Lain-lain">Lain-lain</option>
+                                                </select>
+                                                <br>
+                                                <label>Nama Organisasi</label>
+                                                <input type="text" class="form-control" placeholder="Masukkan Nama Organisasi" name="nama_organisasi" oninvalid="this.setCustomValidity('Lengkapi Inputan')" required="" oninput="setCustomValidity('')">
+                                                <br>
+                                                <label>Masa Jabatan</label>
+                                                <div class="row">
+                                                    <div class="col-4">
+                                                        <select class="form-control" name="jb1" oninvalid="this.setCustomValidity('Lengkapi Inputan')" required="" oninput="setCustomValidity('')">
+                                                            {{ $last= date('Y')-10 }}
+                                                            {{ $now = date('Y') }}
+
+                                                            @for ($i = $now; $i >= $last; $i--)
+                                                            <option value="{{ $i }}">{{ $i }}</option>
+                                                            @endfor
+                                                        </select>
+                                                    </div>
+                                                    <i class="fa fa-window-minimize" aria-hidden="true"></i>
+                                                    <div class="col-4">
+                                                        <select class="form-control" name="jb2" oninvalid="this.setCustomValidity('Lengkapi Inputan')" required="" oninput="setCustomValidity('')">
+                                                            {{ $last= date('Y')-10 }}
+                                                            {{ $now = date('Y') }}
+
+                                                            @for ($i = $now; $i >= $last; $i--)
+                                                            <option value="{{ $i }}">{{ $i }}</option>
+                                                            @endfor
+                                                        </select>
+                                                    </div>
+                                                </div>
+                                                <br>
+                                                <label>Masa Keanggotaan</label>
+                                                <div class="row">
+                                                    <div class="col-4">
+                                                        <select class="form-control" name="gk1" oninvalid="this.setCustomValidity('Lengkapi Inputan')" required="" oninput="setCustomValidity('')">
+                                                            {{ $last= date('Y')-10 }}
+                                                            {{ $now = date('Y') }}
+
+                                                            @for ($i = $now; $i >= $last; $i--)
+                                                            <option value="{{ $i }}">{{ $i }}</option>
+                                                            @endfor
+                                                        </select>
+                                                    </div>
+                                                    <i class="fa fa-window-minimize" aria-hidden="true"></i>
+                                                    <div class="col-4">
+                                                        <select class="form-control" name="gk2" oninvalid="this.setCustomValidity('Lengkapi Inputan')" required="" oninput="setCustomValidity('')">
+                                                            {{ $last= date('Y')-10 }}
+                                                            {{ $now = date('Y') }}
+
+                                                            @for ($i = $now; $i >= $last; $i--)
+                                                            <option value="{{ $i }}">{{ $i }}</option>
+                                                            @endfor
+                                                        </select>
+                                                    </div>
+                                                </div>
+                                                <br>
+                                                <div class="modal-footer">
+                                                    <button type="submit" class="btn btn-primary float-sm-left">Simpan</button>
+                                                </div>
+                                            </div>
+                                        </form>
+                                    </div>
+                                </div>
+                                <div class="table-responsive">
+                                    <table class="table table-bordered" id="table-kategori">
+                                        <thead>
+                                            <tr>
+                                                <th style="width: 10px">#</th>
+                                                <th>Kategori</th>
+                                                <th>Organisasi</th>
+                                                <th style="width: 200px">Aksi</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            @foreach($organ as $r)
+                                            <tr>
+                                                <td>{{ $loop->iteration }}</td>
+                                                <td>{{ $r->kategori }}</td>
+                                                <td>{{ $r->nama_organisasi }} / {{ $r->id}}</td>
+                                                <td>
+                                                    <div class="input-group">
+                                                        <div class="input-group-prepend">
+                                                            <button type="button" class="btn btn-outline-secondary" data-toggle="modal" data-target="#edit-jorgan{{ $loop->iteration }}">Edit</button>
+                                                            <button type="button" class="btn btn-outline-secondary dropdown-toggle dropdown-toggle-split" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                                                <span class="sr-only">Toggle Dropdown</span>
+                                                            </button>
+                                                            <div class="dropdown-menu">
+                                                                <a class="dropdown-item" href="{{URL::to('hapus-jorganisasi/'.$r->id)}}">Hapus</a>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </td>
+                                            </tr>
+                                            @endforeach
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+
+                            <div class="tab-pane" id="eks">
+                                <div class="card-tools">
+                                    <ul class="pagination pagination-sm float-left">
+                                        <button type="button" class="btn btn-outline-primary" data-toggle="collapse" data-target="#tambah-skill" aria-expanded="false" aria-controls="tambah-skill">Tambah Jejak Ekstrakurikuler</button>
+                                    </ul>
+                                </div>
+                                <div class="collapse" id="tambah-skill">
+                                    <div class="card card-body">
+                                        <form class="form-horizontal" action="{{ URL::to('tambah-eks')}}" method="post">
+                                            @csrf
+                                            <div class="form-group">
+                                                <input type="hidden" class="form-control" id="uuid" name="niup" value="">
+                                                <label>Asrama</label>
+                                                <input type="text" class="form-control" placeholder="Masukkan Asrama" name="asrama" oninvalid="this.setCustomValidity('Lengkapi Inputan')" required="" oninput="setCustomValidity('')">
+                                                <br>
+                                                <label>Kategori</label>
+                                                <select class="form-control" name="bidang" oninvalid="this.setCustomValidity('Lengkapi Inputan')" required="" oninput="setCustomValidity('')">
+                                                    <option value="Keilmuan">Keilmuan</option>
+                                                    <option value="Kesenian">Kesenian</option>
+                                                    <option value="Olahraga">Olahraga</option>
+                                                    <option value="Kepanduan">Kepanduan</option>
+                                                    <option value="Keterampilan">Keterampilan</option>
+                                                </select>
+                                                <br>
+                                                <label>Sub Bidang</label>
+                                                <input type="text" class="form-control" placeholder="Masukkan Nama Organisasi" name="sub_bidang" oninvalid="this.setCustomValidity('Lengkapi Inputan')" required="" oninput="setCustomValidity('')">
+                                                <br>
+                                                <label>Masa Keanggotaan</label>
+                                                <div class="row">
+                                                    <div class="col-4">
+                                                        <select class="form-control" name="gk1" oninvalid="this.setCustomValidity('Lengkapi Inputan')" required="" oninput="setCustomValidity('')">
+                                                            {{ $last= date('Y')-10 }}
+                                                            {{ $now = date('Y') }}
+
+                                                            @for ($i = $now; $i >= $last; $i--)
+                                                            <option value="{{ $i }}">{{ $i }}</option>
+                                                            @endfor
+                                                        </select>
+                                                    </div>
+                                                    <i class="fa fa-window-minimize" aria-hidden="true"></i>
+                                                    <div class="col-4">
+                                                        <select class="form-control" name="gk2" oninvalid="this.setCustomValidity('Lengkapi Inputan')" required="" oninput="setCustomValidity('')">
+                                                            {{ $last= date('Y')-10 }}
+                                                            {{ $now = date('Y') }}
+
+                                                            @for ($i = $now; $i >= $last; $i--)
+                                                            <option value="{{ $i }}">{{ $i }}</option>
+                                                            @endfor
+                                                        </select>
+                                                    </div>
+                                                </div>
+                                                <br>
+                                                <div class="modal-footer">
+                                                    <button type="submit" class="btn btn-primary float-sm-left">Simpan</button>
+                                                </div>
+                                            </div>
+                                        </form>
+                                    </div>
+                                </div>
+                                <div class="table-responsive">
+                                    <table class="table table-bordered" id="table-kategori">
+                                        <thead>
+                                            <tr>
+                                                <th style="width: 10px">#</th>
+                                                <th>Jurusan</th>
+                                                <th>Bidang</th>
+                                                <th>Sub</th>
+                                                <th style="width: 200px">Aksi</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            @foreach($eks as $r)
+                                            <tr>
+                                                <td>{{ $loop->iteration }}</td>
+                                                <td>{{ $r->asrama }}</td>
+                                                <td>{{ $r->bidang }}</td>
+                                                <td>{{ $r->sub_bidang }} / {{ $r->id}}</td>
+                                                <td>
+                                                    <div class="input-group">
+                                                        <div class="input-group-prepend">
+                                                            <button type="button" class="btn btn-outline-secondary" data-toggle="modal" data-target="#edit-eks{{ $loop->iteration }}">Edit</button>
+                                                            <button type="button" class="btn btn-outline-secondary dropdown-toggle dropdown-toggle-split" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                                                <span class="sr-only">Toggle Dropdown</span>
+                                                            </button>
+                                                            <div class="dropdown-menu">
+                                                                <a class="dropdown-item" href="{{URL::to('hapus-eks/'.$r->id)}}">Hapus</a>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </td>
+                                            </tr>
+                                            @endforeach
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+
                             <!-- /.tab-pane -->
                         </div>
                         <!-- /.tab-content -->
@@ -407,6 +632,139 @@
 </div>
 <!-- /.modal -->
 @endif
+@endforeach
+
+@foreach($organ as $r)
+<!-- Edit Jorgan -->
+<div class="modal fade" id="edit-jorgan{{ $loop->iteration }}">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title">Edit Jejak Organisasi Santri</h4>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <form action="{{ URL::to('edit-jorganisasi/'.$r->id)}}" method="post">
+                    @csrf
+                    <label>Kategori</label>
+                    <select class="form-control" name="kategori" oninvalid="this.setCustomValidity('Lengkapi Inputan')" required="" oninput="setCustomValidity('')">
+                        <option value="Asrama" {{$r->kategori == 'Asrama' ? 'selected' : ''}}>Asrama</option>
+                        <option value="Lembaga" {{$r->kategori == 'Lembaga' ? 'selected' : ''}}>Lembaga</option>
+                        <option value="Pesantren" {{$r->kategori == 'Pesantren' ? 'selected' : ''}}>Pesantren</option>
+                        <option value="Kedaerahan" {{$r->kategori == 'Kedaerahan' ? 'selected' : ''}}>Kedaerahan</option>
+                        <option value="Ekstra" {{$r->kategori == 'Ekstra' ? 'selected' : ''}}>Ekstra</option>
+                        <option value="Independen" {{$r->kategori == 'Independen' ? 'selected' : ''}}>Independen</option>
+                        <option value="Lain-lain" {{$r->kategori == 'Lain-lain' ? 'selected' : ''}}>Independen</option>
+                    </select>
+                    <br>
+                    <label>Nama Organisasi</label>
+                    <input type="text" class="form-control" placeholder="Masukkan Nama Organisasi" value="{{$r->nama_organisasi}}" name="nama_organisasi" oninvalid="this.setCustomValidity('Lengkapi Inputan')" required="" oninput="setCustomValidity('')">
+                    <br>
+                    <label>Masa Keanggotaan</label>
+                    <div class="row">
+                        <div class="col-4">
+                            <select class="form-control" name="gk1" oninvalid="this.setCustomValidity('Lengkapi Inputan')" required="" oninput="setCustomValidity('')">
+                                {{ $last= date('Y')-10 }}
+                                {{ $now = date('Y') }}
+
+                                @for ($i = $now; $i >= $last; $i--)
+                                <option value="{{ $i }}" {{ $r->gk1() == $i ? 'selected':'' }}>{{ $i }}</option>
+                                @endfor
+                            </select>
+                        </div>
+                        <i class="fa fa-window-minimize" aria-hidden="true"></i>
+                        <div class="col-4">
+                            <select class="form-control" name="gk2" oninvalid="this.setCustomValidity('Lengkapi Inputan')" required="" oninput="setCustomValidity('')">
+                                {{ $last= date('Y')-10 }}
+                                {{ $now = date('Y') }}
+
+                                @for ($i = $now; $i >= $last; $i--)
+                                <option value="{{ $i }}" {{ $r->gk2() == $i ? 'selected':'' }}>{{ $i }}</option>
+                                @endfor
+                            </select>
+                        </div>
+                    </div>
+                    <br>
+                    <div class="modal-footer justify-content-between">
+                        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                        <button type="submit" class="btn btn-warning">Simpan</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+
+    </div>
+    <!-- /.modal-content -->
+</div>
+@endforeach
+
+@foreach($eks as $r)
+<div class="modal fade" id="edit-eks{{ $loop->iteration }}">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title">Edit Jejak Organisasi Santri</h4>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <form action="{{ URL::to('edit-eks/'.$r->id)}}" method="post">
+                    @csrf
+                    <label>Asrama</label>
+                    <input type="text" class="form-control" placeholder="Masukkan Asrama" value="{{$r->asrama}}" name="asrama" oninvalid="this.setCustomValidity('Lengkapi Inputan')" required="" oninput="setCustomValidity('')">
+                    <br>
+                    <label>Bidang</label>
+                    <select class="form-control" name="bidang" oninvalid="this.setCustomValidity('Lengkapi Inputan')" required="" oninput="setCustomValidity('')">
+                        <option value="Keilmuan" {{$r->bidang == 'Keilmuan' ? 'selected' : ''}}>Keilmuan</option>
+                        <option value="Kesenian" {{$r->bidang == 'Kesenian' ? 'selected' : ''}}>Kesenian</option>
+                        <option value="Olahraga" {{$r->bidang == 'Olahraga' ? 'selected' : ''}}>Olahraga</option>
+                        <option value="Kepanduan" {{$r->bidang == 'Kepanduan' ? 'selected' : ''}}>Kepanduan</option>
+                        <option value="Keterampilan" {{$r->bidang == 'Keterampilan' ? 'selected' : ''}}>Keterampilan</option>
+                    </select>
+                    <br>
+                    <label>Sub Bidang</label>
+                    <input type="text" class="form-control" placeholder="Masukkan Sub Bidang" value="{{$r->sub_bidang}}" name="sub_bidang" oninvalid="this.setCustomValidity('Lengkapi Inputan')" required="" oninput="setCustomValidity('')">
+                    <br>
+                    <label>Masa Keanggotaan</label>
+                    <div class="row">
+                        <div class="col-4">
+                            <select class="form-control" name="gk1" oninvalid="this.setCustomValidity('Lengkapi Inputan')" required="" oninput="setCustomValidity('')">
+                                {{ $last= date('Y')-10 }}
+                                {{ $now = date('Y') }}
+
+                                @for ($i = $now; $i >= $last; $i--)
+                                <option value="{{ $i }}" {{ $r->gk1() == $i ? 'selected':'' }}>{{ $i }}</option>
+                                @endfor
+                            </select>
+                        </div>
+                        <i class="fa fa-window-minimize" aria-hidden="true"></i>
+                        <div class="col-4">
+                            <select class="form-control" name="gk2" oninvalid="this.setCustomValidity('Lengkapi Inputan')" required="" oninput="setCustomValidity('')">
+                                {{ $last= date('Y')-10 }}
+                                {{ $now = date('Y') }}
+
+                                @for ($i = $now; $i >= $last; $i--)
+                                <option value="{{ $i }}" {{ $r->gk2() == $i ? 'selected':'' }}>{{ $i }}</option>
+                                @endfor
+                            </select>
+                        </div>
+                    </div>
+                    <br>
+                    <div class="modal-footer justify-content-between">
+                        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                        <button type="submit" class="btn btn-warning">Simpan</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+
+    </div>
+    <!-- /.modal-content -->
+</div>
+<!-- /.modal -->
 @endforeach
 
 @endsection
