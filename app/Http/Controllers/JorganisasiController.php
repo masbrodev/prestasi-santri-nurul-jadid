@@ -10,7 +10,8 @@ class JorganisasiController extends Controller
 {
     public function index()
     {
-        return view('pages.j_organisasi');
+        $data['organ'] = Jorganisasi::orderBy('id', 'DESC')->get();
+        return view('pages.j_organisasi', $data);
     }
 
     public function tambah(Request $request)

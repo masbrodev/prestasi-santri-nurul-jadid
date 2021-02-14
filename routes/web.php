@@ -1,7 +1,6 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
-use Brian2694\Toastr\Facades\Toastr;
 use Illuminate\Support\Facades\Auth;
 
 /*
@@ -16,8 +15,7 @@ use Illuminate\Support\Facades\Auth;
 */
 
 Route::get('/', function () {
-     Toastr::success('Messages in here', 'Title', ["positionClass" => "toast-top-center"]);
-    return view('welcome');
+    return redirect('login');
 });
 
 Route::get('/home', 'HomeController@index')->name('home');
@@ -57,7 +55,6 @@ Route::get('/hapus-eks/{id}', 'JekstrakurikulerController@hapus');
 Route::get('/tambah-jejak-ekstrakurikuler', 'JekstrakurikulerController@haltambah');
 
 Route::get('/prestasi-santri', 'PrestasiController@index');
-Route::get('/tambah-prestasi', 'PrestasiController@haltambah');
 Route::post('/tambah-prestasi', 'PrestasiController@tambah');
 Route::post('/edit-prestasi/{id}', 'PrestasiController@edit');
 Route::get('/hapus-prestasi/{id}', 'PrestasiController@hapus');

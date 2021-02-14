@@ -10,7 +10,11 @@ class PkilmuanController extends Controller
 {
     public function index()
     {
-        return view('pages.p_ilmu');
+        $data['ilmu'] = Pkilmuan::with(['ilmu' => function ($q) {
+            $q->where('nama', 'Keilmuan');
+        }])->orderBy('id', 'DESC')->get();
+
+        return view('pages.p_ilmu', $data);
     }
 
     public function tambah(Request $request)

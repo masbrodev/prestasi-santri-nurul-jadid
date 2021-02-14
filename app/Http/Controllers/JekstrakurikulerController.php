@@ -3,7 +3,6 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\Santri;
 use App\Jekstrakurikuler;
 use Brian2694\Toastr\Facades\Toastr;
 
@@ -12,15 +11,8 @@ class JekstrakurikulerController extends Controller
 {
     public function index()
     {
-        return view('pages.j_ekstra');
-    }
-
-    public function haltambah()
-    {
-
-        $data['santri'] = Santri::get();
-        $data['judul'] = "Tambah Data Jejak Ekstrakurikuler Santri";
-        return view('pages.TT_prestasi', $data);
+        $data['eks'] = Jekstrakurikuler::orderBy('id', 'DESC')->get();
+        return view('pages.j_ekstra', $data);
     }
 
     public function tambah(Request $request)

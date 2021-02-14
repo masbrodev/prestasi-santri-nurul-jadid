@@ -253,11 +253,6 @@ return [
                     'url'  => 'peminatan-keilmuan',
                     'icon' => 'fas fa-file',
                 ],
-                [
-                    'text' => 'Tambah',
-                    'url'  => 'tambah-peminatan-keilmuan',
-                    'icon' => 'fas fa-plus-square',
-                ],
             ],
         ],
         [
@@ -268,11 +263,6 @@ return [
                     'text' => 'Data',
                     'url'  => 'peminatan-skill',
                     'icon' => 'fas fa-file',
-                ],
-                [
-                    'text' => 'Tambah',
-                    'url'  => 'tambah-peminatan-skill',
-                    'icon' => 'fas fa-plus-square',
                 ],
             ],
         ],
@@ -286,11 +276,6 @@ return [
                     'url'  => 'jejak-keorganisasian',
                     'icon' => 'fas fa-file',
                 ],
-                [
-                    'text' => 'Tambah',
-                    'url'  => 'tambah-jejak-keorganisasian',
-                    'icon' => 'fas fa-plus-square',
-                ],
             ],
         ],
         [
@@ -302,11 +287,6 @@ return [
                     'url'  => 'jejak-ekstrakurikuler',
                     'icon' => 'fas fa-file',
                 ],
-                [
-                    'text' => 'Tambah',
-                    'url'  => 'tambah-jejak-ekstrakurikuler',
-                    'icon' => 'fas fa-plus-square',
-                ],
             ],
         ],
         [
@@ -317,11 +297,6 @@ return [
                     'text' => 'Data',
                     'url'  => 'prestasi-santri',
                     'icon' => 'fas fa-file',
-                ],
-                [
-                    'text' => 'Tambah',
-                    'url'  => 'tambah-prestasi',
-                    'icon' => 'fas fa-plus-square',
                 ],
             ],
         ],

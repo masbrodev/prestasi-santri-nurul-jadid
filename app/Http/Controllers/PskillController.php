@@ -10,7 +10,11 @@ class PskillController extends Controller
 {
     public function index()
     {
-        return view('pages.p_skill');
+        $data['skill'] = Pskill::with(['skill' => function ($q) {
+            $q->where('nama', 'Skill');
+        }])->orderBy('id', 'DESC')->get();
+
+        return view('pages.p_skill', $data);
     }
 
     public function tambah(Request $request)

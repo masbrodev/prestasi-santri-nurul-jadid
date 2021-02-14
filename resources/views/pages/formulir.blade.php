@@ -42,7 +42,7 @@
                             </li>
                         </ul>
 
-                        <a href="#" id="link-pedatren" class="btn btn-primary btn-block"><b>PEDATREN</b></a>
+                        <a href="#" id="link-pedatren" class="btn btn-primary btn-block" target="_blank"><b>PEDATREN</b></a>
                     </div>
                     <!-- /.card-body -->
                 </div>
