@@ -3,14 +3,14 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\Pskill;
+use App\pkilmuan;
 use Brian2694\Toastr\Facades\Toastr;
 
 class PskillController extends Controller
 {
     public function index()
     {
-        $data['skill'] = Pskill::with(['skill' => function ($q) {
+        $data['skill'] = Pkilmuan::with(['skill' => function ($q) {
             $q->where('nama', 'Skill');
         }])->orderBy('id', 'DESC')->get();
 
@@ -24,7 +24,7 @@ class PskillController extends Controller
             'peminatan_id' => $request->peminatan_id,
         ];
 
-        $simpan = Pskill::create($data);
+        $simpan = Pkilmuan::create($data);
         if ($simpan) {
             return redirect()->back()->with([Toastr::success('Data Pemintan Skill Berhasil ditambahkan')]);
         }
@@ -36,7 +36,7 @@ class PskillController extends Controller
             'peminatan_id' => $request->peminatan_id,
         ];
 
-        $simpan = Pskill::where('id', $id)->update($data);
+        $simpan = Pkilmuan::where('id', $id)->update($data);
         if ($simpan) {
             return redirect()->back()->with([Toastr::success('Data Pemintan Skill Santri Berhasil Diperbaharui')]);
         } else {
@@ -46,7 +46,7 @@ class PskillController extends Controller
 
     public function hapus($id)
     {
-        $data = Pskill::find($id);
+        $data = Pkilmuan::find($id);
         if ($data) {
             $data->delete();
             return redirect()->back()->with([Toastr::success('Data Pemintan Skill Santri Berhasil Dihapus')]);
