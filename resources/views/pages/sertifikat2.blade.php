@@ -7,100 +7,148 @@
 @section('content')
 @section('plugins.LoadingOverlay', true)
 <div class="container">
+    <h3 class="text-center">Prestasi</h3>
     <div class="row">
         <div class="table-responsive col-md-6">
-        <h3 class="text-center">Prestasi</h3>
             <table class="table table-bordered table-sm" id="table-kategori">
                 <thead>
                     <tr>
-                        <th style="width: 10px">No.</th>
                         <th>Nama Prestasi</th>
                         <th>Tahun</th>
                     </tr>
                 </thead>
                 <tbody>
-                    @foreach($prestasi as $p)
-                    @foreach($p as $r)
+                    @foreach($prestasi2 as $r)
                     <tr>
-                        <td>{{ $loop->iteration }}</td>
                         <td>{{ $r->nama_prestasi }}</td>
                         <td>{{ $r->tahun}}</td>
                     </tr>
                     @endforeach
+                </tbody>
+            </table>
+        </div>
+
+        <div class="table-responsive col-md-6">
+            <table class="table table-bordered table-sm" id="table-kategori">
+                <thead>
+                    <tr>
+                        <th>Nama Prestasi</th>
+                        <th>Tahun</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach($prestasi1 as $r)
+                    <tr>
+                        <td>{{ $r->nama_prestasi }}</td>
+                        <td>{{ $r->tahun}}</td>
+                    </tr>
                     @endforeach
                 </tbody>
             </table>
         </div>
-        <br>
-        <br>
+    </div>
+
+    <hr>
+    <h3 class="text-center">Peminatan Keilmuan</h3>
+    <div class="row">
         <div class="table-responsive col-md-6">
-        <h3 class="text-center">Peminatan Keilmuan</h3>
             <table class="table table-bordered table-sm" id="table-kategori">
                 <thead>
                     <tr>
-                        <th style="width: 10px">No.</th>
                         <th>Jurusan</th>
                         <th>Sub</th>
                     </tr>
                 </thead>
                 <tbody>
-                    @foreach($ilmu as $r)
-                    @if(!empty($r->ilmu))
+                    @foreach($ilmu2 as $r)
                     <tr>
-                        <td>{{ $loop->iteration }}</td>
-                        <td>{{ $r->ilmu->jurusan }}</td>
-                        <td>{{ $r->ilmu->sub }}</td>
+                        <td>{{ $r['jurusan'] }}</td>
+                        <td>{{ $r['sub'] }}</td>
                     </tr>
-                    @endif
                     @endforeach
                 </tbody>
             </table>
         </div>
 
-        <br>
-        <br>
-
         <div class="table-responsive col-md-6">
-        <h3 class="text-center">Peminatan Skill</h3>
             <table class="table table-bordered table-sm" id="table-kategori">
                 <thead>
                     <tr>
-                        <th style="width: 10px">No.</th>
                         <th>Jurusan</th>
                         <th>Sub</th>
                     </tr>
                 </thead>
                 <tbody>
-                    @foreach($skill as $r)
-                    @if(!empty($r->skill))
+                    @foreach($ilmu1 as $r)
                     <tr>
-                        <td>{{ $loop->iteration }}</td>
-                        <td>{{ $r->skill->jurusan }}</td>
-                        <td>{{ $r->skill->sub }}</td>
+                        <td>{{ $r['jurusan'] }}</td>
+                        <td>{{ $r['sub'] }}</td>
                     </tr>
-                    @endif
                     @endforeach
                 </tbody>
             </table>
         </div>
 
-        <br>
-        <br>
+    </div>
 
+    <hr>
+
+    <h3 class="text-center">Peminatan Skill</h3>
+    <div class="row">
         <div class="table-responsive col-md-6">
-        <h3 class="text-center">Rekam Jejak Organisasi</h3>
             <table class="table table-bordered table-sm" id="table-kategori">
                 <thead>
                     <tr>
-                        <th style="width: 10px">No.</th>
+                        <th>Jurusan</th>
+                        <th>Sub</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach($skill2 as $r)
+                    <tr>
+                        <td>{{ $r['jurusan'] }}</td>
+                        <td>{{ $r['sub'] }}</td>
+                    </tr>
+                    @endforeach
+                </tbody>
+            </table>
+        </div>
+
+        <div class="table-responsive col-md-6">
+            <table class="table table-bordered table-sm" id="table-kategori">
+                <thead>
+                    <tr>
+                        <th>Jurusan</th>
+                        <th>Sub</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach($skill1 as $r)
+                    <tr>
+                        <td>{{ $r['jurusan'] }}</td>
+                        <td>{{ $r['sub'] }}</td>
+                    </tr>
+                    @endforeach
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+    <hr>
+
+    <h3 class="text-center">Rekam Jejak Organisasi</h3>
+    <div class="row">
+        <div class="table-responsive col-md-6">
+            <table class="table table-bordered table-sm" id="table-kategori">
+                <thead>
+                    <tr>
                         <th>Kategori</th>
                         <th>Organisasi</th>
                     </tr>
                 </thead>
                 <tbody>
-                    @foreach($organ as $r)
+                    @foreach($organ2 as $r)
                     <tr>
-                        <td>{{ $loop->iteration }}</td>
                         <td>{{ $r->kategori }}</td>
                         <td>{{ $r->nama_organisasi }}</td>
                     </tr>
@@ -109,11 +157,31 @@
             </table>
         </div>
 
-        <br>
-        <br>
-
         <div class="table-responsive col-md-6">
-        <h3 class="text-center">Rekam Jejak Ekstrakurikuler</h3>
+            <table class="table table-bordered table-sm" id="table-kategori">
+                <thead>
+                    <tr>
+                        <th>Kategori</th>
+                        <th>Organisasi</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach($organ1 as $r)
+                    <tr>
+                        <td>{{ $r->kategori }}</td>
+                        <td>{{ $r->nama_organisasi }}</td>
+                    </tr>
+                    @endforeach
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+    <hr>
+
+    <h3 class="text-center">Rekam Jejak Ekstrakurikuler</h3>
+    <div class="row">
+        <div class="table-responsive col-md-6">
             <table class="table table-bordered table-sm" id="table-kategori">
                 <thead>
                     <tr>
@@ -124,7 +192,7 @@
                     </tr>
                 </thead>
                 <tbody>
-                    @foreach($eks as $r)
+                    @foreach($eks2 as $r)
                     <tr>
                         <td>{{ $loop->iteration }}</td>
                         <td>{{ $r->asrama }}</td>
@@ -136,7 +204,30 @@
             </table>
         </div>
 
+        <div class="table-responsive col-md-6">
+            <table class="table table-bordered table-sm" id="table-kategori">
+                <thead>
+                    <tr>
+                        <th style="width: 10px">No.</th>
+                        <th>Jurusan</th>
+                        <th>Bidang</th>
+                        <th>Sub</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach($eks2 as $r)
+                    <tr>
+                        <td>{{ $loop->iteration }}</td>
+                        <td>{{ $r->asrama }}</td>
+                        <td>{{ $r->bidang }}</td>
+                        <td>{{ $r->sub_bidang }}</td>
+                    </tr>
+                    @endforeach
+                </tbody>
+            </table>
+        </div>
     </div>
+
 </div>
 @endsection
 

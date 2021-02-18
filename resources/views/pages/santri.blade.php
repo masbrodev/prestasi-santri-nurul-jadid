@@ -18,7 +18,7 @@
         <div class="input-group input-group-sm">
             <input type="text" class="form-control" name="cari" size="31" value="{{ request()->get('cari') }}"/>
                   <span class="input-group-append">
-                    <a type="button" class="btn btn-info btn-flat" href="{{URL::to('santri/')}}">Go!</a>
+                    <a type="button" class="btn btn-info btn-flat" href="{{URL::to('santri/')}}">Clear!</a>
                   </span>
                 </div>
         </form>

@@ -51,24 +51,24 @@
     <div class="row">
         <div class="col order-last">
             <center>
-                <p>Kepala Biro Pengembangan</p>
+                <h4>Kepala Biro Pengembangan</h4>
                 <br>
                 <br>
                 <br>
                 <br>
-                <p class="text-bold border-bottom">Prof. Dr. Young Lex</p>
+                <h3 class="text-bold border-bottom">Prof. Dr. Young Lex</h3>
             </center>
         </div>
         <div class="col">
         </div>
         <div class="col order-first text-right">
             <center>
-                <p>Kepala Bidang PPM</p>
+                <h4>Kepala Bidang PPM</h4>
                 <br>
                 <br>
                 <br>
                 <br>
-                <p class="text-bold border-bottom">Raden Yazid Al-reggae</p>
+                <h3 class="text-bold border-bottom">Raden Yazid Al-reggae</h3>
             </center>
         </div>
     </div>
