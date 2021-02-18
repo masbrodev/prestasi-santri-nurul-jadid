@@ -29,6 +29,8 @@ Auth::routes([
     'reset' => false, // Password Reset Routes...
     'verify' => false, // Email Verification Routes...
   ]);
+Route::get('/cetak/{id}', 'santriController@cetak');
+Route::get('/cetak2/{id}', 'santriController@cetak2');
 Route::get('/santri', 'santriController@index');
 Route::get('/formulir/{id}', 'santriController@formulir');
 Route::get('/detail', 'santriController@detail');

@@ -42,7 +42,8 @@
                             </li>
                         </ul>
 
-                        <a href="#" id="link-pedatren" class="btn btn-primary btn-block" target="_blank"><b>PEDATREN</b></a>
+                        <a href="#" id="link-pedatren" class="btn btn-primary btn-block" target="_blank"><b>LIHAT DI PEDATREN</b></a>
+                        <a href="#" id="link-cetak" class="btn btn-primary btn-block" target="_blank"><b>CETAK SERTIFIKAT</b></a>
                     </div>
                     <!-- /.card-body -->
                 </div>
@@ -209,7 +210,7 @@
                                             <tr>
                                                 <td>{{ $loop->iteration }}</td>
                                                 <td>{{ $r->ilmu->jurusan }}</td>
-                                                <td>{{ $r->ilmu->sub }} / {{ $r->id}}</td>
+                                                <td>{{ $r->ilmu->sub }}</td>
                                                 <td>
                                                     <div class="input-group">
                                                         <div class="input-group-prepend">
@@ -274,7 +275,7 @@
                                             <tr>
                                                 <td>{{ $loop->iteration }}</td>
                                                 <td>{{ $r->skill->jurusan }}</td>
-                                                <td>{{ $r->skill->sub }} / {{ $r->id}}</td>
+                                                <td>{{ $r->skill->sub }}</td>
                                                 <td>
                                                     <div class="input-group">
                                                         <div class="input-group-prepend">
@@ -394,7 +395,7 @@
                                             <tr>
                                                 <td>{{ $loop->iteration }}</td>
                                                 <td>{{ $r->kategori }}</td>
-                                                <td>{{ $r->nama_organisasi }} / {{ $r->id}}</td>
+                                                <td>{{ $r->nama_organisasi }}</td>
                                                 <td>
                                                     <div class="input-group">
                                                         <div class="input-group-prepend">
@@ -491,7 +492,7 @@
                                                 <td>{{ $loop->iteration }}</td>
                                                 <td>{{ $r->asrama }}</td>
                                                 <td>{{ $r->bidang }}</td>
-                                                <td>{{ $r->sub_bidang }} / {{ $r->id}}</td>
+                                                <td>{{ $r->sub_bidang }}</td>
                                                 <td>
                                                     <div class="input-group">
                                                         <div class="input-group-prepend">
@@ -800,6 +801,7 @@
                 $("#blok").html("Blok: " + d.domisili_santri.slice(-1)[0].blok);
                 $("#kamar").html("Kamar: " + d.domisili_santri.slice(-1)[0].kamar);
                 $("#link-pedatren").attr('href', 'https://nuruljadid.app/formulir/' + d.uuid);
+                $("#link-cetak").attr('href', "{{URL::to('cetak')}}" + "/" + d.uuid);
                 $("input[id='uuid']").each(function(i, node) {
                     $(node).attr("value", d.uuid)
                 })
