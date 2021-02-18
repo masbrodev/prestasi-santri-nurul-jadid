@@ -2,17 +2,12 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Http\Request;
 use App\Peminatan;
-use GuzzleHttp\Client;
 use App\Jorganisasi;
 use App\Prestasi;
 use App\pkilmuan;
 use App\Pskill;
 use App\Jekstrakurikuler;
-use Brian2694\Toastr\Facades\Toastr;
-use App\User;
-use PDF;
 
 class SantriController extends Controller
 {
@@ -21,11 +16,56 @@ class SantriController extends Controller
         return view('pages.santri');
     }
 
+    public function dashboard()
+    {
+
+
+        $ilmu = Pkilmuan::with(['ilmu' => function ($q) {
+            $q->where('nama', 'Keilmuan');
+        }])->get();
+
+        $item_ilmu = collect();
+        foreach ($ilmu as $i) {
+            if (!empty($i->ilmu)) {
+                $item_ilmu->push([
+                    'jurusan' => $i->ilmu->jurusan,
+                ]);
+            }
+        }
+
+        $skill = pkilmuan::with(['skill', 'skill' => function ($q) {
+            $q->where('nama', 'Skill');
+        }])->get();
+
+        $item_skill = collect();
+        foreach ($skill as $i) {
+            if (!empty($i->skill)) {
+                $item_skill->push([
+                    'jurusan' => $i->skill->jurusan,
+                ]);
+            }
+        }
+
+        $data['ilmu'] = $item_ilmu->count();
+        $data['skill'] = $item_skill->count();
+        
+        $data['prestasi'] = Prestasi::count();
+
+        $data['organ'] = Jorganisasi::count();
+
+        $data['eks'] = Jekstrakurikuler::count();
+
+        $data['all'] = $data['skill'] + $data['ilmu'] + $data['prestasi'] + $data['organ'] + $data['eks'];
+
+        return view('home', $data);
+        // return $data;
+    }
+
     public function formulir($id)
     {
         $data['peminatan'] = Peminatan::orderBy('jurusan', 'DESC')->get();
 
-        $data['skill'] = Pskill::with(['skill', 'skill' => function ($q) {
+        $data['skill'] = pkilmuan::with(['skill', 'skill' => function ($q) {
             $q->where('nama', 'Skill');
         }])->where('niup', $id)->orderBy('id', 'DESC')->get();
 
@@ -40,7 +80,6 @@ class SantriController extends Controller
         $data['eks'] = Jekstrakurikuler::where('niup', $id)->orderBy('id', 'DESC')->get();
 
         return view('pages.formulir', $data);
-        // return $data;
     }
 
     public function cetak()
@@ -56,7 +95,7 @@ class SantriController extends Controller
             $q->where('nama', 'Keilmuan');
         }])->where('niup', $id)->orderBy('id', 'DESC')->get();
 
-        $skill = Pskill::with(['skill', 'skill' => function ($q) {
+        $skill = pkilmuan::with(['skill', 'skill' => function ($q) {
             $q->where('nama', 'Skill');
         }])->where('niup', $id)->orderBy('id', 'DESC')->get();
 
@@ -85,9 +124,6 @@ class SantriController extends Controller
                 ]);
             }
         }
-
-
-
 
         $halfp = $prestasi->count() / 2;
         $data['prestasi1'] = $prestasi->take($halfp);

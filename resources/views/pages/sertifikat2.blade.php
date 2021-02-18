@@ -1,7 +1,7 @@
 @extends('layouts.app')
 
 @section('content_header')
-<h1>Sertifikat</h1>
+<a href="javascript:history.back()" class="btn btn-outline-primary">Halaman Depan</a>
 @stop
 
 @section('content')

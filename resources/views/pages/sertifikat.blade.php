@@ -1,7 +1,7 @@
 @extends('layouts.app')
 
 @section('content_header')
-<h1>Sertifikat</h1>
+<a href="#" id="link-cetak2" class="btn btn-outline-primary">Halaman Belakang</a>
 @stop
 
 @section('content')
@@ -101,7 +101,7 @@
                 $("#wilayah").html(d.domisili_santri.slice(-1)[0].wilayah);
                 $("#blok").html("Blok: " + d.domisili_santri.slice(-1)[0].blok);
                 $("#kamar").html("Kamar: " + d.domisili_santri.slice(-1)[0].kamar);
-                console.log(awal.getFullYear());
+                $("#link-cetak2").attr('href', "{{URL::to('cetak2')}}" + "/" + d.uuid);
             }
         });
     });

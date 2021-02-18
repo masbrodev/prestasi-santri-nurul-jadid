@@ -25,7 +25,7 @@ Auth::routes([
 ]);
 
 Route::group(['middleware' => 'auth'], function () {
-  Route::get('/home', 'HomeController@index')->name('home');
+  Route::get('/home', 'santriController@dashboard');
 
   Route::get('/cetak/{id}', 'santriController@cetak');
   Route::get('/cetak2/{id}', 'santriController@cetak2');

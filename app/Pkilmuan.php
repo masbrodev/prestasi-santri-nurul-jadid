@@ -14,4 +14,9 @@ class pkilmuan extends Model
     {
         return $this->belongsTo(Peminatan::class, 'peminatan_id', 'id');
     }
+
+    public function skill()
+    {
+        return $this->belongsTo(Peminatan::class, 'peminatan_id', 'id');
+    }
 }

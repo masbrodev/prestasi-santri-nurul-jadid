@@ -1,145 +1,155 @@
 @extends('layouts.app')
-@section('adminlte_css')
-<style>
-    body {
-        background: #eee;
-    }
-
-    .card-box {
-        position: relative;
-        color: #fff;
-        padding: 20px 10px 40px;
-        margin: 20px 0px;
-    }
-
-    .card-box:hover {
-        text-decoration: none;
-        color: #f1f1f1;
-    }
-
-    .card-box:hover .icon i {
-        font-size: 100px;
-        transition: 1s;
-        -webkit-transition: 1s;
-    }
-
-    .card-box .inner {
-        padding: 5px 10px 0 10px;
-    }
-
-    .card-box h3 {
-        font-size: 27px;
-        font-weight: bold;
-        margin: 0 0 8px 0;
-        white-space: nowrap;
-        padding: 0;
-        text-align: left;
-    }
-
-    .card-box p {
-        font-size: 15px;
-    }
-
-    .card-box .icon {
-        position: absolute;
-        top: auto;
-        bottom: 5px;
-        right: 5px;
-        z-index: 0;
-        font-size: 72px;
-        color: rgba(0, 0, 0, 0.15);
-    }
-
-    .card-box .card-box-footer {
-        position: absolute;
-        left: 0px;
-        bottom: 0px;
-        text-align: center;
-        padding: 3px 0;
-        color: rgba(255, 255, 255, 0.8);
-        background: rgba(0, 0, 0, 0.1);
-        width: 100%;
-        text-decoration: none;
-    }
-
-    .card-box:hover .card-box-footer {
-        background: rgba(0, 0, 0, 0.3);
-    }
-
-    .bg-blue {
-        background-color: #00c0ef !important;
-    }
-
-    .bg-green {
-        background-color: #00a65a !important;
-    }
-
-    .bg-orange {
-        background-color: #f39c12 !important;
-    }
-
-    .bg-red {
-        background-color: #d9534f !important;
-    }
-</style>
-@stop
 @section('content_header')
 <h1>Dashboard</h1>
 @stop
 @section('content')
-<div class="container-fluid">
-    <div class="row">
-        <div class="col-lg-3 col-sm-6">
-            <div class="card-box bg-blue">
-                <div class="inner">
-                    <h3> 13436 </h3>
-                    <p> Student Strength </p>
-                </div>
-                <div class="icon">
-                    <i class="fa fa-graduation-cap" aria-hidden="true"></i>
-                </div>
-                <a href="#" class="card-box-footer">View More <i class="fa fa-arrow-circle-right"></i></a>
-            </div>
-        </div>
+@section('plugins.LoadingOverlay', true)
+<section class="content">
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-lg-3 col-6">
+                <!-- small box -->
+                <div class="small-box bg-primary">
+                    <div class="inner">
+                        <h3 id="tsantri">7070</h3>
 
-        <div class="col-lg-3 col-sm-6">
-            <div class="card-box bg-green">
-                <div class="inner">
-                    <h3> ₹185358 </h3>
-                    <p> Today’s Collection </p>
+                        <p>Total Santri</p>
+                    </div>
+                    <div class="icon">
+                        <i class="fa fa-database"></i>
+                    </div>
+                    <a href="https://nuruljadid.app/data-pokok/santri?page=1&limit=25" class="small-box-footer">Selengkapnya  <i class="fa fa-arrow-circle-right"></i></a>
                 </div>
-                <div class="icon">
-                    <i class="fa fa-money" aria-hidden="true"></i>
-                </div>
-                <a href="#" class="card-box-footer">View More <i class="fa fa-arrow-circle-right"></i></a>
             </div>
-        </div>
-        <div class="col-lg-3 col-sm-6">
-            <div class="card-box bg-orange">
-                <div class="inner">
-                    <h3> 5464 </h3>
-                    <p> New Admissions </p>
+
+            <div class="col-lg-3 col-6">
+                <!-- small box -->
+                <div class="small-box bg-danger">
+                    <div class="inner">
+                        <h3 id="talumni">6060</h3>
+
+                        <p>Total Alumni</p>
+                    </div>
+                    <div class="icon">
+                        <i class="fa fa-graduation-cap"></i>
+                    </div>
+                    <a href="https://nuruljadid.app/data-pokok/alumni?page=1&limit=25" class="small-box-footer">Selengkapnya  <i class="fa fa-arrow-circle-right"></i></a>
                 </div>
-                <div class="icon">
-                    <i class="fa fa-user-plus" aria-hidden="true"></i>
-                </div>
-                <a href="#" class="card-box-footer">View More <i class="fa fa-arrow-circle-right"></i></a>
             </div>
-        </div>
-        <div class="col-lg-3 col-sm-6">
-            <div class="card-box bg-red">
-                <div class="inner">
-                    <h3> 723 </h3>
-                    <p> Faculty Strength </p>
+
+            <div class="col-lg-3 col-6">
+                <!-- small box -->
+                <div class="small-box bg-info">
+                    <div class="inner">
+                        <h3>{{ $all }}</h3>
+
+                        <p>Total Data PDPS</p>
+                    </div>
+                    <div class="icon">
+                        <i class="fa fa-list-alt"></i>
+                    </div>
+                    <a href="#" class="small-box-footer">Selengkapnya  <i class="fa fa-arrow-circle-right"></i></a>
                 </div>
-                <div class="icon">
-                    <i class="fa fa-users"></i>
-                </div>
-                <a href="#" class="card-box-footer">View More <i class="fa fa-arrow-circle-right"></i></a>
             </div>
+
+            <div class="col-lg-3 col-6">
+                <!-- small box -->
+                <div class="small-box bg-success">
+                    <div class="inner">
+                        <h3>{{ $prestasi }}</h3>
+
+                        <p>Total Prestasi</p>
+                    </div>
+                    <div class="icon">
+                        <i class="fa fa-trophy"></i>
+                    </div>
+                    <a href="{{ URL::to('prestasi-santri') }}" class="small-box-footer">Selengkapnya  <i class="fa fa-arrow-circle-right"></i></a>
+                </div>
+            </div>
+
+            <div class="col-lg-3 col-6">
+                <!-- small box -->
+                <div class="small-box bg-info">
+                    <div class="inner">
+                        <h3>{{ $ilmu }}</h3>
+
+                        <p>Total Peminatan Keilmuan</p>
+                    </div>
+                    <div class="icon">
+                        <i class="fa fa-book"></i>
+                    </div>
+                    <a href="{{ URL::to('peminatan-keilmuan') }}" class="small-box-footer">Selengkapnya  <i class="fa fa-arrow-circle-right"></i></a>
+                </div>
+            </div>
+            <!-- ./col -->
+            <div class="col-lg-3 col-6">
+                <!-- small box -->
+                <div class="small-box bg-success">
+                    <div class="inner">
+                        <h3>{{ $skill }}</h3>
+
+                        <p>Total Peminatan Skill</p>
+                    </div>
+                    <div class="icon">
+                        <i class="fa fa-futbol"></i>
+                    </div>
+                    <a href="{{ URL::to('peminatan-skill') }}" class="small-box-footer">Selengkapnya  <i class="fas fa-arrow-circle-right"></i></a>
+                </div>
+            </div>
+            <!-- ./col -->
+            <div class="col-lg-3 col-6">
+                <!-- small box -->
+                <div class="small-box bg-warning">
+                    <div class="inner">
+                        <h3>{{ $organ }}</h3>
+
+                        <p>Total Jejak Keorganisasian</p>
+                    </div>
+                    <div class="icon">
+                        <i class="fa fa-users"></i>
+                    </div>
+                    <a href="{{ URL::to('jejak-keorganisasian') }}" class="small-box-footer">Selengkapnya  <i class="fas fa-arrow-circle-right"></i></a>
+                </div>
+            </div>
+            <!-- ./col -->
+            <div class="col-lg-3 col-6">
+                <!-- small box -->
+                <div class="small-box bg-danger">
+                    <div class="inner">
+                        <h3>{{ $eks }}</h3>
+
+                        <p>Total Jejak Ekstrakurikuler</p>
+                    </div>
+                    <div class="icon">
+                        <i class="fa fa-university"></i>
+                    </div>
+                    <a href="{{ URL::to('jejak-ekstrakurikuler') }}" class="small-box-footer">Selengkapnya  <i class="fas fa-arrow-circle-right"></i></a>
+                </div>
+            </div>
+            <!-- ./col -->
         </div>
     </div>
-</div>
+</section>
 
+@endsection
 
+@section('adminlte_js')
+<script>
+    $(document).ready(function() {
+        $.LoadingOverlay("show", {
+            image: "",
+            fontawesome: "fa fa-cog fa-spin"
+        });
+        $.ajax({ //create an ajax request to display.php
+            type: "GET",
+            url: "{{URL::to('api/dashboard')}}",
+            success: function(data) {
+                $.LoadingOverlay("hide");
+
+                $("#tsantri").html(data.dash.santri.total);
+                $("#talumni").html(data.dash.alumni.total);
+            }
+        });
+    });
+</script>
 @endsection

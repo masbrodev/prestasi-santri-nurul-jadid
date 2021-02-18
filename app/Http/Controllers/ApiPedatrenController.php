@@ -62,6 +62,17 @@ class ApiPedatrenController extends Controller
         return $data;
     }
 
+    public function dashboard(Request $request)
+    {
+        $request = $this->client->get('https://api.pedatren.nuruljadid.app/dashboard', [
+            'headers' => [
+                'x-token' => $this->token[0]['token']
+            ],
+        ])->getBody()->getContents();
+        $data['dash'] = json_decode($request, false);
+        return $data;
+    }
+
     public function foto(Request $request, $id1, $id2, $id3, $id4)
     {
         $request = $this->client->get('https://api.pedatren.nuruljadid.app/person/' .  $id1 . '/' . $id2 . '/' . $id3 . '/' . $id4, [
