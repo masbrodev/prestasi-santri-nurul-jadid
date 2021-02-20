@@ -33,7 +33,7 @@
         @endif
 
         {{-- Content Wrapper --}}
-        <div class="content-wrapper {{ config('adminlte.classes_content_wrapper') ?? '' }}">
+        <div class="content-wrapper {{ config('adminlte.classes_content_wrapper') ?? '' }}" id="content-wrapper">
 
             {{-- Content Header --}}
             <div class="content-header">

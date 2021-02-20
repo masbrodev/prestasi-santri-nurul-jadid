@@ -248,15 +248,15 @@
 @section('adminlte_js')
 <script>
     $(document).ready(function() {
-        $.LoadingOverlay("show", {
+        $("#content-wrapper").LoadingOverlay("show", {
+            background  : "rgba(26, 136, 255, 0.5)",
             image: "",
-            fontawesome: "fa fa-cog fa-spin"
+            fontawesome: "fa fa-cog fa-spin",
         });
         $.ajax({ //create an ajax request to display.php
             type: "GET",
             url: "{{URL::to('api/formulir'.str_replace('cetak2', '', Request::path()))}}",
             success: function(data) {
-                $.LoadingOverlay("hide");
                 var d = data.santri
                 var lh = new Date(d.tanggal_lahir)
                 var awal = new Date(d.santri.slice(-1)[0].tanggal_mulai)
@@ -271,7 +271,7 @@
                 $("#wilayah").html(d.domisili_santri.slice(-1)[0].wilayah);
                 $("#blok").html("Blok: " + d.domisili_santri.slice(-1)[0].blok);
                 $("#kamar").html("Kamar: " + d.domisili_santri.slice(-1)[0].kamar);
-                console.log(awal.getFullYear());
+                $("#content-wrapper").LoadingOverlay("hide");
             }
         });
     });

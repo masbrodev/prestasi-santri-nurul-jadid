@@ -21,5 +21,6 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
 Route::get('/santri', 'ApiPedatrenController@santri');
 Route::get('/login', 'ApiPedatrenController@login');
 Route::get('/dashboard', 'ApiPedatrenController@dashboard');
+Route::get('/refresh', 'ApiPedatrenController@refresh');
 Route::get('/formulir/{id}', 'ApiPedatrenController@apiformulir');
 Route::get('/foto/person/{id1}/{id2}/{id3}/{id4}', 'ApiPedatrenController@foto');

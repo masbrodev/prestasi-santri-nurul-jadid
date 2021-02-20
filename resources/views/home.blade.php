@@ -18,7 +18,7 @@
                     <div class="icon">
                         <i class="fa fa-database"></i>
                     </div>
-                    <a href="https://nuruljadid.app/data-pokok/santri?page=1&limit=25" class="small-box-footer">Selengkapnya  <i class="fa fa-arrow-circle-right"></i></a>
+                    <a href="https://nuruljadid.app/data-pokok/santri?page=1&limit=25" class="small-box-footer">Selengkapnya <i class="fa fa-arrow-circle-right"></i></a>
                 </div>
             </div>
 
@@ -33,7 +33,7 @@
                     <div class="icon">
                         <i class="fa fa-graduation-cap"></i>
                     </div>
-                    <a href="https://nuruljadid.app/data-pokok/alumni?page=1&limit=25" class="small-box-footer">Selengkapnya  <i class="fa fa-arrow-circle-right"></i></a>
+                    <a href="https://nuruljadid.app/data-pokok/alumni?page=1&limit=25" class="small-box-footer">Selengkapnya <i class="fa fa-arrow-circle-right"></i></a>
                 </div>
             </div>
 
@@ -48,7 +48,7 @@
                     <div class="icon">
                         <i class="fa fa-list-alt"></i>
                     </div>
-                    <a href="#" class="small-box-footer">Selengkapnya  <i class="fa fa-arrow-circle-right"></i></a>
+                    <a href="#" class="small-box-footer">Selengkapnya <i class="fa fa-arrow-circle-right"></i></a>
                 </div>
             </div>
 
@@ -63,7 +63,7 @@
                     <div class="icon">
                         <i class="fa fa-trophy"></i>
                     </div>
-                    <a href="{{ URL::to('prestasi-santri') }}" class="small-box-footer">Selengkapnya  <i class="fa fa-arrow-circle-right"></i></a>
+                    <a href="{{ URL::to('prestasi-santri') }}" class="small-box-footer">Selengkapnya <i class="fa fa-arrow-circle-right"></i></a>
                 </div>
             </div>
 
@@ -78,7 +78,7 @@
                     <div class="icon">
                         <i class="fa fa-book"></i>
                     </div>
-                    <a href="{{ URL::to('peminatan-keilmuan') }}" class="small-box-footer">Selengkapnya  <i class="fa fa-arrow-circle-right"></i></a>
+                    <a href="{{ URL::to('peminatan-keilmuan') }}" class="small-box-footer">Selengkapnya <i class="fa fa-arrow-circle-right"></i></a>
                 </div>
             </div>
             <!-- ./col -->
@@ -93,7 +93,7 @@
                     <div class="icon">
                         <i class="fa fa-futbol"></i>
                     </div>
-                    <a href="{{ URL::to('peminatan-skill') }}" class="small-box-footer">Selengkapnya  <i class="fas fa-arrow-circle-right"></i></a>
+                    <a href="{{ URL::to('peminatan-skill') }}" class="small-box-footer">Selengkapnya <i class="fas fa-arrow-circle-right"></i></a>
                 </div>
             </div>
             <!-- ./col -->
@@ -108,7 +108,7 @@
                     <div class="icon">
                         <i class="fa fa-users"></i>
                     </div>
-                    <a href="{{ URL::to('jejak-keorganisasian') }}" class="small-box-footer">Selengkapnya  <i class="fas fa-arrow-circle-right"></i></a>
+                    <a href="{{ URL::to('jejak-keorganisasian') }}" class="small-box-footer">Selengkapnya <i class="fas fa-arrow-circle-right"></i></a>
                 </div>
             </div>
             <!-- ./col -->
@@ -123,7 +123,7 @@
                     <div class="icon">
                         <i class="fa fa-university"></i>
                     </div>
-                    <a href="{{ URL::to('jejak-ekstrakurikuler') }}" class="small-box-footer">Selengkapnya  <i class="fas fa-arrow-circle-right"></i></a>
+                    <a href="{{ URL::to('jejak-ekstrakurikuler') }}" class="small-box-footer">Selengkapnya <i class="fas fa-arrow-circle-right"></i></a>
                 </div>
             </div>
             <!-- ./col -->
@@ -135,21 +135,19 @@
 
 @section('adminlte_js')
 <script>
-    $(document).ready(function() {
-        $.LoadingOverlay("show", {
-            image: "",
-            fontawesome: "fa fa-cog fa-spin"
-        });
-        $.ajax({ //create an ajax request to display.php
-            type: "GET",
-            url: "{{URL::to('api/dashboard')}}",
-            success: function(data) {
-                $.LoadingOverlay("hide");
-
-                $("#tsantri").html(data.dash.santri.total);
-                $("#talumni").html(data.dash.alumni.total);
-            }
-        });
+    $("#content-wrapper").LoadingOverlay("show", {
+        background: "rgba(26, 136, 255, 0.5)",
+        image: "",
+        fontawesome: "fa fa-cog fa-spin",
+    });
+    $.ajax({ //create an ajax request to display.php
+        type: "GET",
+        url: "{{URL::to('api/dashboard')}}",
+        success: function(data) {
+            $("#tsantri").html(data.dash.santri.total);
+            $("#talumni").html(data.dash.alumni.total);
+            $("#content-wrapper").LoadingOverlay("hide");
+        }
     });
 </script>
 @endsection

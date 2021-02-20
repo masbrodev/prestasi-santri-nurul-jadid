@@ -31,6 +31,20 @@ class ApiPedatrenController extends Controller
         return redirect('home');
     }
 
+    public function refresh(Request $request)
+    {
+        $request = $this->client->get('https://api.pedatren.nuruljadid.app/auth/login', [
+            'headers' => [
+                'Authorization' => 'Basic bnVydGFyaXE6bnVydGFyaXExMTA4ODk='
+            ]
+        ])->getHeader('x-token')[0];
+        if ($request) {
+            User::where('name', 'masbro')->update(['token' => $request]);
+        }
+
+        return redirect()->back();
+    }
+
     public function santri(Request $request)
     {
         $page = $request->query('page');

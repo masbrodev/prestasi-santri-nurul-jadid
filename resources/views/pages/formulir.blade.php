@@ -774,15 +774,16 @@
 {!! Toastr::message() !!}
 <script>
     $(document).ready(function() {
-        $.LoadingOverlay("show", {
+        $("#content-wrapper").LoadingOverlay("show", {
+            background  : "rgba(26, 136, 255, 0.5)",
             image: "",
-            fontawesome: "fa fa-cog fa-spin"
+            fontawesome: "fa fa-cog fa-spin",
         });
+        
         $.ajax({ //create an ajax request to display.php
             type: "GET",
             url: "{{URL::to('api/'.Request::path())}}",
             success: function(data) {
-                $.LoadingOverlay("hide");
                 var d = data.santri
                 var lh = new Date(d.tanggal_lahir)
                 var foto = "{{URL::to('api/foto/')}}" + d.fotodiri.small
@@ -805,8 +806,7 @@
                 $("input[id='uuid']").each(function(i, node) {
                     $(node).attr("value", d.uuid)
                 })
-                console.log($("input[type='hidden']"));
-                console.log(d.domisili_santri.slice(-1)[0].kamar);
+                $("#content-wrapper").LoadingOverlay("hide", true);
             }
         });
     });
