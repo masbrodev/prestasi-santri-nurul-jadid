@@ -6,8 +6,6 @@
 
 @section('content')
 @section('plugins.Datatables', true)
-@section('plugins.DataTablesResponsive', true)
-<!-- @section('plugins.Toastr', true) -->
 <div class="col-md-12">
     <div class="card">
         <div class="card-header">
@@ -15,12 +13,12 @@
 
         </div>
         <form action="{{URL::to('santri/')}}" method="get" id="search-box">
-        <div class="input-group input-group-sm">
-            <input type="text" class="form-control" name="cari" size="31" value="{{ request()->get('cari') }}"/>
-                  <span class="input-group-append">
+            <div class="input-group input-group-sm">
+                <input type="text" class="form-control" name="cari" size="31" value="{{ request()->get('cari') }}" />
+                <span class="input-group-append">
                     <a type="button" class="btn btn-info btn-flat" href="{{URL::to('santri/')}}">Clear!</a>
-                  </span>
-                </div>
+                </span>
+            </div>
         </form>
         <!-- /.card-header -->
         <div class="card-body table-responsive">
@@ -49,7 +47,6 @@
 @section('adminlte_js')
 <script>
     // var limit = "{{ request()->get('limit') }}";
-    // var page = "{{ request()->get('page') }}";
     var cari = "{{ request()->get('cari') }}";
     $(function() {
         var t = $("#table").DataTable({
@@ -70,7 +67,7 @@
             serverSide: true,
             ajax: function(data, callback) {
                 // make a regular ajax request using data.start and data.length
-                $.get('{{URL::to('api/santri')}}', {
+                $.get("{{URL::to('api/santri')}}", {
                         limit: 25,
                         page: (data.length + data.start) / data.length,
                         cari: cari
@@ -116,32 +113,13 @@
                 {
                     targets: 2,
                     render: function(data, type, row, meta) {
-                        return '<a href="{{URL::to('formulir')}}/'+row.uuid+'">' + data + '</a>'; //render link in cell
+                        return "<a href=" + "{{URL::to('formulir')}}/" + row.uuid + ">" + data + "</a>"; //render link in cell
                     }
                 },
             ],
             order: [
                 [1, 'asc']
             ],
-            // responsive: {
-            //     details: {
-            //         type: 'column',
-            //         target: 'tr', //THIS WORKS GREAT IN RESPONSIVE VIEW
-            //         display: $.fn.dataTable.Responsive.display.modal({
-            //             header: function(row) {
-            //                 var data = row.data();
-            //                 return 'Details for ' + data.santri.nis + '<hr>';
-            //             },
-
-            //         }),
-            //         renderer: $.fn.dataTable.Responsive.renderer.tableAll()
-                    // renderer: function(row, data) {
-                    //         var data = row.data();
-                    //         return 'Details for ' + data[5].nama_lengkap + console.log(data);
-                        
-                    // }
-                // }
-            // },
         });
 
         t.on('draw.dt', function() {

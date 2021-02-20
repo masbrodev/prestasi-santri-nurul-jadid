@@ -542,7 +542,7 @@
             <div class="modal-body">
                 <form action="{{ URL::to('edit-prestasi/'.$r->id)}}" method="post">
                     @csrf
-                    <label>Sub Peminatan</label>
+                    <label>Nama Prestasi</label>
                     <input type="text" class="form-control" value="{{ $r->nama_prestasi }}" name="nama_prestasi">
                     <br>
                     <label>Tahun</label>

@@ -6,6 +6,8 @@
 
 @section('content')
 @section('plugins.LoadingOverlay', true)
+
+@if(count($prestasi2) !== 0)
 <div class="container">
     <h3 class="text-center">Prestasi</h3>
     <div class="row">
@@ -49,6 +51,9 @@
     </div>
 
     <hr>
+@endif
+
+@if(count($ilmu2) !== 0)
     <h3 class="text-center">Peminatan Keilmuan</h3>
     <div class="row">
         <div class="table-responsive col-md-6">
@@ -93,6 +98,9 @@
 
     <hr>
 
+@endif
+
+@if(count($skill2) !== 0)
     <h3 class="text-center">Peminatan Skill</h3>
     <div class="row">
         <div class="table-responsive col-md-6">
@@ -136,6 +144,8 @@
 
     <hr>
 
+@endif
+@if(count($organ2) !== 0)
     <h3 class="text-center">Rekam Jejak Organisasi</h3>
     <div class="row">
         <div class="table-responsive col-md-6">
@@ -179,6 +189,9 @@
 
     <hr>
 
+@endif
+
+@if(count($eks2) !== 0)
     <h3 class="text-center">Rekam Jejak Ekstrakurikuler</h3>
     <div class="row">
         <div class="table-responsive col-md-6">
@@ -227,6 +240,7 @@
             </table>
         </div>
     </div>
+@endif
 
 </div>
 @endsection

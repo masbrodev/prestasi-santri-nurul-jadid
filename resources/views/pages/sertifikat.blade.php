@@ -32,7 +32,7 @@
     <h1 class="bold" id="nama_lengkap"></h1>
     <p id="niup"></p>
     <p>
-    <h4>Telah memiliki prestasi dan berkontribusi sebagai santri <br>di pondok pesantren sejak tahun <span id="awal">2016</span> s/d 2021</h4>
+    <h4>Telah memiliki prestasi dan berkontribusi dalam aktifitasnya sebagai santri <br>di pondok pesantren sejak tahun <span id="awal">2016</span> s/d {{ \Carbon\Carbon::now()->isoFormat('Y') }}</h4>
     </p>
     <br>
     <br>
@@ -56,7 +56,7 @@
                 <br>
                 <br>
                 <br>
-                <h3 class="text-bold border-bottom">Prof. Dr. Young Lex</h3>
+                <h3 class="text-bold border-bottom">K.H. FAHMI AHZ</h3>
             </center>
         </div>
         <div class="col">
@@ -68,7 +68,7 @@
                 <br>
                 <br>
                 <br>
-                <h3 class="text-bold border-bottom">Raden Yazid Al-reggae</h3>
+                <h3 class="text-bold border-bottom">ROJABI AZZARGHANY</h3>
             </center>
         </div>
     </div>

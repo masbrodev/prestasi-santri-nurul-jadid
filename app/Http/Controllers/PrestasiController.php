@@ -51,7 +51,7 @@ class PrestasiController extends Controller
     {
         $data = [
             'nama_prestasi' => $request->nama_prestasi,
-            'nama_prestasi' => $request->tahun,
+            'tahun' => $request->tahun,
         ];
 
         $simpan = Prestasi::where('id', $id)->update($data);
