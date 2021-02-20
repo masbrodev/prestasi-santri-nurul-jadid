@@ -14,7 +14,7 @@
 
             <div class="card-tools">
                 <ul class="pagination pagination-sm float-right">
-                    <button type="button" class="btn btn-block bg-gradient-primary" data-toggle="modal" data-target="#tambah-peminatan">Tambah</button>
+                    <button type="button" class="btn btn-outline-primary" data-toggle="modal" data-target="#tambah-peminatan">Tambah</button>
                 </ul>
             </div>
         </div>
@@ -226,7 +226,14 @@
 <script type="text/javascript">
     $(function() {
         $("#table-peminatan").DataTable({
-
+            "language": {
+                "search": "Cari:",
+                "lengthMenu": "Tampilkan _MENU_ baris",
+                "zeroRecords": "Data Tidak Ditemukan",
+                "info": "Total data _MAX_",
+                "infoEmpty": "Data Kosong",
+                "infoFiltered": "(filtered from _MAX_ total records)"
+            }
         });
     });
 </script>

@@ -14,11 +14,21 @@ class CreatePeminatansTable extends Migration
     public function up()
     {
         Schema::create('peminatan', function (Blueprint $table) {
-            $table->id();
+            $table->increments('id');
             $table->string('nama');
             $table->string('jurusan');
             $table->string('sub');
 
+        });
+
+        Schema::table('pkilmuan', function (Blueprint $table) {
+            $table->integer('peminatan_id')->unsigned()->after('niup');
+            $table->foreign('peminatan_id')->references('id')->on('peminatan');
+        });
+
+        Schema::table('pskill', function (Blueprint $table) {
+            $table->integer('peminatan_id')->unsigned()->after('niup');
+            $table->foreign('peminatan_id')->references('id')->on('peminatan');
         });
     }
 

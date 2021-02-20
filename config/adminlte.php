@@ -14,7 +14,7 @@ return [
     |
     */
 
-    'title' => 'AdminLTE 3',
+    'title' => 'PDPS NJ',
     'title_prefix' => '',
     'title_postfix' => '',
 
@@ -45,12 +45,12 @@ return [
     |
     */
 
-    'logo' => '<b>Prestasi </b>SANTRI',
-    'logo_img' => 'vendor/adminlte/dist/img/AdminLTELogo.png',
-    'logo_img_class' => 'brand-image img-circle elevation-3',
+    'logo' => '<b>PDPS </b>NJ',
+    'logo_img' => 'pdps.png',
+    'logo_img_class' => 'brand-image',
     'logo_img_xl' => null,
     'logo_img_xl_class' => 'brand-image-xs',
-    'logo_img_alt' => 'AdminLTE',
+    'logo_img_alt' => 'PDPS',
 
     /*
     |--------------------------------------------------------------------------
@@ -107,6 +107,7 @@ return [
     'classes_auth_footer' => '',
     'classes_auth_icon' => '',
     'classes_auth_btn' => 'btn-flat btn-primary',
+    'login_message' => 'Pengelolaan Data Prestasi Santri',
 
     /*
     |--------------------------------------------------------------------------
@@ -121,8 +122,8 @@ return [
     */
 
     'classes_body' => '',
-    'classes_brand' => 'bg-primary',
-    'classes_brand_text' => '',
+    'classes_brand' => 'bg-white',
+    'classes_brand_text' => 'text-body',
     'classes_content_wrapper' => '',
     'classes_content_header' => '',
     'classes_content' => '',
@@ -231,56 +232,71 @@ return [
     */
 
     'menu' => [
-        ['header' => 'Dasboard'],
         [
             'text' => 'Dashboard',
             'url'  => 'home',
             'icon' => 'fa fa-cubes',
         ],
-        ['header' => 'Data Santri'],
         [
             'text' => 'Data Santri',
             'url'  => 'santri',
             'icon' => 'fa fa-database',
         ],
-        ['header' => 'Peminatan Keilmuan'],
+        ['header' => 'Peminatan'],
         [
             'text' => 'Peminatan Keilmuan',
             'url'  => 'peminatan-keilmuan',
-            'icon' => 'fa fa-angle-double-right',
+            'icon' => 'fa fa-book',
+            'submenu' => [
+                [
+                    'text' => 'Data',
+                    'url'  => 'peminatan-keilmuan',
+                    'icon' => 'fas fa-file',
+                ],
+            ],
         ],
-        ['header' => 'Peminatan Skill'],
         [
             'text' => 'Peminatan Skill',
-            'url'  => 'peminatan-skill',
-            'icon' => 'fa fa-angle-double-right',
+            'icon' => 'fa fa-futbol',
+            'submenu' => [
+                [
+                    'text' => 'Data',
+                    'url'  => 'peminatan-skill',
+                    'icon' => 'fas fa-file',
+                ],
+            ],
         ],
-        ['header' => 'Jejak Keorganisasian'],
+        ['header' => 'Rekam Jejak dan Prestasi Santri'],
         [
             'text' => 'Jejak Keorganisasian',
-            'url'  => 'jejak-keorganisasian',
-            'icon' => 'fa fa-arrow-circle-right',
+            'icon' => 'fa fa-users',
+            'submenu' => [
+                [
+                    'text' => 'Data',
+                    'url'  => 'jejak-keorganisasian',
+                    'icon' => 'fas fa-file',
+                ],
+            ],
         ],
-        ['header' => 'Jejak Ekstrakurikuler'],
         [
             'text' => 'Jejak Ekstrakurikuler',
-            'url'  => 'jejak-ekstrakurikuler',
-            'icon' => 'fa fa-arrow-circle-right',
+            'icon' => 'fa fa-university',
+            'submenu' => [
+                [
+                    'text' => 'Data',
+                    'url'  => 'jejak-ekstrakurikuler',
+                    'icon' => 'fas fa-file',
+                ],
+            ],
         ],
-        ['header' => 'Prestasi Santri'],
         [
             'text' => 'Prestasi Santri',
-            'icon' => 'fa fa-chevron-circle-right',
+            'icon' => 'fa fa-trophy',
             'submenu' => [
                 [
                     'text' => 'Data',
                     'url'  => 'prestasi-santri',
-                    'icon' => 'fas fa-fw fa-plus-square',
-                ],
-                [
-                    'text' => 'Tambah',
-                    'url'  => 'tambah-prestasi',
-                    'icon' => 'fas fa-fw fa-plus-square',
+                    'icon' => 'fas fa-file',
                 ],
             ],
         ],
@@ -291,12 +307,12 @@ return [
             'submenu' => [
                 [
                     'text' => 'Peminatan Keilmuan',
-                    'url'  => 'tambah-peminatan-keilmuan',
+                    'url'  => 'hal-peminatan-keilmuan',
                     'icon' => 'fas fa-fw fa-plus-square',
                 ],
                 [
                     'text' => 'Peminatan Skill',
-                    'url'  => 'tambah-peminatan-skill',
+                    'url'  => 'hal-peminatan-skill',
                     'icon' => 'fas fa-fw fa-plus-square',
                 ],
             ],
@@ -343,43 +359,28 @@ return [
             'files' => [
                 [
                     'type' => 'js',
-                    'asset' => false,
-                    'location' => 'https://cdn.datatables.net/1.10.19/js/jquery.dataTables.min.js',
+                    'asset' => true,
+                    'location' => 'vendor/datatables/dataTables.min.js',
                 ],
                 [
                     'type' => 'js',
-                    'asset' => false,
-                    'location' => 'https://cdn.datatables.net/1.10.19/js/dataTables.bootstrap4.min.js',
+                    'asset' => true,
+                    'location' => 'vendor/datatables/bootstrap4.min.js',
                 ],
                 [
                     'type' => 'css',
-                    'asset' => false,
-                    'location' => 'https://cdn.datatables.net/1.10.19/css/dataTables.bootstrap4.min.css',
+                    'asset' => true,
+                    'location' => 'vendor/datatables/bootstrap4.min.css',
                 ],
             ],
         ],
-        'Select2' => [
+        'LoadingOverlay' => [
             'active' => false,
             'files' => [
                 [
                     'type' => 'js',
-                    'asset' => false,
-                    'location' => '//cdnjs.cloudflare.com/ajax/libs/select2/4.0.3/js/select2.min.js',
-                ],
-                [
-                    'type' => 'css',
-                    'asset' => false,
-                    'location' => '//cdnjs.cloudflare.com/ajax/libs/select2/4.0.3/css/select2.css',
-                ],
-            ],
-        ],
-        'Chartjs' => [
-            'active' => false,
-            'files' => [
-                [
-                    'type' => 'js',
-                    'asset' => false,
-                    'location' => '//cdnjs.cloudflare.com/ajax/libs/Chart.js/2.7.0/Chart.bundle.min.js',
+                    'asset' => true,
+                    'location' => 'vendor/LoadingOverlay/loadingoverlay.min.js',
                 ],
             ],
         ],
@@ -388,13 +389,13 @@ return [
             'files' => [
                 [
                     'type' => 'css',
-                    'asset' => false,
-                    'location' => 'https://cdn.bootcss.com/toastr.js/latest/css/toastr.min.css',
+                    'asset' => true,
+                    'location' => 'vendor/toastr/toastr.min.css',
                 ],
                 [
                     'type' => 'js',
-                    'asset' => false,
-                    'location' => 'https://cdn.bootcss.com/toastr.js/latest/js/toastr.min.js',
+                    'asset' => true,
+                    'location' => 'vendor/toastr/toastr.min.js',
                 ],
             ],
         ],

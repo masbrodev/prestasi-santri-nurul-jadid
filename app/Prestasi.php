@@ -8,5 +8,5 @@ class Prestasi extends Model
 {
     protected $table = 'prestasi';
     protected $primaryKey = 'id';
-    protected $fillable = ['nis','nama_prestasi'];
+    protected $fillable = ['niup', 'nama_prestasi', 'tahun'];
 }

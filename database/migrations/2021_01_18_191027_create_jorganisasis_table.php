@@ -15,6 +15,11 @@ class CreateJorganisasisTable extends Migration
     {
         Schema::create('jorganisasi', function (Blueprint $table) {
             $table->id();
+            $table->longText('niup');
+            $table->string('kategori');
+            $table->string('nama_organisasi');
+            $table->string('masa_jabatan');
+            $table->string('masa_keanggotaan');
             $table->timestamps();
         });
     }

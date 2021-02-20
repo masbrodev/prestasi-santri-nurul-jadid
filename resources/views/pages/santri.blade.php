@@ -6,40 +6,35 @@
 
 @section('content')
 @section('plugins.Datatables', true)
-@section('plugins.Toastr', true)
 <div class="col-md-12">
     <div class="card">
         <div class="card-header">
             <h3 class="card-title">Data Santri</h3>
+
         </div>
+        <form action="{{URL::to('santri/')}}" method="get" id="search-box">
+            <div class="input-group input-group-sm">
+                <input type="text" class="form-control" name="cari" size="31" value="{{ request()->get('cari') }}" />
+                <span class="input-group-append">
+                    <a type="button" class="btn btn-info btn-flat" href="{{URL::to('santri/')}}">Clear!</a>
+                </span>
+            </div>
+        </form>
         <!-- /.card-header -->
         <div class="card-body table-responsive">
-            <table class="table table-bordered" id="table-peminatan">
+            <table class="table table-hover display nowrap" id="table">
                 <thead>
                     <tr>
-                        <th style="width: 10px">NO</th>
-                        <th>nis</th>
-                        <th>nama</th>
-                        <th style="width: 200px">Aksi</th>
+                        <th style="width: 20px">#</th>
+                        <th>NIS</th>
+                        <th>Nama</th>
+                        <th>Kamar</th>
+                        <th>Sekolah</th>
+                        <th>Kota Asal</th>
+                        <th>Angkatan</th>
+                        <th>Rombel</th>
                     </tr>
                 </thead>
-                <tbody>
-                    @foreach($santri as $r)
-                    <tr>
-                        <td>{{ $loop->iteration }}</td>
-                        <td>{{ $r->nis }}</td>
-                        <td>{{ $r->nama_lengkap }}</td>
-                        <td>
-                            <div class="input-group">
-                                <div class="input-group-prepend">
-                                    <button type="button" class="btn btn-outline-secondary" data-toggle="modal" data-target="#lihat-kat{{ $loop->iteration }}">Lihat detail</button>
-                                    </div>
-                                </div>
-                            </div>
-                        </td>
-                    </tr>
-                    @endforeach
-                </tbody>
             </table>
         </div>
         <!-- /.card-body -->
@@ -47,48 +42,96 @@
 </div>
 <!-- /.card -->
 
-@foreach($santri as $r)
-<!-- Lihat Peminatan -->
-<div class="modal fade" id="lihat-kat{{ $loop->iteration }}">
-    <div class="modal-dialog modal-lg">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h4 class="modal-title">Detail Peminatan</h4>
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                    <span aria-hidden="true">&times;</span>
-                </button>
-            </div>
-            <div class="modal-body">
-                <form action="{{ URL::to('kategori/edit/'.$r->id)}}" method="post">
-                    @csrf
-                    <div class="form-group">
-                        <label>jurusan Peminatan</label>
-                        <input type="text" class="form-control" value="{{ $r->jurusan }}" name="nama" readonly>
-                        <label>Sub Peminatan</label>
-                        <input type="text" class="form-control" placeholder="-" name="deskripsi" value="{{ $r->sub }}" readonly>
-                    </div>
-                    <div class="modal-footer justify-content-between">
-                        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-                    </div>
-                </form>
-            </div>
-
-        </div>
-        <!-- /.modal-content -->
-    </div>
-    <!-- /.modal-dialog -->
-</div>
-@endforeach
-
-
 @endsection
 
 @section('adminlte_js')
-<script type="text/javascript">
+<script>
+    // var limit = "{{ request()->get('limit') }}";
+    var cari = "{{ request()->get('cari') }}";
     $(function() {
-        $("#table-peminatan").DataTable({
-
+        var t = $("#table").DataTable({
+            language: {
+                search: 'Cari:',
+                lengthMenu: 'Tampilkan _MENU_ baris',
+                zeroRecords: 'Data Tidak Ditemukan',
+                info: 'Total data _MAX_',
+                infoEmpty: 'Data Kosong',
+                infoFiltered: '(filtered from _MAX_ total records)'
+            },
+            lengthChange: false,
+            searching: false,
+            ordering: true,
+            info: true,
+            bFilter: false,
+            processing: true,
+            serverSide: true,
+            ajax: function(data, callback) {
+                // make a regular ajax request using data.start and data.length
+                $.get("{{URL::to('api/santri')}}", {
+                        limit: 25,
+                        page: (data.length + data.start) / data.length,
+                        cari: cari
+                    },
+                    function(res) {
+                        callback({
+                            data: res.santri,
+                        });
+                    });
+            },
+            columns: [{
+                    data: "santri.nis"
+                },
+                {
+                    data: "santri.nis",
+                },
+                {
+                    data: "nama_lengkap",
+                },
+                {
+                    data: "domisili_santri.kamar",
+                },
+                {
+                    data: "pendidikan.lembaga",
+                },
+                {
+                    data: "kabupaten",
+                },
+                {
+                    data: "nama_lengkap",
+                },
+                {
+                    data: "pendidikan.rombel",
+                },
+            ],
+            columnDefs: [{
+                    targets: 1,
+                    searchable: false,
+                    orderable: false,
+                    defaultContent: "-",
+                    targets: "_all"
+                },
+                {
+                    targets: 2,
+                    render: function(data, type, row, meta) {
+                        return "<a href=" + "{{URL::to('formulir')}}/" + row.uuid + ">" + data + "</a>"; //render link in cell
+                    }
+                },
+            ],
+            order: [
+                [1, 'asc']
+            ],
         });
+
+        t.on('draw.dt', function() {
+            var PageInfo = $('#table').DataTable().page.info();
+            t.column(0, {
+                page: 'current'
+            }).nodes().each(function(cell, i) {
+                cell.innerHTML = i + 1 + PageInfo.start;
+            });
+        });
+
+
     });
 </script>
 @endsection

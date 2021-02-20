@@ -80,7 +80,7 @@ return [
     |
     */
 
-    'locale' => 'en',
+    'locale' => 'id',
 
     /*
     |--------------------------------------------------------------------------
@@ -162,6 +162,8 @@ return [
         Illuminate\Validation\ValidationServiceProvider::class,
         Illuminate\View\ViewServiceProvider::class,
 
+        Barryvdh\DomPDF\ServiceProvider::class,
+
         /*
          * Package Service Providers...
          */
@@ -232,6 +234,7 @@ return [
 
         //tambahan
         'Toastr'  => Brian2694\Toastr\Facades\Toastr::class,
+        'PDF' => Barryvdh\DomPDF\Facade::class,
 
     ],
 

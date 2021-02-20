@@ -12,24 +12,33 @@ class PrestasiController extends Controller
     public function index()
     {
 
-        // $data['prestasi'] = Prestasi::get()->groupBy('nis');
         $data['prestasi'] = Prestasi::orderBy('id', 'DESC')->get();
         return view('pages.prestasi',$data);
-        // return $data;
+    }
+
+    public function indexxx()
+    {
+
+        $request = $this->client->get('http://mekanisit.com/api/gateway/provinsi')->getBody()->getContents();
+        $data['santri'] = json_decode($request, true);
+        return $data;
+
     }
 
     public function haltambah()
     {
 
         $data['santri'] = Santri::get();
+        $data['judul'] = "Tambah Data Prestasi Santri";
         return view('pages.TT_prestasi',$data);
     }
 
     public function tambah(Request $request)
     {
         $data = [
-            'nis' => $request->nis,
+            'niup' => $request->niup,
             'nama_prestasi' => $request->nama_prestasi,
+            'tahun' => $request->tahun,
         ];
 
         $simpan = Prestasi::create($data);
@@ -41,7 +50,8 @@ class PrestasiController extends Controller
     public function edit(Request $request, $id)
     {
         $data = [
-            'nama_prestasi' => $request->prestasi,
+            'nama_prestasi' => $request->nama_prestasi,
+            'tahun' => $request->tahun,
         ];
 
         $simpan = Prestasi::where('id', $id)->update($data);
