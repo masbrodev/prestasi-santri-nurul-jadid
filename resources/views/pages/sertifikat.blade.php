@@ -1,7 +1,9 @@
 @extends('layouts.app')
 
 @section('content_header')
-<a href="#" id="link-cetak2" class="btn btn-outline-primary">Halaman Belakang</a>
+<a href="#" id="kembali" class="btn btn-outline-danger">Kembali</a>
+<a href="#" id="link-cetak2" class="btn btn-outline-warning">Halaman Belakang</a>
+<button onclick="window.print();" class="btn btn-outline-primary">Print</button>
 @stop
 
 @section('content')
@@ -32,7 +34,7 @@
     <h1 class="bold" id="nama_lengkap"></h1>
     <p id="niup"></p>
     <p>
-    <h4>Telah memiliki prestasi dan berkontribusi dalam aktifitasnya sebagai santri <br>di pondok pesantren sejak tahun <span id="awal">2016</span> s/d {{ \Carbon\Carbon::now()->isoFormat('Y') }}</h4>
+    <h4>Telah memiliki prestasi dan berkontribusi <br> dalam aktifitasnya sebagai santri di<br>Pondok Pesantren Nurul Jadid <br> sejak tahun <span id="awal">2016</span> s/d {{ \Carbon\Carbon::now()->isoFormat('Y') }}</h4>
     </p>
     <br>
     <br>
@@ -102,6 +104,7 @@
                 $("#blok").html("Blok: " + d.domisili_santri.slice(-1)[0].blok);
                 $("#kamar").html("Kamar: " + d.domisili_santri.slice(-1)[0].kamar);
                 $("#link-cetak2").attr('href', "{{URL::to('cetak2')}}" + "/" + d.uuid);
+                $("#kembali").attr('href', "{{URL::to('formulir')}}" + "/" + d.uuid);
                 $("#content-wrapper").LoadingOverlay("hide");
             }
         });

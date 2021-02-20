@@ -1,7 +1,9 @@
 @extends('layouts.app')
 
 @section('content_header')
-<a href="javascript:history.back()" class="btn btn-outline-primary">Halaman Depan</a>
+<a href="#" id="kembali" class="btn btn-outline-danger">Kembali</a>
+<a href="javascript:history.back()" class="btn btn-outline-warning">Halaman Depan</a>
+<button onclick="window.print();" class="btn btn-outline-primary">Print</button>
 @stop
 
 @section('content')
@@ -271,6 +273,7 @@
                 $("#wilayah").html(d.domisili_santri.slice(-1)[0].wilayah);
                 $("#blok").html("Blok: " + d.domisili_santri.slice(-1)[0].blok);
                 $("#kamar").html("Kamar: " + d.domisili_santri.slice(-1)[0].kamar);
+                $("#kembali").attr('href', "{{URL::to('formulir')}}" + "/" + d.uuid);
                 $("#content-wrapper").LoadingOverlay("hide");
             }
         });
