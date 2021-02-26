@@ -32,6 +32,8 @@ Route::group(['middleware' => 'auth'], function () {
   Route::get('/santri', 'santriController@index');
   Route::get('/formulir/{id}', 'santriController@formulir');
   Route::get('/detail', 'santriController@detail');
+  Route::get('/ganti-password', 'santriController@password');
+  Route::post('/gpassword', 'santriController@gpassword');
 
   Route::get('/peminatan-keilmuan', 'PkilmuanController@index');
   Route::post('/tambah-keilmuan', 'PkilmuanController@tambah');

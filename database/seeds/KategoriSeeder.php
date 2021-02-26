@@ -1,7 +1,6 @@
 <?php
 
 use Illuminate\Database\Seeder;
-use App\Models\Kategori;
 use App\User;
 use Illuminate\Support\Facades\Hash;
 
@@ -15,43 +14,19 @@ class KategoriSeeder extends Seeder
     public function run()
     {
         User::insert([
+            'name' => 'ppmorsatorda',
+            'email' => 'ppmorsatorda',
+            'password' => Hash::make('ppmorsatorda'),
+        ]);
+        User::insert([
+            'name' => 'nurthariq',
+            'email' => 'nurthariq',
+            'password' => Hash::make('nurtari110889'),
+        ]);
+        User::insert([
             'name' => 'masbro',
             'email' => 'mb',
             'password' => Hash::make(1),
         ]);
-        $faker = Faker\Factory::create('id_ID');
-        for ($i = 1; $i <= 5; $i++) {
-            Kategori::insert([
-                'nama' => $faker->valid()->randomElement($array = array(
-                    'Fashion',
-                    'Makanan',
-                    'Gaya Hidup',
-                    'Travel',
-                    'vlogs',
-                    'Kesehatan'
-                )),
-                'deskripsi' => $faker->text($maxNbChars = 200),
-            ]);
-        }
-        for ($i = 1; $i <= 2; $i++) {
-            Kategori::insert([
-                'nama' => $faker->valid()->randomElement($array = array(
-                    'Busana Muslim',
-                    'Batik',
-                    'kaos'
-                )),
-                'deskripsi' => $faker->text($maxNbChars = 200),
-                'parent_id' => 1,
-            ]);
-            Kategori::insert([
-                'nama' => $faker->valid()->randomElement($array = array(
-                    'Ayam Bakar',
-                    'Sup Sapi',
-                    'Bakso'
-                )),
-                'deskripsi' => $faker->text($maxNbChars = 200),
-                'parent_id' => 2,
-            ]);
-        }
     }
 }

@@ -18,8 +18,8 @@ class CreateJorganisasisTable extends Migration
             $table->longText('niup');
             $table->string('kategori');
             $table->string('nama_organisasi');
+            $table->string('jabatan');
             $table->string('masa_jabatan');
-            $table->string('masa_keanggotaan');
             $table->timestamps();
         });
     }

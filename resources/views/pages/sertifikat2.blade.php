@@ -32,6 +32,7 @@
             </table>
         </div>
 
+        @if(count($prestasi1) !== 0)
         <div class="table-responsive col-md-6">
             <table class="table table-bordered table-sm" id="table-kategori">
                 <thead>
@@ -50,12 +51,13 @@
                 </tbody>
             </table>
         </div>
+        @endif
     </div>
 
     <hr>
-@endif
+    @endif
 
-@if(count($ilmu2) !== 0)
+    @if(count($ilmu2) !== 0)
     <h3 class="text-center">Peminatan Keilmuan</h3>
     <div class="row">
         <div class="table-responsive col-md-6">
@@ -77,6 +79,7 @@
             </table>
         </div>
 
+        @if(count($ilmu1) !== 0)
         <div class="table-responsive col-md-6">
             <table class="table table-bordered table-sm" id="table-kategori">
                 <thead>
@@ -96,13 +99,14 @@
             </table>
         </div>
 
+        @endif
     </div>
 
     <hr>
 
-@endif
+    @endif
 
-@if(count($skill2) !== 0)
+    @if(count($skill2) !== 0)
     <h3 class="text-center">Peminatan Skill</h3>
     <div class="row">
         <div class="table-responsive col-md-6">
@@ -124,6 +128,7 @@
             </table>
         </div>
 
+        @if(count($skill1) !== 0)
         <div class="table-responsive col-md-6">
             <table class="table table-bordered table-sm" id="table-kategori">
                 <thead>
@@ -142,107 +147,113 @@
                 </tbody>
             </table>
         </div>
+        @endif
     </div>
-
     <hr>
+    @endif
 
-@endif
-@if(count($organ2) !== 0)
+    @if(count($organ2) !== 0)
     <h3 class="text-center">Rekam Jejak Organisasi</h3>
     <div class="row">
         <div class="table-responsive col-md-6">
             <table class="table table-bordered table-sm" id="table-kategori">
                 <thead>
                     <tr>
-                        <th>Kategori</th>
                         <th>Organisasi</th>
+                        <th>Jabatan</th>
+                        <th>Tahun</th>
                     </tr>
                 </thead>
                 <tbody>
                     @foreach($organ2 as $r)
                     <tr>
-                        <td>{{ $r->kategori }}</td>
                         <td>{{ $r->nama_organisasi }}</td>
+                        <td>{{ $r->jabatan }}</td>
+                        <td>{{ $r->masa_jabatan }}</td>
                     </tr>
                     @endforeach
                 </tbody>
             </table>
         </div>
 
+        @if(count($organ1) !== 0)
         <div class="table-responsive col-md-6">
             <table class="table table-bordered table-sm" id="table-kategori">
                 <thead>
                     <tr>
-                        <th>Kategori</th>
                         <th>Organisasi</th>
+                        <th>Jabatan</th>
+                        <th>Tahun</th>
                     </tr>
                 </thead>
                 <tbody>
                     @foreach($organ1 as $r)
                     <tr>
-                        <td>{{ $r->kategori }}</td>
                         <td>{{ $r->nama_organisasi }}</td>
+                        <td>{{ $r->jabatan }}</td>
+                        <td>{{ $r->masa_jabatan }}</td>
                     </tr>
                     @endforeach
                 </tbody>
             </table>
         </div>
+        @endif
     </div>
-
     <hr>
+    @endif
 
-@endif
-
-@if(count($eks2) !== 0)
+    @if(count($eks2) !== 0)
     <h3 class="text-center">Rekam Jejak Ekstrakurikuler</h3>
     <div class="row">
         <div class="table-responsive col-md-6">
             <table class="table table-bordered table-sm" id="table-kategori">
                 <thead>
                     <tr>
-                        <th style="width: 10px">No.</th>
-                        <th>Jurusan</th>
+                        <th>Penempatan</th>
                         <th>Bidang</th>
                         <th>Sub</th>
+                        <th>Tahun</th>
                     </tr>
                 </thead>
                 <tbody>
                     @foreach($eks2 as $r)
                     <tr>
-                        <td>{{ $loop->iteration }}</td>
                         <td>{{ $r->asrama }}</td>
                         <td>{{ $r->bidang }}</td>
                         <td>{{ $r->sub_bidang }}</td>
+                        <td>{{ $r->masa_keanggotaan }}</td>
                     </tr>
                     @endforeach
                 </tbody>
             </table>
         </div>
 
+        @if(count($eks1) !== 0)
         <div class="table-responsive col-md-6">
             <table class="table table-bordered table-sm" id="table-kategori">
                 <thead>
                     <tr>
-                        <th style="width: 10px">No.</th>
                         <th>Jurusan</th>
                         <th>Bidang</th>
                         <th>Sub</th>
+                        <th>Tahun</th>
                     </tr>
                 </thead>
                 <tbody>
                     @foreach($eks2 as $r)
                     <tr>
-                        <td>{{ $loop->iteration }}</td>
                         <td>{{ $r->asrama }}</td>
                         <td>{{ $r->bidang }}</td>
                         <td>{{ $r->sub_bidang }}</td>
+                        <td>{{ $r->masa_keanggotaan }}</td>
                     </tr>
                     @endforeach
                 </tbody>
             </table>
         </div>
     </div>
-@endif
+    @endif
+    @endif
 
 </div>
 @endsection
@@ -251,7 +262,7 @@
 <script>
     $(document).ready(function() {
         $("#content-wrapper").LoadingOverlay("show", {
-            background  : "rgba(26, 136, 255, 0.5)",
+            background: "rgba(26, 136, 255, 0.5)",
             image: "",
             fontawesome: "fa fa-cog fa-spin",
         });

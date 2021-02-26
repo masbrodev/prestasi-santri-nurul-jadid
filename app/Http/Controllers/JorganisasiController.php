@@ -20,8 +20,8 @@ class JorganisasiController extends Controller
             'niup' => $request->niup,
             'kategori' => $request->kategori,
             'nama_organisasi' => $request->nama_organisasi,
-            'masa_jabatan' => $request->jb1 . '-' . $request->jb2,
-            'masa_keanggotaan' => $request->gk1 . '-' . $request->gk2,
+            'jabatan' => $request->jabatan,
+            'masa_jabatan' => $request->gk1 . '-' . $request->gk2,
         ];
 
         $simpan = Jorganisasi::create($data);
@@ -35,8 +35,8 @@ class JorganisasiController extends Controller
         $data = [
             'kategori' => $request->kategori,
             'nama_organisasi' => $request->nama_organisasi,
-            'masa_jabatan' => $request->jb1 . '-' . $request->jb2,
-            'masa_keanggotaan' => $request->gk1 . '-' . $request->gk2,
+            'jabatan' => $request->jabatan,
+            'masa_jabatan' => $request->gk1 . '-' . $request->gk2,
         ];
 
         $simpan = Jorganisasi::where('id', $id)->update($data);

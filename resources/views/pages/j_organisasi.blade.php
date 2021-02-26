@@ -16,6 +16,7 @@
                             <th style="width: 10px">#</th>
                             <th>Kategori</th>
                             <th>Organisasi</th>
+                            <th>Jabatan</th>
                             <th style="width: 200px">Aksi</th>
                         </tr>
                     </thead>
@@ -25,6 +26,7 @@
                             <td>{{ $loop->iteration }}</td>
                             <td>{{ $r->kategori }}</td>
                             <td>{{ $r->nama_organisasi }}</td>
+                            <td>{{ $r->jabatan }}</td>
                             <td>
                                 <div class="input-group">
                                     <a class="btn btn-outline-secondary" href="{{URL::to('formulir/'.$r->niup)}}">Formulir</a>

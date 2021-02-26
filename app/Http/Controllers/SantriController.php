@@ -8,12 +8,35 @@ use App\Prestasi;
 use App\pkilmuan;
 use App\Pskill;
 use App\Jekstrakurikuler;
+use Illuminate\Http\Request;
+use App\User;
+use Brian2694\Toastr\Facades\Toastr;
+
 
 class SantriController extends Controller
 {
     public function index()
     {
         return view('pages.santri');
+    }
+
+    public function gpassword(Request $request)
+    {
+        // $data = [
+        //     'sub' => $request->sub,
+        // ];
+
+        // $simpan = Peminatan::where('id', $id)->update($data);
+        // if ($simpan) {
+        //     return redirect()->back()->with([Toastr::success('Password Berhasil diganti')]);
+        // } else {
+        //     return redirect()->back()->with([Toastr::error('Password Gagal diganti')]);
+        // }
+    }
+
+    public function password()
+    {
+        return view('pages.password');
     }
 
     public function dashboard()
@@ -48,7 +71,7 @@ class SantriController extends Controller
 
         $data['ilmu'] = $item_ilmu->count();
         $data['skill'] = $item_skill->count();
-        
+
         $data['prestasi'] = Prestasi::count();
 
         $data['organ'] = Jorganisasi::count();

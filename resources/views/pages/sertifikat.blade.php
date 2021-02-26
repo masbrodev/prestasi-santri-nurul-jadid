@@ -23,7 +23,7 @@
     <br>
     <br>
     <h2>SERTIFIKAT KOMPETENSI & PRESTASI</h2>
-    <p>No. 23456789345678997654345678</p>
+    <p>No. NJ-I01{{ \Carbon\Carbon::now()->isoFormat('DMY') }}</p>
     <br>
     <br>
     <br>

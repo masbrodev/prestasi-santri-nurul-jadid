@@ -323,32 +323,10 @@
                                                 <label>Nama Organisasi</label>
                                                 <input type="text" class="form-control" placeholder="Masukkan Nama Organisasi" name="nama_organisasi" oninvalid="this.setCustomValidity('Lengkapi Inputan')" required="" oninput="setCustomValidity('')">
                                                 <br>
-                                                <label>Masa Jabatan</label>
-                                                <div class="row">
-                                                    <div class="col-4">
-                                                        <select class="form-control" name="jb1" oninvalid="this.setCustomValidity('Lengkapi Inputan')" required="" oninput="setCustomValidity('')">
-                                                            {{ $last= date('Y')-10 }}
-                                                            {{ $now = date('Y') }}
-
-                                                            @for ($i = $now; $i >= $last; $i--)
-                                                            <option value="{{ $i }}">{{ $i }}</option>
-                                                            @endfor
-                                                        </select>
-                                                    </div>
-                                                    <i class="fa fa-window-minimize" aria-hidden="true"></i>
-                                                    <div class="col-4">
-                                                        <select class="form-control" name="jb2" oninvalid="this.setCustomValidity('Lengkapi Inputan')" required="" oninput="setCustomValidity('')">
-                                                            {{ $last= date('Y')-10 }}
-                                                            {{ $now = date('Y') }}
-
-                                                            @for ($i = $now; $i >= $last; $i--)
-                                                            <option value="{{ $i }}">{{ $i }}</option>
-                                                            @endfor
-                                                        </select>
-                                                    </div>
-                                                </div>
+                                                <label>Jabatan</label>
+                                                <input type="text" class="form-control" placeholder="Masukkan Jabatan" name="jabatan" oninvalid="this.setCustomValidity('Lengkapi Inputan')" required="" oninput="setCustomValidity('')">
                                                 <br>
-                                                <label>Masa Keanggotaan</label>
+                                                <label>Masa Jabatan</label>
                                                 <div class="row">
                                                     <div class="col-4">
                                                         <select class="form-control" name="gk1" oninvalid="this.setCustomValidity('Lengkapi Inputan')" required="" oninput="setCustomValidity('')">
@@ -387,6 +365,7 @@
                                                 <th style="width: 10px">#</th>
                                                 <th>Kategori</th>
                                                 <th>Organisasi</th>
+                                                <th>Jabatan</th>
                                                 <th style="width: 200px">Aksi</th>
                                             </tr>
                                         </thead>
@@ -396,6 +375,7 @@
                                                 <td>{{ $loop->iteration }}</td>
                                                 <td>{{ $r->kategori }}</td>
                                                 <td>{{ $r->nama_organisasi }}</td>
+                                                <td>{{ $r->jabatan }}</td>
                                                 <td>
                                                     <div class="input-group">
                                                         <div class="input-group-prepend">
@@ -428,8 +408,8 @@
                                             @csrf
                                             <div class="form-group">
                                                 <input type="hidden" class="form-control" id="uuid" name="niup" value="">
-                                                <label>Asrama</label>
-                                                <input type="text" class="form-control" placeholder="Masukkan Asrama" name="asrama" oninvalid="this.setCustomValidity('Lengkapi Inputan')" required="" oninput="setCustomValidity('')">
+                                                <label>Penempatan</label>
+                                                <input type="text" class="form-control" placeholder="Masukkan Penempatan" name="asrama" oninvalid="this.setCustomValidity('Lengkapi Inputan')" required="" oninput="setCustomValidity('')">
                                                 <br>
                                                 <label>Kategori</label>
                                                 <select class="form-control" name="bidang" oninvalid="this.setCustomValidity('Lengkapi Inputan')" required="" oninput="setCustomValidity('')">
@@ -441,7 +421,7 @@
                                                 </select>
                                                 <br>
                                                 <label>Sub Bidang</label>
-                                                <input type="text" class="form-control" placeholder="Masukkan Nama Organisasi" name="sub_bidang" oninvalid="this.setCustomValidity('Lengkapi Inputan')" required="" oninput="setCustomValidity('')">
+                                                <input type="text" class="form-control" placeholder="Masukkan Sub Bidang" name="sub_bidang" oninvalid="this.setCustomValidity('Lengkapi Inputan')" required="" oninput="setCustomValidity('')">
                                                 <br>
                                                 <label>Masa Keanggotaan</label>
                                                 <div class="row">
@@ -480,7 +460,7 @@
                                         <thead>
                                             <tr>
                                                 <th style="width: 10px">#</th>
-                                                <th>Jurusan</th>
+                                                <th>Penempatan</th>
                                                 <th>Bidang</th>
                                                 <th>Sub</th>
                                                 <th style="width: 200px">Aksi</th>
@@ -663,7 +643,10 @@
                     <label>Nama Organisasi</label>
                     <input type="text" class="form-control" placeholder="Masukkan Nama Organisasi" value="{{$r->nama_organisasi}}" name="nama_organisasi" oninvalid="this.setCustomValidity('Lengkapi Inputan')" required="" oninput="setCustomValidity('')">
                     <br>
-                    <label>Masa Keanggotaan</label>
+                    <label>Jabatan</label>
+                    <input type="text" class="form-control" placeholder="Masukkan Jabatan" value="{{$r->jabatan}}" name="jabatan" oninvalid="this.setCustomValidity('Lengkapi Inputan')" required="" oninput="setCustomValidity('')">
+                    <br>
+                    <label>Masa Jabatan</label>
                     <div class="row">
                         <div class="col-4">
                             <select class="form-control" name="gk1" oninvalid="this.setCustomValidity('Lengkapi Inputan')" required="" oninput="setCustomValidity('')">
@@ -714,8 +697,8 @@
             <div class="modal-body">
                 <form action="{{ URL::to('edit-eks/'.$r->id)}}" method="post">
                     @csrf
-                    <label>Asrama</label>
-                    <input type="text" class="form-control" placeholder="Masukkan Asrama" value="{{$r->asrama}}" name="asrama" oninvalid="this.setCustomValidity('Lengkapi Inputan')" required="" oninput="setCustomValidity('')">
+                    <label>Penempatan</label>
+                    <input type="text" class="form-control" placeholder="Masukkan Penempatan" value="{{$r->asrama}}" name="asrama" oninvalid="this.setCustomValidity('Lengkapi Inputan')" required="" oninput="setCustomValidity('')">
                     <br>
                     <label>Bidang</label>
                     <select class="form-control" name="bidang" oninvalid="this.setCustomValidity('Lengkapi Inputan')" required="" oninput="setCustomValidity('')">

@@ -116,10 +116,11 @@
                             <option value="Teknologi" {{ $r->jurusan == 'Teknologi' ? 'selected':'' }}>Teknologi</option>
                             <option value="Sosial-Humaniora" {{ $r->jurusan == 'Sosial-Humaniora' ? 'selected':'' }}>Sosial-Humaniora</option>
                             <option value="Bahasa" {{ $r->jurusan == 'Bahasa' ? 'selected':'' }}>Bahasa</option>
+                            <option value="Lain-lain" {{ $r->jurusan == 'Lain-lain' ? 'selected':'' }}>Lain-lain</option>
                         </select>
                         <br>
                         <label>Sub Peminatan</label>
-                        <input type="text" class="form-control" placeholder="Masukkan Sub Peminatan" value="{{ $r->sub }}" name="sub">
+                        <input type="text" class="form-control" placeholder="Masukkan Sub Peminatan" value="{{ $r->sub }}" name="sub" required>
                     </div>
                     <div class="modal-footer justify-content-between">
                         <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
@@ -191,10 +192,11 @@
                             <option value="Teknologi">Teknologi</option>
                             <option value="Sosial-Humaniora">Sosial-Humaniora</option>
                             <option value="Bahasa">Bahasa</option>
+                            <option value="Lain-lain">Lain-lain</option>
                         </select>
                         <br>
                         <label>Sub Peminatan</label>
-                        <input type="text" class="form-control" placeholder="Masukkan Sub Jurusan" name="sub">
+                        <input type="text" class="form-control" placeholder="Masukkan Sub Jurusan" name="sub" required>
 
                         <div class="modal-footer justify-content-between">
                             <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>

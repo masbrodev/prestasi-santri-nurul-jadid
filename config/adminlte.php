@@ -302,23 +302,34 @@ return [
         ],
         ['header' => 'Pengaturan'],
         [
-            'text' => 'Pengaturan',
-            'icon' => 'fa fa-cog',
+            'text' => 'Tambah Peminatan',
+            'icon' => 'fas fa-fw fa-plus-square',
             'submenu' => [
                 [
-                    'text' => 'Peminatan Keilmuan',
+                    'text' => 'Keilmuan',
                     'url'  => 'hal-peminatan-keilmuan',
-                    'icon' => 'fas fa-fw fa-plus-square',
+                    'icon' => 'fa fa-book',
                 ],
                 [
-                    'text' => 'Peminatan Skill',
+                    'text' => 'Skill',
                     'url'  => 'hal-peminatan-skill',
-                    'icon' => 'fas fa-fw fa-plus-square',
+                    'icon' => 'fa fa-futbol',
+                ],
+            ],
+        ],
+        [
+            'text' => 'Akun',
+            'icon' => 'fa fa-user',
+            'submenu' => [
+                [
+                    'text' => 'Ganti Password',
+                    'url'  => 'ganti-password',
+                    'icon' => 'fa fa-key',
                 ],
             ],
         ],
     ],
-
+    
     /*
     |--------------------------------------------------------------------------
     | Menu Filters

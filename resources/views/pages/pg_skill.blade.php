@@ -120,10 +120,11 @@
                             <option value="Kepanduan/Krida" {{ $r->jurusan == 'Kepanduan/Krida' ? 'selected':'' }}>Kepanduan/Krida</option>
                             <option value="Keterampilan Hardskill Bisnis/Wirausaha" {{ $r->jurusan == 'Keterampilan Hardskill Bisnis/Wirausaha' ? 'selected':'' }}>Keterampilan Hardskill Bisnis/Wirausaha</option>
                             <option value="Keterampilan Softskill" {{ $r->jurusan == 'Keterampilan Softskill' ? 'selected':'' }}>Keterampilan Softskill</option>
+                            <option value="Lain-lain" {{ $r->jurusan == 'Lain-lain' ? 'selected':'' }}>Lain-lain</option>
                         </select>
                         <br>
                         <label>Sub Peminatan</label>
-                        <input type="text" class="form-control" placeholder="Masukkan Sub Peminatan" value="{{ $r->sub }}" name="sub">
+                        <input type="text" class="form-control" placeholder="Masukkan Sub Peminatan" value="{{ $r->sub }}" name="sub" required>
                     </div>
                     <div class="modal-footer justify-content-between">
                         <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
@@ -200,9 +201,10 @@
                             <option value="Kepanduan/Krida">Kepanduan/Krida</option>
                             <option value="Keterampilan Hardskill Bisnis/Wirausaha">Keterampilan Hardskill Bisnis/Wirausaha</option>
                             <option value="Keterampilan Softskill">Keterampilan Softskill</option>
+                            <option value="Lain-lain">Lain-lain</option>
                         </select>
                         <label>Sub Peminatan</label>
-                        <input type="text" class="form-control" placeholder="Masukkan Sub Jurusan" name="sub">
+                        <input type="text" class="form-control" placeholder="Masukkan Sub Jurusan" name="sub" required>
                      
                         <div class="modal-footer justify-content-between">
                             <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>

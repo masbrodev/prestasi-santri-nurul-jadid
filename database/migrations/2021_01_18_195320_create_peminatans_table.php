@@ -25,11 +25,6 @@ class CreatePeminatansTable extends Migration
             $table->integer('peminatan_id')->unsigned()->after('niup');
             $table->foreign('peminatan_id')->references('id')->on('peminatan');
         });
-
-        Schema::table('pskill', function (Blueprint $table) {
-            $table->integer('peminatan_id')->unsigned()->after('niup');
-            $table->foreign('peminatan_id')->references('id')->on('peminatan');
-        });
     }
 
     /**
