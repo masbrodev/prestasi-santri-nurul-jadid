@@ -23,6 +23,7 @@ return [
     | These options determine which information will be transmitted to Flare.
     |
     */
+    'collect_git_information' => false,
 
     'reporting' => [
         'anonymize_ips' => true,
