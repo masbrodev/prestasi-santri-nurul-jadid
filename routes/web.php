@@ -25,15 +25,15 @@ Auth::routes([
 ]);
 
 Route::group(['middleware' => 'auth'], function () {
-  Route::get('/home', 'santriController@dashboard');
+  Route::get('/home', 'SantriController@dashboard');
 
-  Route::get('/cetak/{id}', 'santriController@cetak');
-  Route::get('/cetak2/{id}', 'santriController@cetak2');
-  Route::get('/santri', 'santriController@index');
-  Route::get('/formulir/{id}', 'santriController@formulir');
-  Route::get('/detail', 'santriController@detail');
-  Route::get('/ganti-password', 'santriController@password');
-  Route::post('/gpassword', 'santriController@gpassword');
+  Route::get('/cetak/{id}', 'SantriController@cetak');
+  Route::get('/cetak2/{id}', 'SantriController@cetak2');
+  Route::get('/santri', 'SantriController@index');
+  Route::get('/formulir/{id}', 'SantriController@formulir');
+  Route::get('/detail', 'SantriController@detail');
+  Route::get('/ganti-password', 'SantriController@password');
+  Route::post('/gpassword', 'SantriController@gpassword');
 
   Route::get('/peminatan-keilmuan', 'PkilmuanController@index');
   Route::post('/tambah-keilmuan', 'PkilmuanController@tambah');
