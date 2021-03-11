@@ -342,7 +342,7 @@
                                                     <div class="col-4">
                                                         <select class="form-control" name="gk2" oninvalid="this.setCustomValidity('Lengkapi Inputan')" required="" oninput="setCustomValidity('')">
                                                             {{ $last= date('Y')-10 }}
-                                                            {{ $now = date('Y') }}
+                                                            {{ $now = date('Y')+1 }}
 
                                                             @for ($i = $now; $i >= $last; $i--)
                                                             <option value="{{ $i }}">{{ $i }}</option>
@@ -399,10 +399,10 @@
                             <div class="tab-pane" id="eks">
                                 <div class="card-tools">
                                     <ul class="pagination pagination-sm float-left">
-                                        <button type="button" class="btn btn-outline-primary" data-toggle="collapse" data-target="#tambah-skill" aria-expanded="false" aria-controls="tambah-skill">Tambah Jejak Ekstrakurikuler</button>
+                                        <button type="button" class="btn btn-outline-primary" data-toggle="collapse" data-target="#tambah-eks" aria-expanded="false" aria-controls="tambah-eks">Tambah Jejak Ekstrakurikuler</button>
                                     </ul>
                                 </div>
-                                <div class="collapse" id="tambah-skill">
+                                <div class="collapse" id="tambah-eks">
                                     <div class="card card-body">
                                         <form class="form-horizontal" action="{{ URL::to('tambah-eks')}}" method="post">
                                             @csrf
@@ -439,7 +439,7 @@
                                                     <div class="col-4">
                                                         <select class="form-control" name="gk2" oninvalid="this.setCustomValidity('Lengkapi Inputan')" required="" oninput="setCustomValidity('')">
                                                             {{ $last= date('Y')-10 }}
-                                                            {{ $now = date('Y') }}
+                                                            {{ $now = date('Y')+1 }}
 
                                                             @for ($i = $now; $i >= $last; $i--)
                                                             <option value="{{ $i }}">{{ $i }}</option>
@@ -662,7 +662,7 @@
                         <div class="col-4">
                             <select class="form-control" name="gk2" oninvalid="this.setCustomValidity('Lengkapi Inputan')" required="" oninput="setCustomValidity('')">
                                 {{ $last= date('Y')-10 }}
-                                {{ $now = date('Y') }}
+                                {{ $now = date('Y')+1 }}
 
                                 @for ($i = $now; $i >= $last; $i--)
                                 <option value="{{ $i }}" {{ $r->gk2() == $i ? 'selected':'' }}>{{ $i }}</option>
@@ -728,7 +728,7 @@
                         <div class="col-4">
                             <select class="form-control" name="gk2" oninvalid="this.setCustomValidity('Lengkapi Inputan')" required="" oninput="setCustomValidity('')">
                                 {{ $last= date('Y')-10 }}
-                                {{ $now = date('Y') }}
+                                {{ $now = date('Y')+1 }}
 
                                 @for ($i = $now; $i >= $last; $i--)
                                 <option value="{{ $i }}" {{ $r->gk2() == $i ? 'selected':'' }}>{{ $i }}</option>

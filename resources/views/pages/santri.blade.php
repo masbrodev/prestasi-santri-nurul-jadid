@@ -26,7 +26,7 @@
                 <thead>
                     <tr>
                         <th style="width: 20px">#</th>
-                        <th>NIS</th>
+                        <th>NIUP</th>
                         <th>Nama</th>
                         <th>Kamar</th>
                         <th>Sekolah</th>
