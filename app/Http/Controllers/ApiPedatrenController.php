@@ -65,6 +65,26 @@ class ApiPedatrenController extends Controller
         return $data;
     }
 
+    public function alumni(Request $request)
+    {
+        $page = $request->query('page');
+        $limit = $request->query('limit');
+        $cari = $request->query('cari');
+        $request = $this->client->get('https://api.pedatren.nuruljadid.app/alumni', [
+            'headers' => [
+                'x-token' => $this->token[0]['token']
+            ],
+            'query' => [
+                'page' => $page,
+                'limit' => $limit,
+                'cari' => $cari
+            ]
+        ])->getBody()->getContents();
+        $data['santri'] = json_decode($request, false);
+        $data['jumlah'] = count($data['santri']);
+        return $data;
+    }
+
     public function apiformulir(Request $request, $id)
     {
         $request = $this->client->get('https://api.pedatren.nuruljadid.app/person/' . $id, [
