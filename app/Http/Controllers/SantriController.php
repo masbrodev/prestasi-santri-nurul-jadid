@@ -20,6 +20,11 @@ class SantriController extends Controller
         return view('pages.santri');
     }
 
+    public function alumni()
+    {
+        return view('pages.alumni');
+    }
+
     public function gpassword(Request $request)
     {
         // $data = [
