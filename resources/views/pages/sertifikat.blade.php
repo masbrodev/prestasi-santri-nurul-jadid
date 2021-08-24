@@ -58,7 +58,8 @@
                 <br>
                 <br>
                 <br>
-                <h3 class="text-bold border-bottom">K.H. FAHMI AHZ</h3>
+                <h3 class="text-bold border-bottom ">K.H. FAIZ AHZ, M. FIL</h3>
+                <h5 class="">NIUP. 31820101775</h5>
             </center>
         </div>
         <div class="col">
@@ -71,6 +72,7 @@
                 <br>
                 <br>
                 <h3 class="text-bold border-bottom">ROJABI AZZARGHANY</h3>
+                <h5 class="">NIUP. 31820108256</h5>
             </center>
         </div>
     </div>
