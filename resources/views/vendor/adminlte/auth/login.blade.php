@@ -22,49 +22,7 @@
 
 @section('auth_body')
 <form action="{{ $login_url }}" method="post">
-    {{ csrf_field() }}
-
-    {{-- Email field --}}
-    <div class="input-group mb-3">
-        <input type="text" name="email" class="form-control {{ $errors->has('email') ? 'is-invalid' : '' }}" value="{{ old('email') }}" placeholder="Username" autofocus>
-        <div class="input-group-append">
-            <div class="input-group-text">
-                <span class="fas fa-envelope {{ config('adminlte.classes_auth_icon', '') }}"></span>
-            </div>
-        </div>
-        @if($errors->has('email'))
-        <div class="invalid-feedback">
-            <strong>{{ $errors->first('email') }}</strong>
-        </div>
-        @endif
-    </div>
-
-    {{-- Password field --}}
-    <div class="input-group mb-3">
-        <input type="password" name="password" class="form-control {{ $errors->has('password') ? 'is-invalid' : '' }}" placeholder="{{ __('adminlte::adminlte.password') }}">
-        <div class="input-group-append">
-            <div class="input-group-text">
-                <span class="fas fa-lock {{ config('adminlte.classes_auth_icon', '') }}"></span>
-            </div>
-        </div>
-        @if($errors->has('password'))
-        <div class="invalid-feedback">
-            <strong>{{ $errors->first('password') }}</strong>
-        </div>
-        @endif
-    </div>
-
-    {{-- Login field --}}
-    <div class="row">
-        <div class="col-12">
-            <button type=submit class="btn btn-block {{ config('adminlte.classes_auth_btn', 'btn-flat btn-primary') }}">
-                <span class="fas fa-sign-in-alt"></span>
-                Masuk
-            </button>
-        </div>
-    </div>
-
-
+<h5>Website ini sedang di perbaikan</h5>
 </form>
 @stop
 
