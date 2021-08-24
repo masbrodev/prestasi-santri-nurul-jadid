@@ -19,6 +19,7 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
 });
 
 Route::get('/santri', 'ApiPedatrenController@santri');
+Route::get('/alumni', 'ApiPedatrenController@alumni');
 Route::get('/login', 'ApiPedatrenController@login');
 Route::get('/dashboard', 'ApiPedatrenController@dashboard');
 Route::get('/refresh', 'ApiPedatrenController@refresh');

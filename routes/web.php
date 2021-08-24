@@ -26,10 +26,11 @@ Auth::routes([
 
 Route::group(['middleware' => 'auth'], function () {
   Route::get('/home', 'SantriController@dashboard');
+  Route::get('/santri', 'SantriController@index');
+  Route::get('/alumni', 'SantriController@alumni');
 
   Route::get('/cetak/{id}', 'SantriController@cetak');
   Route::get('/cetak2/{id}', 'SantriController@cetak2');
-  Route::get('/santri', 'SantriController@index');
   Route::get('/formulir/{id}', 'SantriController@formulir');
   Route::get('/detail', 'SantriController@detail');
   Route::get('/ganti-password', 'SantriController@password');
