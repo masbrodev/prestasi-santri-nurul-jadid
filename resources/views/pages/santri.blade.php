@@ -79,10 +79,9 @@
                     });
             },
             columns: [{
-                    data: "santri.nis"
                 },
                 {
-                    data: "santri.nis",
+                    data: "warga_pesantren.niup",
                 },
                 {
                     data: "nama_lengkap",
