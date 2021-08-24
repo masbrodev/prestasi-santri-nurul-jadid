@@ -242,6 +242,11 @@ return [
             'url'  => 'santri',
             'icon' => 'fa fa-database',
         ],
+        [
+            'text' => 'Data Alumni',
+            'url'  => 'alumni',
+            'icon' => 'fa fa-database',
+        ],
         ['header' => 'Peminatan'],
         [
             'text' => 'Peminatan Keilmuan',
